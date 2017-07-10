@@ -1,0 +1,136 @@
+<% if @blog.errors.any? %>
+    <ul class="">
+      <% for message_error in @blog.errors.full_messages %>
+          <li class="text-danger"><%= message_error %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+<h2>ブログ新記事更新</h2>
+
+<%= form_for @blog, :html => {:class => "form-horizontal center"} do |f| %>
+
+    <div class="form-group">
+      <%= f.label :title, "タイトル:", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <%= f.text_field :title, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :category, "カテゴリ:", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <!--<%= f.text_field :category, :class => 'form-control' %>-->
+        <%= f.select :category, Blog.categories.keys %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :datePublic, "公開時間", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <%= f.text_field :datePublic, class: 'datepicker' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "公開設定", :class => "control-label col-lg-2"  %> <br />
+      <div class="col-lg-4">
+        <%= f.check_box :isPublic %> 公開する<br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "オススメ", :class => "control-label col-lg-2"  %> <br />
+      <div class="col-lg-4">
+        <%= f.check_box :isSuggest %> オススメ設定にする<br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "見出し画像", :class => "control-label col-lg-2"  %> <br />
+      <div class="col-lg-4">
+        <%= image_tag @blog.image.thumb.url %><br />
+        <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "本文", :class => "control-label col-lg-2"  %> <br />
+      <div class="col-lg-4">
+        <%= link_to "プレビュー", :id => 'previewButton' %>
+        <%= f.cktext_area :body, :id => 'editor1' %><br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :author, "名前:", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <%= f.text_field :author, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :jobName, "職業:", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <%= f.text_field :jobName, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :age, "年齢:", :class => "control-label col-lg-2" %></br>
+      <div class="col-lg-4">
+        <%= f.text_field :age, :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "画像", :class => "control-label col-lg-2"  %> <br />
+      <div class="col-lg-4">
+        <%= image_tag @blog.authorImage.thumb.url %><br />
+        <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-4">
+        <%= link_to "一覧", blogs_path, :class=>"btn btn-default" %>
+        <%= f.submit "更新", :class => "btn btn-default btn-primary" %>
+      </div>
+    </div>
+
+<% end %>
+
+<script type="text/javascript">
+  // show datePicker
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      dateFormat: '%Y-%m-%d',
+      timeFormat: '%H:%M:%S'
+    });
+  });
+
+  // preview image before upload
+  var loadImageFile = function(event) {
+    var previewImage = document.getElementById('previewImage');
+    previewImage.src = URL.createObjectURL(event.target.files[0]);
+  };
+  // preview avatar before upload
+  var loadAvatar = function(event) {
+    var previewAvatar = document.getElementById('previewAvatar');
+    previewAvatar.src = URL.createObjectURL(event.target.files[0])
+  }
+
+  $(document).ready( function() {
+    $('#previewButton').click( function () {
+      var contents = $('#editor1').val();
+      var mywin = window.open("", "ckeditor_preview", "location=0,status=0,scrollbars=0,width=500,height=500");
+
+      $(mywin.document.body).html(contents);
+    });
+
+    $('#editor1').ckeditor();
+  });
+
+</script>
+
+

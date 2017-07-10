@@ -1,0 +1,137 @@
+<html>
+  <body>
+    <!--show message flag-->
+    <div>
+      <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+
+    <div class="form-group" style="padding-left: 20px">
+      <h2>ブログ記事一覧</h2>
+    </div>
+
+    <div class="row">
+      <%= form_tag blogs_path, :method => 'get' do %>
+        <div class="form-group" style="padding-left: 50px">
+          <div class="col-lg-2">
+            <label class= "control-label">タイトル</label>
+            <%= text_field_tag :title, params[:title], class:"form-control" %>
+          </div>
+
+          <div class="col-lg-2">
+            <label>カテゴリ</label>
+            <%= select_tag :category, options_for_select(Blog.categories.keys), class: "form-control" %>
+          </div>
+
+          <div class="col-lg-2">
+            <label>公開 / 非公開:</label>
+            <%= select_tag :isPublic, options_for_select([["公開中"],["非公開中"]]), class: "form-control" %>
+          </div>
+
+          <div class="col-lg-2">
+            <label>オススメ:</label>
+            <%= select_tag :isSuggest, options_for_select([["オススメ"],["非オススメ"]]), class: "form-control" %>
+          </div>
+
+          <div class="col-lg-2">
+            <label>並べ替え:</label>
+            <%= select_tag :isSort, options_for_select(Blog.isSorts.keys), class: "form-control" %>
+          </div>
+
+          <div class="col-lg-1">
+            <br />
+            <div class="btn-group">
+              <%= submit_tag "更新", class: "btn btn-default"  %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br />
+    <div class="form-group" style="padding-left: 50px">
+      <%= link_to "新記事作成", new_blog_path, class: "btn btn-default btn-primary" %>
+    </div>
+
+    <div class="form-group" style="padding-left: 50px">
+      <%= paginate @blogs, theme: 'twitter-bootstrap-3' %>
+    </div>
+
+    <div class="form-group" style="padding-left: 50px; padding-right: 30px">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>作成時間</th>
+          <th>タイトル</th>
+          <th>カテゴリ</th>
+          <th>オススメ</th>
+          <th>作成者</th>
+          <th>サムネイル画像</th>
+          <th>公開 / 非公開</th>
+          <th>公開時間</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @blogs.each do |blog| %>
+            <tr>
+              <td><%= blog.id %></td>
+              <td><%= blog.created_at.strftime("%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S") %></td>
+              <td><%= blog.title %></td>
+              <td><%= blog.category %></td>
+              <td>
+                <% if blog.isSuggest %>
+                  <div class="isSuggestCircle"></div>
+                <% end %>
+              </td>
+              <td><%= blog.author %></td>
+              <td><%= image_tag blog.image.thumb.url %></td>
+              <td>
+                <% if blog.isPublic %>
+                    <%= '公開中' %>
+                <% else %>
+                    <%= '非公開中' %>
+                <% end %>
+              </td>
+              <td>
+                <%= blog.datePublic.try(:strftime, "%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S" ) %><br />
+                <div class="btn-group">
+                  <%= button_to "時間変更", url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>
+                    <!--<div class="btn btn-changeDatePublic btn-default" data-id-date="<%= blog.id %>">時間変更</div>-->
+                </div>
+                <div class="btn-group">
+                  <% if blog.isPublic %>
+                    <!--<%= button_to "停止", blog, method: :unPublic, :class => "btn btn-default btn-danger"  %>-->
+                      <!--<div class="btn btn-unPublic btn-danger" data-id="<%= blog.id %>">停止</div>-->
+                      <%= button_to "停止", url_for(controller: 'blogs', action: 'unPublic', id: blog.id), method: :post, class: "btn btn-default btn-danger"%>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <%= link_to "記事編集", edit_blog_path(blog.id), :class=>"btn btn-default" %>
+                <%= link_to "リストコメント", edit_blog_path(blog.id), :class => "btn btn-default" %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-group" style="padding-left: 50px">
+      <%= paginate @blogs, theme: 'twitter-bootstrap-3' %>
+    </div>
+
+  </body>
+</html>
+
+<script type="text/javascript">
+  // show datePicker
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      dateFormat: '%Y-%m-%d',
+      timeFormat: '%H:%M:%S'
+    });
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dps1gf8le
+  api_key: '241887354249339'
+  api_secret: rcVFEBpAn92ejTOrWplOQwmLXMw
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dps1gf8le
+  api_key: '241887354249339'
+  api_secret: rcVFEBpAn92ejTOrWplOQwmLXMw
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dps1gf8le
+  api_key: '241887354249339'
+  api_secret: rcVFEBpAn92ejTOrWplOQwmLXMw
+  enhance_image_tag: true
+  static_image_support: false

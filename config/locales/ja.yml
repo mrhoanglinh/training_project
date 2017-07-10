@@ -1,0 +1,11 @@
+ja:
+  blogs:
+    index:
+      creatAt: '作成時間'
+      title: 'タイトル'
+      category: 'カテゴリ'
+      suggest: 'オススメ'
+      author: '作成者'
+      image: 'サムネイル画像'
+      public: '公開/非公開'
+      option: '操作'

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Downloads/mydata/lms/.idea/lms.iml" filepath="$USER_HOME$/Downloads/mydata/lms/.idea/lms.iml" />
+      <module fileurl="file://$USER_HOME$/lms-rails5/.idea/lms-rails5.iml" filepath="$USER_HOME$/lms-rails5/.idea/lms-rails5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/training_project.iml" filepath="$PROJECT_DIR$/.idea/training_project.iml" />
+    </modules>
+  </component>
+</project>

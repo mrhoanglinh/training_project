@@ -1,0 +1,119 @@
+html, body {
+    height:100%;
+}
+
+.switch-language a{
+    display: inline-block !important;
+    color: #1e5799 !important;
+}
+
+.container {
+    min-height: 85%;
+}
+
+
+.active-user {
+    padding-left: 2%;
+}
+
+.active-user .navbar {
+    left: 5%;
+}
+
+#sidebar-wrapper {
+    margin-left: -10%;
+    left: 0px;
+    width: 15%;
+    position: fixed;
+    height: 100%;
+    z-index: 10000;
+    transition: all .4s ease 0s;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+100,7db9e8+100 */
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(left,  #1e5799 0%, #2989d8 100%, #7db9e8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #1e5799 0%,#2989d8 100%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #1e5799 0%,#2989d8 100%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */
+
+}
+
+#sidebar-wrapper .list-group-item {
+    border-radius: 0px;
+    padding: 15px;
+}
+
+#sidebar-wrapper .glyphicon {
+    text-align: right;
+    float: right;
+    cursor: pointer;
+}
+
+#sidebar-wrapper.active {
+    margin-left: -0px;
+    left: 0px;
+    transition: all .4s ease 0s;
+}
+
+.sidebar-nav {
+    display: block;
+    position: relative;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.navright-item {
+    margin-top: 12px;
+}
+.dropdown-menu.small {
+    min-width: 200px !important;
+}
+
+.social-icon {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 2px;
+}
+
+.social-icon li{
+    display: inline-block;
+    text-align: center;
+}
+
+.social-icon a {
+    display: block;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+
+
+.label {
+    background-color: #999999;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    font-size: 9.75px;
+    font-weight: bold;
+    padding: 1px 3px 2px;
+    text-transform: uppercase;
+}
+
+.isSuggestCircle {
+    border-radius: 50%;
+
+    width: 15px;
+    height: 20px;
+    padding: 8px;
+
+    background: #fff;
+    border: 1px solid #111;
+    color: #666;
+    text-align: center;
+}
