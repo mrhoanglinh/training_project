@@ -1,9 +1,10 @@
 class BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_blog, only: [:show, :edit, :update]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
   
   def index
 	  @blogs = Blog.all.page(params[:page]).per(20)
+    @kq = Blog.search
 
     respond_to do |format|
       format.html
@@ -48,10 +49,11 @@ class BlogsController < ApplicationController
 
   end
 
-  def search
-    @blogs = Blog.search(params[:title])
+  def destroy
+    @blog.destroy
     respond_to do |format|
-      format.html { render :index }
+      format.html { redirect_to blogs_url, notice: 'ブログ記事を削除しました。' }
+      format.json { head :no_content }
     end
   end
 

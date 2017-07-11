@@ -50,7 +50,7 @@
     <div class="form-group">
       <%= f.label "見出し画像", :class => "control-label col-lg-2"  %>
       <div class="col-lg-4">
-        <img id="previewImage"><br />
+        <img id="previewImage" style="width: 150px; height: 150px"><br />
         <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
       </div>
     </div>
@@ -87,7 +87,7 @@
     <div class="form-group">
       <%= f.label "画像", :class => "control-label col-lg-2"  %>
       <div class="col-lg-4">
-        <img id="previewAvatar"><br />
+        <img id="previewAvatar" style="width: 150px; height: 150px"><br />
         <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
       </div>
     </div>

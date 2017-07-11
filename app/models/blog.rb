@@ -14,4 +14,10 @@ class Blog < ApplicationRecord
 
   enum isSort: [ :作成日時降順, :作成日時昇順 ]
 
+  scope :search, -> (title, category, isSuggest, isPublic, sort_desc) {
+    sort_type = sort_desc == 1 ? 'asc' : 'desc'
+    where('title LIKE ? OR category LIKE ? OR isSuggest LIKE ? OR isPublic LIKE ? ', title, isSuggest, isSuggest, isPublic)
+    .sort()
+  }
+
 end

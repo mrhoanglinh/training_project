@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   #get "blogs/new", to: "blogs#new"
   #get "blogs/edit", to: "blogs#edit"
   #get 'blogs/:id/edit', to: "blogs#edit"
-  post 'blogs/search' => "blogs#search"
-  post 'blogs/:id/unPublic', to: "blogs#unPublic"
-  post 'blogs/:id/changeDate', to: "blogs#changeDate"
+  get 'blogs/search', to: 'blogs#search'
+  post 'blogs/:id/unPublic', to: 'blogs#unPublic'
+  post 'blogs/:id/changeDate', to: 'blogs#changeDate'
+
 end
