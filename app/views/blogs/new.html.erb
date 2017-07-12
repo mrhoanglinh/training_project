@@ -20,9 +20,9 @@
 	  </div>
 
 	  <div class="form-group">
-      <%= f.label :category, "カテゴリ", :class => "control-label col-lg-2" %>
+      <%= f.label :category_id, "カテゴリ", :class => "control-label col-lg-2" %>
 		  <div class="col-lg-4">
-        <%= f.select :category, options_for_select(Blog.categories.keys), :class => "form-control" %>
+        <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
 	    </div>
 	  </div>
 
@@ -58,29 +58,29 @@
     <div class="form-group">
       <%= f.label "本文", :class => "control-label col-lg-2"  %>
       <div class="col-lg-4">
-        <%= link_to "プレビュー", :id => 'previewButton' %>
-        <%= f.cktext_area :body, :id => 'editor1' %><br />
+        <%= link_to "プレビュー", :class => "btn btn-preview" %>
+        <%= f.cktext_area :content, :id => 'editor1' %><br />
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :author, "名前", :class => "control-label col-lg-2" %>
       <div class="col-lg-4">
-        <%= f.text_field :author, :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        <%= f.text_field :author, :value => "ナルフォード", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :jobName, "職業", :class => "control-label col-lg-2" %>
       <div class="col-lg-4">
-        <%= f.text_field :jobName, :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        <%= f.text_field :jobName, :value => "塾講師" , :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
       </div>
     </div>
 
     <div class="form-group">
       <%= f.label :age, "年齢", :class => "control-label col-lg-2" %>
       <div class="col-lg-4">
-        <%= f.text_field :age, :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        <%= f.text_field :age, :value => "26", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
       </div>
     </div>
 
@@ -121,16 +121,19 @@
     previewAvatar.src = URL.createObjectURL(event.target.files[0])
   }
 
-   $(document).ready( function() {
-     $('#previewButton').click( function () {
-       var contents = $('#editor1').val();
-       var mywin = window.open("", "ckeditor_preview", "location=0,status=0,scrollbars=0,width=500,height=500");
+//   $(document).ready( function() {
+//     $('#previewButton').click( function () {
+//       var contents = $('#editor1').val();
+//       var mywin = window.open("", "ckeditor_preview", "location=0,status=0,scrollbars=0,width=500,height=500");
+//
+//       $(mywin.document.body).html(contents);
+//     });
+//
+//     $('#editor1').ckeditor();
+//   });
 
-       $(mywin.document.body).html(contents);
-     });
+   CKEDITOR.replace( 'editor1' );
 
-     $('#editor1').ckeditor();
-   });
 
 </script>
 

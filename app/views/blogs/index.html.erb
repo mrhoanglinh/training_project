@@ -16,34 +16,34 @@
     </div>
 
     <div class="row">
-      <%= form_tag(root_path, method: :get ) do  %>
+      <%= search_form_for @search, class: "form-inline" do |f|  %>
         <div class="form-group" style="padding-left: 50px">
           <div class="col-lg-2">
-            <label class= "control-label">タイトル</label>
-            <%= text_field_tag :title, params[:title], class:"form-control" %>
+            <label>タイトル</label>
+            <%= f.search_field :title_cont, class: "form-control" %>
           </div>
 
           <div class="col-lg-2">
             <label>カテゴリ</label>
-            <%= select_tag :category, options_for_select(Blog.categories.map {|k, v| [k.humanize.capitalize, v]}), class: "form-control"  %>
+            <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
           </div>
 
           <div class="col-lg-2">
-            <label>公開 / 非公開:</label>
-            <%= select_tag :isPublic, options_for_select([['公開中', 1], ['非公開中', 0]]), class: "form-control" %>
+            <label>公開 / 非公開</label>
+            <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
           </div>
 
           <div class="col-lg-2">
-            <label>オススメ:</label>
-            <%= select_tag :isSuggest, options_for_select([['オススメ', 1], ['非オススメ', 0]]), class: "form-control" %>
+            <label>オススメ</label>
+            <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
           </div>
 
           <div class="col-lg-2">
-            <label>並べ替え:</label>
-            <%= select_tag :isSort, options_for_select([['作成日時降順', 1], ['作成日時昇順', 0]]), class: "form-control" %>
+            <label>並べ替え</label>
+            <%= select_tag :sort_by, options_for_select([["オススメ", "ASC"],["非オススメ", "DESC"]], params[:sort_by]), {include_blank: true, default: nil, class: "form-control"}%>
           </div>
 
-          <div class="col-lg-1">
+          <div class="col-lg-2">
             <br />
             <div class="btn-group">
               <%= submit_tag "更新", class: "btn btn-default"  %>
@@ -83,16 +83,16 @@
               <td><%= blog.id %></td>
               <td><%= blog.created_at.strftime("%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S") %></td>
               <td><%= blog.title %></td>
-              <td><%= blog.category %></td>
+              <td><%= blog.category.name %></td>
               <td>
-                <% if blog.isSuggest %>
+                <% if blog.isSuggest == 1 %>
                   <div class="isSuggestCircle"></div>
                 <% end %>
               </td>
               <td><%= blog.author %></td>
               <td><%= image_tag blog.image.thumb.url %></td>
               <td>
-                <% if blog.isPublic %>
+                <% if blog.isPublic == 1 %>
                     <%= '公開中' %>
                 <% else %>
                     <%= '非公開中' %>
@@ -102,12 +102,9 @@
                 <%= blog.datePublic.try(:strftime, "%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S" ) %><br />
                 <div class="btn-group">
                   <%= button_to "時間変更", url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>
-                    <!--<div class="btn btn-changeDatePublic btn-default" data-id-date="<%= blog.id %>">時間変更</div>-->
                 </div>
                 <div class="btn-group">
-                  <% if blog.isPublic %>
-                    <!--<%= button_to "停止", blog, method: :unPublic, :class => "btn btn-default btn-danger"  %>-->
-                      <!--<div class="btn btn-unPublic btn-danger" data-id="<%= blog.id %>">停止</div>-->
+                  <% if blog.isPublic == 1 %>
                       <%= button_to "停止", url_for(controller: 'blogs', action: 'unPublic', id: blog.id), method: :post, remote: :true, class: "btn btn-default btn-danger"%>
                   <% end %>
                 </div>

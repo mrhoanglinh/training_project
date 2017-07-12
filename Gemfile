@@ -68,4 +68,4 @@ gem 'momentjs-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-fileupload-rails'
 gem 'byebug'
-
+gem 'ransack'

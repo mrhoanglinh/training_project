@@ -2,26 +2,28 @@
 
 one:
   title: MyString
-  category: MyString
-  isSuggest: false
+  category_id: 1
+  isSuggest: 1
+  isPublic: 1
   image: MyString
-  isPublic: false
-  datePublic: 2017-06-30 14:31:28
-  body: MyText
+  dataPublic: 2017-07-12 14:48:33
+  content: MyText
   author: MyString
   jobName: MyString
   age: 1
   authorImage: MyString
+  category: one
 
 two:
   title: MyString
-  category: MyString
-  isSuggest: false
+  category_id: 1
+  isSuggest: 1
+  isPublic: 1
   image: MyString
-  isPublic: false
-  datePublic: 2017-06-30 14:31:28
-  body: MyText
+  dataPublic: 2017-07-12 14:48:33
+  content: MyText
   author: MyString
   jobName: MyString
   age: 1
   authorImage: MyString
+  category: two

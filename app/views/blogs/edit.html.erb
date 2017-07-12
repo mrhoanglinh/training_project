@@ -18,10 +18,9 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :category, "カテゴリ:", :class => "control-label col-lg-2" %></br>
+      <%= f.label :category_id, "カテゴリ", :class => "control-label col-lg-2" %>
       <div class="col-lg-4">
-        <!--<%= f.text_field :category, :class => 'form-control' %>-->
-        <%= f.select :category, Blog.categories.keys %>
+        <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
       </div>
     </div>
 
@@ -58,7 +57,7 @@
       <%= f.label "本文", :class => "control-label col-lg-2"  %> <br />
       <div class="col-lg-4">
         <%= link_to "プレビュー", :id => 'previewButton' %>
-        <%= f.cktext_area :body, :id => 'editor1' %><br />
+        <%= f.cktext_area :content, :id => 'editor1' %><br />
       </div>
     </div>
 

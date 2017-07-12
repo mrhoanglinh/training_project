@@ -10,22 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704090325) do
+ActiveRecord::Schema.define(version: 20170712075828) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.boolean  "isSuggest"
+    t.integer  "category_id"
+    t.integer  "isSuggest"
+    t.integer  "isPublic"
     t.string   "image"
-    t.boolean  "isPublic"
-    t.datetime "datePublic"
-    t.text     "body",        limit: 65535
+    t.text     "content",     limit: 65535
     t.string   "author"
     t.string   "jobName"
     t.integer  "age"
     t.string   "authorImage"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "category"
+    t.datetime "datePublic"
+    t.index ["category_id"], name: "index_blogs_on_category_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "Blog_id"
+    t.index ["Blog_id"], name: "index_categories_on_Blog_id", using: :btree
   end
 
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,4 +69,5 @@ ActiveRecord::Schema.define(version: 20170704090325) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "blogs", "categories"
 end

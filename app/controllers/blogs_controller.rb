@@ -3,8 +3,8 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
   
   def index
-	  @blogs = Blog.all.page(params[:page]).per(20)
-    @kq = Blog.search
+    @search = Blog.search(params[:q])
+    @blogs = @search.result.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html
@@ -59,8 +59,8 @@ class BlogsController < ApplicationController
 
   def unPublic
     @blog = Blog.find(params[:id])
-    if @blog.isPublic = true
-      @blog.update(isPublic: 'false')
+    if @blog.isPublic = 1
+      @blog.update(isPublic: 0)
       redirect_to blogs_path
     end
   end
@@ -77,7 +77,7 @@ class BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :category, :isSuggest, :image, :isPublic, :datePublic, :body, :author, :jobName, :age, :authorImage)
+      params.require(:blog).permit(:title, :category_id, :isSuggest, :image, :isPublic, :datePublic, :content, :author, :jobName, :age, :authorImage)
 
     end
 end
