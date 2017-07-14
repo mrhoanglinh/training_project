@@ -1,103 +1,115 @@
-<% if @blog.errors.any? %>
-    <ul class="">
-      <% for message_error in @blog.errors.full_messages %>
-          <li class="text-danger"><%= message_error %></li>
-      <% end %>
-    </ul>
-<% end %>
 
-<h2>ブログ新記事更新</h2>
+  <div>
+    <%= render 'error' %>
+  </div>
 
-<%= form_for @blog, :html => {:class => "form-horizontal center"} do |f| %>
+  <div style="padding-left: 30px">
+    <h2>ブログ新記事更新</h2>
+  </div>
 
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"} do |f| %>
+  <div class="row" style="padding-left: 20%" >
     <div class="form-group">
-      <%= f.label :title, "タイトル:", :class => "control-label col-lg-2" %></br>
+      <%= f.label :title, "タイトル:", :class => "form-label col-xs-2" %></br>
       <div class="col-lg-4">
         <%= f.text_field :title, :class => 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :category_id, "カテゴリ", :class => "control-label col-lg-2" %>
+      <%= f.label :category_id, "カテゴリ", :class => "form-label col-xs-2" %>
       <div class="col-lg-4">
         <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :datePublic, "公開時間", :class => "control-label col-lg-2" %></br>
+      <%= f.label :datePublic, "公開時間", :class => "form-label col-xs-2" %></br>
       <div class="col-lg-4">
         <%= f.text_field :datePublic, class: 'datepicker' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "公開設定", :class => "control-label col-lg-2"  %> <br />
+      <%= f.label "公開設定", :class => "form-label col-xs-2"  %> <br />
       <div class="col-lg-4">
         <%= f.check_box :isPublic %> 公開する<br />
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "オススメ", :class => "control-label col-lg-2"  %> <br />
+      <%= f.label "オススメ", :class => "form-label col-xs-2"  %> <br />
       <div class="col-lg-4">
         <%= f.check_box :isSuggest %> オススメ設定にする<br />
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "見出し画像", :class => "control-label col-lg-2"  %> <br />
+      <%= f.label "見出し画像", :class => "form-label col-xs-2"  %> <br />
       <div class="col-lg-4">
-        <%= image_tag @blog.image.thumb.url %><br />
+        <% if @blog.authorImage.thumb.url.nil? %>
+          <img id="previewImage" style="width: 150px; height: 150px"><br />
+        <% else %>
+          <%= image_tag @blog.image.thumb.url %><br />
+        <% end %>
         <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "本文", :class => "control-label col-lg-2"  %> <br />
+      <%= f.label "本文", :class => "form-label col-xs-2"  %> <br />
       <div class="col-lg-4">
-        <%= link_to "プレビュー", :id => 'previewButton' %>
-        <%= f.cktext_area :content, :id => 'editor1' %><br />
+        <div id ="preview"><%= link_to "プレビュー", "" %></div>
+        <%= f.cktext_area :content, id: 'content_text' %><br />
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :author, "名前:", :class => "control-label col-lg-2" %></br>
+      <%= f.label :author, "名前:", :class => "form-label col-xs-2" %></br>
       <div class="col-lg-4">
         <%= f.text_field :author, :class => 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :jobName, "職業:", :class => "control-label col-lg-2" %></br>
+      <%= f.label :jobName, "職業:", :class => "form-label col-xs-2" %></br>
       <div class="col-lg-4">
         <%= f.text_field :jobName, :class => 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :age, "年齢:", :class => "control-label col-lg-2" %></br>
+      <%= f.label :age, "年齢:", :class => "form-label col-xs-2" %></br>
       <div class="col-lg-4">
         <%= f.text_field :age, :class => 'form-control' %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label "画像", :class => "control-label col-lg-2"  %> <br />
+      <%= f.label "画像", :class => "form-label col-xs-2"  %> <br />
       <div class="col-lg-4">
-        <%= image_tag @blog.authorImage.thumb.url %><br />
+        <% if @blog.authorImage.thumb.url.nil? %>
+            <img id="previewAvatar" style="width: 150px; height: 150px"><br />
+        <% else %>
+            <%= image_tag @blog.authorImage.thumb.url %><br />
+        <% end %>
         <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-lg-offset-2 col-lg-4">
-        <%= link_to "一覧", blogs_path, :class=>"btn btn-default" %>
+        <%= link_to "一覧", admin_blogs_path, :class=>"btn btn-default" %>
         <%= f.submit "更新", :class => "btn btn-default btn-primary" %>
       </div>
     </div>
-
+  </div>
 <% end %>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" id="modal_content" style="padding: 15px;">
+    </div>
+  </div>
 
 <script type="text/javascript">
   // show datePicker
@@ -117,17 +129,14 @@
   var loadAvatar = function(event) {
     var previewAvatar = document.getElementById('previewAvatar');
     previewAvatar.src = URL.createObjectURL(event.target.files[0])
-  }
+  };
 
-  $(document).ready( function() {
-    $('#previewButton').click( function () {
-      var contents = $('#editor1').val();
-      var mywin = window.open("", "ckeditor_preview", "location=0,status=0,scrollbars=0,width=500,height=500");
-
-      $(mywin.document.body).html(contents);
-    });
-
-    $('#editor1').ckeditor();
+  $("#preview").on("click", function(ev)
+  {
+    var content = CKEDITOR.instances['content_text'].getData();
+    $("#modal_content").html(content);
+    $("#myModal").modal();
+    ev.preventDefault();
   });
 
 </script>

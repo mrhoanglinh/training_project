@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <!--show message flag-->
+    <div id="blog-table-alerts">
+      <%= render 'alerts' %>
+    </div>
+
+    <div class="row">
+      <div class="form-group" style="padding-left: 20px">
+        <h2>ブログ記事一覧</h2>
+      </div>
+      <div>
+        <%= render 'search_form' %>
+      </div>
+
+      <div class="form-group" style="padding-left: 50px">
+        <%= link_to "新記事作成", new_admin_blog_path, class: "btn btn-default btn-primary" %>
+      </div>
+
+      <div class="form-group" style="padding-left: 50px">
+        <%= paginate @blogs %>
+      </div>
+      <%= render 'table_blog_list' %>
+      <div class="form-group" style="padding-left: 50px">
+        <%= paginate @blogs %>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+

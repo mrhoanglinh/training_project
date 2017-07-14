@@ -1,0 +1,7 @@
+<% if @blog.errors.any? %>
+    <ul class="">
+      <% for message_error in @blog.errors.full_messages %>
+          <li class="text-danger"><%= message_error %></li>
+      <% end %>
+    </ul>
+<% end %>

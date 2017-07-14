@@ -4,15 +4,29 @@ class Blog < ApplicationRecord
   mount_uploader :image, ImageUploader
   mount_uploader :authorImage, AuthorImageUploader
 
-  validates :title, length: { maximum: 255 }
-
-  validates :author,:jobName, length: { maximum: 32 }
-
+  validate :title_validation
+  validate :author_validation
+  validate :jobName_validation
   validates :age, numericality: true, length: { maximum: 2 }
-
   validates_size_of :image, :authorImage, maximum: 1.megabytes
 
-  # enum category: [ :カテゴリ1, :カテゴリ2, :カテゴリ3 ]
-  #
-  # enum isSort: [ :作成日時降順, :作成日時昇順 ]
+  private
+  def title_validation
+    if title.length > 255
+      errors.add(:title, "タイトルを入カしてください。255文字以内で入カしてください。")
+    end
+  end
+
+  def author_validation
+    if author.length > 32
+      errors.add(:author, "名前を入カしてください。32文字以内で入カしてください。")
+    end
+  end
+
+  def jobName_validation
+    if jobName.length > 32
+      errors.add(:jobName, "職業を入カしてください。32文字以内で入カしてください。")
+    end
+  end
+
 end

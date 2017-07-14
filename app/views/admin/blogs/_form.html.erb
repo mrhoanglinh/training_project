@@ -1,0 +1,96 @@
+
+
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"} do |f| %>
+
+    <div class="row" style="padding-left: 20%">
+      <div class="form-group">
+        <%= f.label :title, "タイトル", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.text_field :title, :class => 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :category_id, "カテゴリ", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :datePublic, "公開時間", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.text_field :datePublic, class: 'datepicker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "公開設定", :class => "form-label col-xs-2"  %>
+        <div class="col-lg-4">
+          <%= f.check_box :isPublic %> 公開する<br />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "オススメ", :class => "form-label col-xs-2"  %>
+        <div class="col-lg-4">
+          <%= f.check_box :isSuggest %> オススメ設定にする<br />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "見出し画像", :class => "form-label col-xs-2"  %>
+        <div class="col-lg-4">
+          <img id="previewImage" style="width: 150px; height: 150px"><br />
+          <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "本文", :class => "form-label col-xs-2"  %>
+        <div class="col-lg-4">
+          <div id ="preview"><%= link_to "プレビュー", "" %></div>
+          <div>
+            <%= f.cktext_area :content , id: "content_text" %><br />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :author, "名前", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.text_field :author, :value => "ナルフォード", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :jobName, "職業", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.text_field :jobName, :value => "塾講師" , :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :age, "年齢", :class => "form-label col-xs-2" %>
+        <div class="col-lg-4">
+          <%= f.text_field :age, :value => "26", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label "画像", :class => "form-label col-xs-2"  %>
+        <div class="col-lg-4">
+          <img id="previewAvatar" style="width: 150px; height: 150px"><br />
+          <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-4">
+          <%= link_to "一覧", admin_blogs_path, :class=>"btn btn-default" %>
+          <%= f.submit "確認", :class => "btn btn-default btn-primary" %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
