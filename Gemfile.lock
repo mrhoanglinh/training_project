@@ -47,6 +47,8 @@ GEM
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (1.1.0)
@@ -249,6 +251,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-kaminari-views
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   carrierwave
   ckeditor
@@ -262,7 +265,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   mini_magick
-  momentjs-rails
+  momentjs-rails (>= 2.9.0)
   mysql2 (>= 0.3.18, < 0.5)
   paperclip
   puma (~> 3.0)

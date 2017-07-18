@@ -1,11 +1,92 @@
 ja:
-  blogs:
-    index:
-      creatAt: '作成時間'
-      title: 'タイトル'
-      category: 'カテゴリ'
-      suggest: 'オススメ'
-      author: '作成者'
-      image: 'サムネイル画像'
-      public: '公開/非公開'
-      option: '操作'
+
+  layout:
+    header:
+      title_header: "イーアス管理ツール"
+      student: "生徒"
+      self_check: "セルフチェック"
+      friend_hint: "フレンズヒント"
+      manager_user: "管理ユーザー"
+      logout: "ログアウト"
+      blog: "ブログ"
+      list_blog: "ブログ記事一覧"
+      create_blog: "ブログ記事新規作成"
+
+  admin:
+    blog:
+      search:
+        title_form: "絞り込み検索"
+        title_textfiled: "タイトル"
+        title_cate: "カテゴリ"
+        title_public: "公開 / 非公開"
+        title_suggest: "オススメ"
+        sort: "並べ替え"
+        button_search: "更新"
+      index:
+        title: "ブログ記事一覧"
+        add_new: "新記事作成"
+      table:
+        id: "ID"
+        create_at: "作成時間"
+        title: "タイトル"
+        category: "カテゴリ"
+        isSuggest: "オススメ"
+        author: "作成者"
+        image: "サムネイル画像"
+        public: "公開 / 非公開"
+        datePublic: "公開時間"
+        action: "操作"
+        change_time: "時間変更"
+        stop_public: "停止"
+        edit_blog: "記事編集"
+        delete_blog: "削除"
+        list_comment_blog: "リストコメント"
+      create:
+        title: "ブログ新記事作成"
+        form:
+          required: "required"
+          title: "タイトル"
+          category: "カテゴリ"
+          datePublic: "公開時間"
+          isPublic: "公開設定"
+          setting_public: "公開する"
+          isSuggest: "オススメ"
+          setting_suggest: "オススメ設定にする"
+          image: "見出し画像"
+          content: "本文"
+          preview: "プレビュー"
+          author: "名前"
+          jobName: "職業"
+          age: "年齢"
+          authorImage: "画像"
+          open_file: "  開く"
+          image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
+          save: "確認"
+          list: "一覧"
+          authorName_default: "ナルフォード"
+          job_default: "塾講師"
+          age_default: "26"
+      edit:
+        title: "ブログ新記事更新"
+        form:
+          title: "タイトル"
+          category: "カテゴリ"
+          datePublic: "公開時間"
+          isPublic: "公開設定"
+          setting_public: "公開する"
+          isSuggest: "オススメ"
+          setting_suggest: "オススメ設定にする"
+          image: "見出し画像"
+          content: "本文"
+          preview: "プレビュー"
+          author: "名前"
+          jobName: "職業"
+          age: "年齢"
+          authorImage: "画像"
+          open_file: "  開く"
+          image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
+          save: "更新"
+          list: "一覧"
+
+
+

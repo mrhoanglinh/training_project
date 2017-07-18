@@ -64,8 +64,10 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
 gem 'jquery-rails'
-gem 'momentjs-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-fileupload-rails'
 gem 'byebug'
 gem 'ransack'
+
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'

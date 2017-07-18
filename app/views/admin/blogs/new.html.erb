@@ -1,11 +1,11 @@
-
+<%= @linh %>
 
   <div>
     <%= render 'error' %>
   </div>
 
   <div style="padding-left: 30px">
-    <h2>ブログ新記事作成</h2>
+    <h2><%= t "admin.blog.create.title"%></h2>
   </div>
 
   <%= render 'form' %>
@@ -18,9 +18,8 @@
 <script type="text/javascript">
   // show datePicker
   $(document).ready(function(){
-    $('.datepicker').datepicker({
-      dateFormat: '%Y-%m-%d',
-      timeFormat: '%H:%M:%S'
+    $('#datetimepicker').datetimepicker({
+      format: 'YYYY-MM-DD hh:mm:ss'
     });
   });
 

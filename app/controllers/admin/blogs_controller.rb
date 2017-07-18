@@ -1,10 +1,10 @@
 class Admin::BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
+  before_action :set_blog, only: [:edit, :update, :destroy, :search]
   
   def index
     @search = Blog.search(params[:q])
-    @blogs = @search.result.page(params[:page]).per(5)
+    @blogs = @search.result.page(params[:page]).per(20)
 
     respond_to do |format|
       format.html
@@ -12,8 +12,8 @@ class Admin::BlogsController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   def new
   	@blog = Blog.new
@@ -63,6 +63,10 @@ class Admin::BlogsController < ApplicationController
       @blog.update(isPublic: 0)
       redirect_to admin_blogs_path
     end
+  end
+
+  def confirm_data
+
   end
 
   private

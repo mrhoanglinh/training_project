@@ -3,15 +3,15 @@
     <thead>
     <tr>
       <th>ID</th>
-      <th>作成時間</th>
-      <th>タイトル</th>
-      <th>カテゴリ</th>
-      <th>オススメ</th>
-      <th>作成者</th>
-      <th>サムネイル画像</th>
-      <th>公開 / 非公開</th>
-      <th>公開時間</th>
-      <th>操作</th>
+      <th><%= t "admin.blog.table.create_at"%></th>
+      <th><%= t "admin.blog.table.title"%></th>
+      <th><%= t "admin.blog.table.category"%></th>
+      <th><%= t "admin.blog.table.isSuggest"%></th>
+      <th><%= t "admin.blog.table.author"%></th>
+      <th><%= t "admin.blog.table.image"%></th>
+      <th><%= t "admin.blog.table.public"%></th>
+      <th><%= t "admin.blog.table.datePublic"%></th>
+      <th><%= t "admin.blog.table.action"%></th>
     </tr>
     </thead>
     <tbody>
@@ -38,18 +38,18 @@
           <td>
             <%= blog.datePublic.try(:strftime, "%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S" ) %><br />
             <div class="btn-group">
-              <%= button_to "時間変更", url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>
+              <%= button_to t("admin.blog.table.change_time"), url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>
             </div>
             <div class="btn-group">
               <% if blog.isPublic == 1 %>
-                  <%= button_to "停止", url_for(controller: 'blogs', action: 'unPublic', id: blog.id), method: :post, remote: :true, class: "btn btn-default btn-danger"%>
+                  <%= button_to t("admin.blog.table.stop_public"), url_for(controller: 'blogs', action: 'unPublic', id: blog.id), method: :post, remote: :true, class: "btn btn-default btn-danger"%>
               <% end %>
             </div>
           </td>
           <td>
-            <%= link_to "記事編集", edit_admin_blog_path(blog.id), :class=>"btn btn-default" %>
-            <%= link_to "リストコメント", admin_blog_path(blog.id), :class => "btn btn-default" %>
-            <%= link_to "削除", admin_blog_path(blog.id), data: {confirm: "削除ですか？"}, :method => :delete,:class => 'btn btn-default btn-danger'%>
+            <%= link_to t("admin.blog.table.edit_blog"), edit_admin_blog_path(blog.id), :class=>"btn btn-default" %>
+            <%= link_to t("admin.blog.table.list_comment_blog"), admin_blog_path(blog.id), :class => "btn btn-default" %>
+            <%= link_to t("admin.blog.table.delete_blog"), admin_blog_path(blog.id), data: {confirm: "削除ですか？"}, :method => :delete,:class => 'btn btn-default btn-danger'%>
           </td>
         </tr>
     <% end %>

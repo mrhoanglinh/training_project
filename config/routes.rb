@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :admin do
-    resources :blogs
+    resources :blogs, only: [:index, :new, :create, :edit, :update, :destroy]
     root "blogs#index"
     get 'blogs/search', to: 'blogs#search'
     post 'blogs/:id/unPublic', to: 'blogs#unPublic'
     post 'blogs/:id/changeDate', to: 'blogs#changeDate'
+    get 'blogs/confirm_data', to: 'blogs#confirm_data'
   end
 
 end

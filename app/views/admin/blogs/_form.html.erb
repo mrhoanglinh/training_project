@@ -4,42 +4,42 @@
 
     <div class="row" style="padding-left: 20%">
       <div class="form-group">
-        <%= f.label :title, "タイトル", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.title" %></span>
         <div class="col-lg-4">
           <%= f.text_field :title, :class => 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :category_id, "カテゴリ", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.category" %></span>
         <div class="col-lg-4">
           <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :datePublic, "公開時間", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.datePublic" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :datePublic, class: 'datepicker' %>
+          <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label "公開設定", :class => "form-label col-xs-2"  %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.isPublic" %></span>
         <div class="col-lg-4">
-          <%= f.check_box :isPublic %> 公開する<br />
+          <%= f.check_box :isPublic %> <%= t "admin.blog.create.form.setting_public" %><br />
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label "オススメ", :class => "form-label col-xs-2"  %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.isSuggest" %></span>
         <div class="col-lg-4">
-          <%= f.check_box :isSuggest %> オススメ設定にする<br />
+          <%= f.check_box :isSuggest %><%= t "admin.blog.create.form.setting_suggest" %><br />
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label "見出し画像", :class => "form-label col-xs-2"  %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.image" %></span>
         <div class="col-lg-4">
           <img id="previewImage" style="width: 150px; height: 150px"><br />
           <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
@@ -47,9 +47,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label "本文", :class => "form-label col-xs-2"  %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.content" %></span>
         <div class="col-lg-4">
-          <div id ="preview"><%= link_to "プレビュー", "" %></div>
+          <div id ="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
           <div>
             <%= f.cktext_area :content , id: "content_text" %><br />
           </div>
@@ -57,28 +57,28 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :author, "名前", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.author" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :author, :value => "ナルフォード", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+          <%= f.text_field :author, :value => t("admin.blog.create.form.authorName_default"), :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :jobName, "職業", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.jobName" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :jobName, :value => "塾講師" , :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+          <%= f.text_field :jobName, :value => t("admin.blog.create.form.job_default") , :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :age, "年齢", :class => "form-label col-xs-2" %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.age" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :age, :value => "26", :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+          <%= f.text_field :age, :value => t("admin.blog.create.form.age_default"), :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.label "画像", :class => "form-label col-xs-2"  %>
+        <span class="form-label col-xs-2"><%= t "admin.blog.create.form.authorImage" %></span>
         <div class="col-lg-4">
           <img id="previewAvatar" style="width: 150px; height: 150px"><br />
           <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
@@ -86,11 +86,15 @@
       </div>
 
       <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-4">
-          <%= link_to "一覧", admin_blogs_path, :class=>"btn btn-default" %>
-          <%= f.submit "確認", :class => "btn btn-default btn-primary" %>
+        <div class="row">
+          <div class="col-lg-offset-3 col-md-4">
+            <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
+            <%= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
+            <!--<%= link_to '確認',  admin_blogs_confirm_data_path, :class => "btn btn-default btn-primary" %>-->
+          </div>
         </div>
       </div>
+
     </div>
 
 <% end %>

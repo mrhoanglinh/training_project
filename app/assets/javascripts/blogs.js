@@ -27,12 +27,9 @@ ready = function () {
 };
 
 // show datePicker
-$(document).ready(function(){
-    $('.datepicker').datepicker({
-        dateFormat: '%Y-%m-%d',
-        timeFormat: '%H:%M:%S'
-    });
-});
+// $(document).ready(function(){
+//     $('#datetimepicker').datetimepicker();
+// });
 
 // preview image before upload
 var loadImageFile = function(event) {

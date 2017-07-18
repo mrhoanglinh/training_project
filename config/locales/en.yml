@@ -21,13 +21,47 @@
 
 en:
 
-      creatAt: 'Create Time'
-      title: 'Title'
-      category: 'Category'
-      suggest: 'Suggest'
-      author: 'Author'
-      image: 'Image'
-      public: 'Public'
-      option: 'Option'
-
-
+  admin:
+    blog:
+      search:
+      index:
+        title: "List Blog"
+      create:
+        title: "Create Blog"
+        form:
+          required: "required"
+          title: "Title"
+          category: "Category"
+          datePublic: "Published"
+          isPublic: "public"
+          setting_public: "公開する"
+          isSuggest: "Suggest"
+          setting_suggest: "suggest"
+          image: "Intro image"
+          content: "Body"
+          preview: "Preview"
+          author: "Name"
+          jobName: "Job"
+          age: "Age"
+          authorImage: "Image Author"
+          open_file: "  Open"
+          image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
+          save: "Save"
+          list: "List"
+          job_default: "Job default"
+          age_default: "26"
+          name_default: "Name default"
+      table:
+          id: "ID"
+          create_at: "Create at"
+          title: "Title"
+          category: "Category"
+          isSuggest: "Suggest"
+          author: "Author"
+          image: "Image"
+          public: "Public"
+          datePublic: "Public time"
+          action: "Action"
+          change_time: "Change Time"
+          stop_public: "Stop"
+          edit_blog: "Edit"

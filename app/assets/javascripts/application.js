@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require moment
-//= require bootstrap-datepicker
+//= require bootstrap-datetimepicker
 //= require jquery-fileupload
 //= require_tree .
 //= require "blogs.js"

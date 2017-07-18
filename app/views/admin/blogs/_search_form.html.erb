@@ -2,41 +2,41 @@
 <div class="form-group" style="padding-left: 50px; padding-right: 50px;">
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h1 class="panel-title">絞り込み検索</h1>
+      <h1 class="panel-title"><%= t "admin.blog.search.title_form" %></h1>
     </div>
     <div class="panel-body">
       <%= search_form_for [:admin, @search], class: "form-inline" do |f|  %>
 
           <div class="form-group">
             <div class="col-lg-2">
-              <label>タイトル</label>
+              <%= t "admin.blog.search.title_textfiled" %>
               <%= f.search_field :title_cont, class: "field_size form-control" %>
             </div>
 
             <div class="col-lg-2">
-              <label>カテゴリ</label>
+              <%= t "admin.blog.search.title_cate" %>
               <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-lg-2">
-              <label>公開 / 非公開</label>
+              <%= t "admin.blog.search.title_public" %>
               <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-lg-2">
-              <label>オススメ</label>
+              <%= t "admin.blog.search.title_suggest" %>
               <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-lg-2">
-              <label>並べ替え</label>
+              <%= t "admin.blog.search.sort" %>
               <%= select_tag :sort_by, options_for_select([["オススメ", "ASC"],["非オススメ", "DESC"]], params[:sort_by]), {include_blank: true, default: nil, class: "form-control"}%>
             </div>
 
             <div class="col-lg-2">
               <br />
               <div class="btn-group">
-                <%= submit_tag "更新", class: "btn btn-default"  %>
+                <%= submit_tag t("admin.blog.search.button_search"), class: "btn btn-default"  %>
               </div>
             </div>
           </div>

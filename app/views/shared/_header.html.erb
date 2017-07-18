@@ -14,17 +14,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">イーアス管理ツール</a></li>
-        <li><a href="#">生徒</a></li>
-        <li><a href="#">セルフチェック</a></li>
-        <li><a href="#">フレンズヒント</a></li>
-        <li><a href="#">管理ユーザー</a></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { no_turbolink: true } %></li>
+        <li><a href="#"><%= t"layout.header.title_header" %></a></li>
+        <li><a href="#"><%= t"layout.header.student" %></a></li>
+        <li><a href="#"><%= t"layout.header.self_check" %></a></li>
+        <li><a href="#"><%= t"layout.header.friend_hint" %></a></li>
+        <li><a href="#"><%= t"layout.header.manager_user" %></a></li>
+        <li><%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ブログ</a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t"layout.header.blog" %></a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'ブログ記事一覧', admin_blogs_path %></li>
-            <li><%= link_to 'ブログ記事新規作成作成', new_admin_blog_path %></li>
+            <li><%= link_to t("layout.header.list_blog"), admin_blogs_path %></li>
+            <li><%= link_to t("layout.header.create_blog"), new_admin_blog_path %></li>
           </ul>
         </li>
       </ul>
