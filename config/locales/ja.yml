@@ -87,6 +87,41 @@ ja:
           image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
           save: "更新"
           list: "一覧"
+      errors:
+        models:
+          blog:
+            attributes:
+              title:
+                #blank: "タイトルを入カしてください。"
+                #greater_than: "255文字以内で入カしてください。"
+                accepted: "それは受け入れなければなりません"
+                blank: "空白にすることはできません"
+                present: "タイトルを入カしてください。"
+                confirmation: "タイトルを入カしてください。"
+                empty: "タイトルを入カしてください。"
+                equal_to: "タイトルを入カしてください。 %{count}"
+                even: "タイトルを入カしてください。"
+                exclusion: "タイトルを入カしてください。"
+                greater_than: "タイトルを入カしてください。 %{count}"
+                greater_than_or_equal_to: "タイトルを入カしてください。 %{count}"
+                inclusion: "タイトルを入カしてください。"
+                invalid: "タイトルを入カしてください。"
+                less_than: "タイトルを入カしてください。 %{count}"
+                less_than_or_equal_to: "タイトルを入カしてください。 %{count}"
+                model_invalid: " %{errors}"
+                not_a_number: "タイトルを入カしてください。"
+                not_an_integer: "タイトルを入カしてください。"
+                odd: "タイトルを入カしてください。"
+                required: "タイトルを入カしてください。"
+                taken: "タイトルを入カしてください。"
+
+#          title_empty: "タイトルを入カしてください。"
+#          title_length: "255文字以内で入カしてください。"
+#          author_empty: "名前を入カしてください。"
+#          author_length: "32文字以内で入カしてください。"
+#          jobName_empty: "職業を入カしてください。"
+#          jobName_length: "32文字以内で入カしてください。"
+#          public_time: "公開日時を設定して下さい。"
 
 
 

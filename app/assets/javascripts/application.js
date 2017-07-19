@@ -19,5 +19,4 @@
 //= require bootstrap-datetimepicker
 //= require jquery-fileupload
 //= require_tree .
-//= require "blogs.js"
 

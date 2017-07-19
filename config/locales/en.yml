@@ -21,20 +21,56 @@
 
 en:
 
+  layout:
+    header:
+      title_header: "Title Header"
+      student: "Student"
+      self_check: "Seft Check"
+      friend_hint: "Friend Hint"
+      manager_user: "Manager User"
+      logout: "Logout"
+      blog: "Blog"
+      list_blog: "List Blog"
+      create_blog: "Create Blog"
+
   admin:
     blog:
       search:
+        title_form: "Text"
+        title_textfiled: "Title"
+        title_cate: "Category"
+        title_public: "Public Status"
+        title_suggest: "Suggest Status"
+        sort: "Sort"
+        button_search: "Search"
       index:
         title: "List Blog"
+        add_new: "Add New"
+      table:
+        id: "ID"
+        create_at: "Create at"
+        title: "Title"
+        category: "Category"
+        isSuggest: "Suggest"
+        author: "Author"
+        image: "Image"
+        public: "Public"
+        datePublic: "Public time"
+        action: "Action"
+        change_time: "Change Time"
+        stop_public: "Stop"
+        edit_blog: "Edit"
+        delete_blog: "Delete"
+        list_comment_blog: "Comment List"
       create:
         title: "Create Blog"
         form:
           required: "required"
           title: "Title"
           category: "Category"
-          datePublic: "Published"
-          isPublic: "public"
-          setting_public: "公開する"
+          datePublic: "Public time"
+          isPublic: "Published"
+          setting_public: "public"
           isSuggest: "Suggest"
           setting_suggest: "suggest"
           image: "Intro image"
@@ -48,20 +84,58 @@ en:
           image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
           save: "Save"
           list: "List"
+          name_default: "Name default"
           job_default: "Job default"
           age_default: "26"
-          name_default: "Name default"
-      table:
-          id: "ID"
-          create_at: "Create at"
+      edit:
+        title: "Edit Blog"
+        form:
           title: "Title"
           category: "Category"
+          datePublic: "Public Time"
+          isPublic: "Published"
+          setting_public: "public"
           isSuggest: "Suggest"
-          author: "Author"
-          image: "Image"
-          public: "Public"
-          datePublic: "Public time"
-          action: "Action"
-          change_time: "Change Time"
-          stop_public: "Stop"
-          edit_blog: "Edit"
+          setting_suggest: "suggest"
+          image: "Intro image"
+          content: "Body"
+          preview: "Preview"
+          author: "Name"
+          jobName: "Job"
+          age: "Age"
+          authorImage: "Image Author"
+          open_file: "  Open"
+          image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
+          save: "Save"
+          list: "List"
+      errors:
+        models:
+          blog:
+            attributes:
+              title:
+                #blank: "Please input title"
+                #wrong_length: "is the wrong length (should be {{count}} characters)"
+                accepted: "Must be accepted"
+                blank: "can not be blank"
+                present: "Must be blank"
+                confirmation: "it does not match"
+                empty: "Can not be empty"
+                equal_to: "Must be equal to% {count}"
+                even: "Must be even"
+                exclusion: "It is reserved"
+                greater_than: "Must be greater than% {count}"
+                greater_than_or_equal_to: "Must be greater than or equal to% {count}"
+                inclusion: "Is not included in the list"
+                invalid: "It's not valid"
+                less_than: "Must be less than% {count}"
+                less_than_or_equal_to: "Must be less than or equal to% {count}"
+                model_invalid: "Validation failed:% {errors}"
+                not_a_number: "It's not a number"
+                not_an_integer: "Must be an integer"
+                odd: "Must be odd"
+                required: "It must exist"
+                taken: "Is already in use"
+
+
+
+

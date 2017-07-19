@@ -38,7 +38,15 @@
           <td>
             <%= blog.datePublic.try(:strftime, "%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S" ) %><br />
             <div class="btn-group">
-              <%= button_to t("admin.blog.table.change_time"), url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>
+              <!--<%= button_to t("admin.blog.table.change_time"), url_for(controller: 'blogs', action: 'changeDate', id: blog.id), :class =>"btn btn-default datepicker" %>-->
+              <div class="row" blog_id=<%=blog.id%>>
+                <div class='input-group date datetimepicker_cell' style="display: inline;">
+                  <input type='hidden' id="hidden_field_<%=blog.id%>" >
+                <span class="input-group-addon" style="padding: 0; background-color: transparent; border: none; display: inline;">
+                  <span class="btn btn-default" ><%= t("admin.blog.table.change_time") %></span>
+                </span>
+                </div>
+              </div>
             </div>
             <div class="btn-group">
               <% if blog.isPublic == 1 %>
@@ -56,3 +64,24 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  $('.datetimepicker_cell').datetimepicker({
+    useCurrent: false
+  });
+
+  $('.datetimepicker_cell').on('dp.change', function(data){
+    var blogID = $(this).parent().attr("blog_id");
+    $(".datetimepicker").hide();
+    $.ajax({
+      url: '/admin/blogs/'+ blogID,
+      dataType: 'script',
+      method: "patch",
+      data: {redirect_check: 1, blog:{datePublic: data.date.format("Y-MM-D hh:mm") }},
+      success: function(){
+        $("#publish_time_"+ blogID).html(data.date.format("Y-MM-D hh:mm"));
+
+      }
+    });
+  });
+</script>

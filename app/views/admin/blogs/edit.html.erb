@@ -1,8 +1,4 @@
 
-  <div>
-    <%= render 'error' %>
-  </div>
-
   <div style="padding-left: 30px">
     <h2><%= t "admin.blog.edit.title" %></h2>
   </div>
@@ -26,7 +22,7 @@
     <div class="form-group">
       <span class="form-label col-xs-2"><%= t "admin.blog.edit.form.datePublic" %></span>
       <div class="col-lg-4">
-        <%= f.text_field :datePublic, class: 'datepicker' %>
+        <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
       </div>
     </div>
 
@@ -59,7 +55,7 @@
     <div class="form-group">
       <span class="form-label col-xs-2"><%= t "admin.blog.edit.form.content" %></span>
       <div class="col-lg-4">
-        <div id ="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
+        <div id ="preview"><%= link_to t("admin.blog.edit.form.preview"), "" %></div>
         <%= f.cktext_area :content, id: 'content_text' %><br />
       </div>
     </div>
@@ -114,9 +110,8 @@
 <script type="text/javascript">
   // show datePicker
   $(document).ready(function(){
-    $('.datepicker').datepicker({
-      dateFormat: '%Y-%m-%d',
-      timeFormat: '%H:%M:%S'
+    $('#datetimepicker').datetimepicker({
+      format: 'YYYY-MM-DD hh:mm:ss'
     });
   });
 

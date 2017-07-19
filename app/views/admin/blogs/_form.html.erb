@@ -7,6 +7,11 @@
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.title" %></span>
         <div class="col-lg-4">
           <%= f.text_field :title, :class => 'form-control' %>
+          <% if @blog.errors.any? %>
+             <% @blog.errors.full_messages.each do |msg| %>
+                <li class="text-danger"><%= msg %></li>
+             <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -21,6 +26,11 @@
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.datePublic" %></span>
         <div class="col-lg-4">
           <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
+          <% if @blog.errors.any? %>
+              <% @blog.errors.full_messages.each do |msg| %>
+                  <li class="text-danger"><%= msg %></li>
+              <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -41,8 +51,10 @@
       <div class="form-group">
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.image" %></span>
         <div class="col-lg-4">
-          <img id="previewImage" style="width: 150px; height: 150px"><br />
-          <%= f.file_field :image, onchange: 'loadImageFile(event)' %><br />
+          <img id="previewImage"><br />
+          <label class="btn btn-default btn-sm", style="width: 60px; height: 37px; line-height: 9px;">
+            <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
+          </label>
         </div>
       </div>
 
@@ -59,14 +71,26 @@
       <div class="form-group">
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.author" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :author, :value => t("admin.blog.create.form.authorName_default"), :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+          <%= f.text_field :author, :value => t("admin.blog.create.form.authorName_default"), :class => 'form-control' %>
+          <% if @blog.errors.any? %>
+              <% if :author.nil? %>
+                <!--<li class="text-danger"><%= t'admin.errors.author_empty' %></li>-->
+                <!--<li class="text-danger"><%= t'admin.errors.author_length' %></li>-->
+              <% end %>
+          <% end %>
         </div>
       </div>
 
       <div class="form-group">
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.jobName" %></span>
         <div class="col-lg-4">
-          <%= f.text_field :jobName, :value => t("admin.blog.create.form.job_default") , :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
+          <%= f.text_field :jobName, :value => t("admin.blog.create.form.job_default") , :class => 'form-control' %>
+          <% if @blog.errors.any? %>
+              <% if :jobName.nil? %>
+                <!--<li class="text-danger"><%= t'admin.errors.jobName_empty' %></li>-->
+                <!--<li class="text-danger"><%= t'admin.errors.jobName_length' %></li>-->
+              <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -81,7 +105,9 @@
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.authorImage" %></span>
         <div class="col-lg-4">
           <img id="previewAvatar" style="width: 150px; height: 150px"><br />
-          <%= f.file_field :authorImage, onchange: 'loadAvatar(event)' %><br />
+          <label class="btn btn-default btn-sm", style="width: 60px; height: 37px; line-height: 9px;">
+            <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
+          </label>
         </div>
       </div>
 

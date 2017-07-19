@@ -1,19 +1,14 @@
-<%= @linh %>
 
-  <div>
-    <%= render 'error' %>
+<div style="padding-left: 30px">
+  <h2><%= t "admin.blog.create.title"%></h2>
+</div>
+
+<%= render 'form' %>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" id="modal_content" >
   </div>
-
-  <div style="padding-left: 30px">
-    <h2><%= t "admin.blog.create.title"%></h2>
-  </div>
-
-  <%= render 'form' %>
-
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" id="modal_content" >
-    </div>
-  </div>
+</div>
 
 <script type="text/javascript">
   // show datePicker
