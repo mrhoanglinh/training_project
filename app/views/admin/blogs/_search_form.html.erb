@@ -13,7 +13,7 @@
               <%= f.search_field :title_cont, class: "field_size form-control" %>
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2" style="width: 15.667% ">
               <%= t "admin.blog.search.title_cate" %>
               <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
             </div>

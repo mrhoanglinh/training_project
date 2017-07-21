@@ -26,11 +26,6 @@
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.datePublic" %></span>
         <div class="col-lg-4">
           <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
-          <% if @blog.errors.any? %>
-              <% @blog.errors.full_messages.each do |msg| %>
-                  <li class="text-danger"><%= msg %></li>
-              <% end %>
-          <% end %>
         </div>
       </div>
 
@@ -104,7 +99,7 @@
       <div class="form-group">
         <span class="form-label col-xs-2"><%= t "admin.blog.create.form.authorImage" %></span>
         <div class="col-lg-4">
-          <img id="previewAvatar" style="width: 150px; height: 150px"><br />
+          <img src="/assets/image_default.jpg" id="previewAvatar" style="width: 150px; height: 150px"><br />
           <label class="btn btn-default btn-sm", style="width: 60px; height: 37px; line-height: 9px;">
             <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
           </label>
@@ -114,13 +109,16 @@
       <div class="form-group">
         <div class="row">
           <div class="col-lg-offset-3 col-md-4">
-            <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
-            <%= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
-            <!--<%= link_to '確認',  admin_blogs_confirm_data_path, :class => "btn btn-default btn-primary" %>-->
+            <div class="col-md-2">
+              <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
+            </div>
+            <div class="col-md-2">
+             <%#= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
+              <%= link_to "Confirm", admin_blogs_confirm_path %>
+            </div>
           </div>
         </div>
       </div>
 
     </div>
-
 <% end %>

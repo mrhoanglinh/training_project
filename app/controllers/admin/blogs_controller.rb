@@ -65,7 +65,7 @@ class Admin::BlogsController < ApplicationController
     end
   end
 
-  def confirm_data
+  def confirm
 
   end
 

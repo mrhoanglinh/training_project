@@ -6,7 +6,7 @@ class Blog < ApplicationRecord
 
   validates_length_of :title, maximum: 255
   validates :title, presence: true
-  validates :datePublic, presence: true
+  #validates :datePublic, presence: true
   validates_length_of :author, maximum: 32
   validates_length_of :jobName, maximum: 32
   validates :age, numericality: true, length: { maximum: 2 }
