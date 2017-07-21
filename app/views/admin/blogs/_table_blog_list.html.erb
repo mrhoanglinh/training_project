@@ -1,5 +1,5 @@
 <div class="form-group" style="padding-left: 50px; padding-right: 30px">
-  <table class="table table-striped">
+  <table class=" table table-strip">
     <thead>
     <tr>
       <th>ID</th>
@@ -18,7 +18,7 @@
     <% @blogs.each do |blog| %>
         <tr>
           <td><%= blog.id %></td>
-          <td><%= blog.created_at.strftime("%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S") %></td>
+          <td><%= blog.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
           <td><%= blog.title %></td>
           <td><%= blog.category.name %></td>
           <td>
@@ -36,7 +36,7 @@
             <% end %>
           </td>
           <td>
-            <%= blog.datePublic.try(:strftime, "%Y" +'年'+ "%m" +'月'+ "%d" +'日'+ "  %H:%M:%S" ) %><br />
+            <%= blog.datePublic.try(:strftime, "%Y年%m月%d日 %H:%M" ) %><br />
             <div class="btn-group">
               <div class="row" blog_id=<%=blog.id%>>
                 <div class='input-group date datetimepicker_cell' style="display: inline;">

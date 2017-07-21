@@ -30,7 +30,7 @@
 
             <div class="col-lg-2">
               <%= t "admin.blog.search.sort" %>
-              <%= select_tag :sort_by, options_for_select([["オススメ", "ASC"],["非オススメ", "DESC"]], params[:sort_by]), {include_blank: true, default: nil, class: "form-control"}%>
+              <%= select_tag :sort_by, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]], params[:sort_by]), {include_blank: true, default: nil, class: "form-control"}%>
             </div>
 
             <div class="col-lg-2">

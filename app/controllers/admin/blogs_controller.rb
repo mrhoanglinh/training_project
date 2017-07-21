@@ -1,7 +1,8 @@
 class Admin::BlogsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_blog, only: [:edit, :update, :destroy, :search]
-  
+  layout 'admin'
+
   def index
     @search = Blog.search(params[:q])
     @blogs = @search.result.page(params[:page]).per(20)
