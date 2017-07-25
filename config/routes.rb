@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :blogs, only: [:index, :new, :create, :edit, :update, :destroy]
     root "blogs#default_admin_page"
-    get 'blogs/search', to: 'blogs#search'
-    post 'blogs/:id/unPublic', to: 'blogs#unPublic'
-    post 'blogs/:id/changeDate', to: 'blogs#changeDate'
-    get 'blogs/confirm', to: 'blogs#confirm'
+    resources :blogs do
+      collection do
+        get 'blogs/search', to: 'blogs#search'
+        post 'blogs/:id/unPublic', to: 'blogs#unPublic'
+        post 'blogs/:id/changeDate', to: 'blogs#changeDate'
+        post :confirm
+      end
+    end
+
   end
 
 end

@@ -87,6 +87,7 @@ en:
           name_default: "Name default"
           job_default: "Job default"
           age_default: "26"
+          require: "require"
       edit:
         title: "Edit Blog"
         form:

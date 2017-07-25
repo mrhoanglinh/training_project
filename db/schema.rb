@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20170712075828) do
     t.integer  "isPublic"
     t.string   "image"
     t.text     "content",     limit: 65535
-    t.string   "author"
-    t.string   "jobName"
-    t.integer  "age"
+    t.string   "author", default: "ナルフォード"
+    t.string   "jobName", default: "塾講師"
+    t.integer  "age", default: 26
     t.string   "authorImage"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

@@ -1,126 +1,164 @@
 
-
-<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"} do |f| %>
-
-    <div class="row">
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.title" %></span>
-        <div class="col-sm-10">
-          <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内" %>
-          <% if @blog.errors.any? %>
-             <% @blog.errors.full_messages.each do |msg| %>
-                <li class="text-danger"><%= msg %></li>
-             <% end %>
-          <% end %>
-        </div>
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"}, url: {action: :confirm} do |f| %>
+  <% custom_errors(@blog) %>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.title" %></span>
       </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.category" %></span>
-        <div class="col-md-4">
-          <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
-        </div>
+      <div class="col-sm-10">
+        <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内" %>
+        <% if @title_error.length > 0 %>
+            <div class="text-danger"><%= @title_error.html_safe %></div>
+        <% end %>
       </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.datePublic" %></span>
-        <div class="col-md-4">
-          <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.isPublic" %></span>
-        <div class="col-md-4">
-          <%= f.check_box :isPublic %> <%= t "admin.blog.create.form.setting_public" %><br />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.isSuggest" %></span>
-        <div class="col-md-4">
-          <%= f.check_box :isSuggest %><%= t "admin.blog.create.form.setting_suggest" %><br />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.image" %></span>
-        <div class="col-md-4">
-          <img id="previewImage"><br />
-          <label class="btn btn-default btn-sm", style="width: 60px; height: 37px; line-height: 9px;">
-            <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.content" %></span>
-        <div class="col-md-10">
-          <div id ="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
-          <div>
-            <%= f.cktext_area :content , id: "content_text" %><br />
-          </div>
-        </div>
-      </div>
-
-      <h3>投稿者設定</h3>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.author" %></span>
-        <div class="col-md-4">
-          <%= f.text_field :author, :value => t("admin.blog.create.form.authorName_default"), :class => 'form-control', placeholder: "必須/32文宇以内" %>
-          <% if @blog.errors.any? %>
-              <% if :author.nil? %>
-                <!--<li class="text-danger"><%= t'admin.errors.author_empty' %></li>-->
-                <!--<li class="text-danger"><%= t'admin.errors.author_length' %></li>-->
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.jobName" %></span>
-        <div class="col-md-4">
-          <%= f.text_field :jobName, :value => t("admin.blog.create.form.job_default") , :class => 'form-control', placeholder: "必須/32文宇以内"  %>
-          <% if @blog.errors.any? %>
-              <% if :jobName.nil? %>
-                <!--<li class="text-danger"><%= t'admin.errors.jobName_empty' %></li>-->
-                <!--<li class="text-danger"><%= t'admin.errors.jobName_length' %></li>-->
-              <% end %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.age" %></span>
-        <div class="col-md-4">
-          <%= f.text_field :age, :value => t("admin.blog.create.form.age_default"), :class => 'form-control', style: 'float: left; width: 60%; display: block' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <span class="form-label col-sm-1"><%= t "admin.blog.create.form.authorImage" %></span>
-        <div class="col-md-4">
-          <img src="/assets/image_default.jpg" id="previewAvatar" style="width: 150px; height: 150px"><br />
-          <label class="btn btn-default btn-sm", style="width: 60px; height: 37px; line-height: 9px;">
-            <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-lg-offset-3 col-md-4">
-            <div class="col-md-2">
-              <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
-            </div>
-            <div class="col-md-2">
-             <%= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
-              <%#= link_to "Confirm", admin_blogs_confirm_path %>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.category" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
+      </div>
+      <div class="col-md-5">
+        <p style="font-size: 17px"><%= t "admin.blog.create.form.require" %></p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.datePublic" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker", placeholder: "必須" %>
+        <% if @datePublic_error.length > 0 %>
+          <div class="text-danger"><%= @datePublic_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.isPublic" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.check_box :isPublic %> <%= t "admin.blog.create.form.setting_public" %><br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.isSuggest" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.check_box :isSuggest %><%= t "admin.blog.create.form.setting_suggest" %><br />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.image" %></span>
+      </div>
+
+      <div class="col-md-4">
+        <img id="previewImage"><br />
+        <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
+          <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
+        </label>
+        <% if @image_error.length > 0 %>
+            <div class="text-danger"><%= @image_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.content" %></span>
+      </div>
+      <div class="col-md-10">
+        <div id ="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
+        <div>
+          <%= f.cktext_area :content , id: "content_text" %><br />
+          <% if @content_error.length > 0 %>
+              <div class="text-danger"><%= @content_error.html_safe %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-3">
+        <h3>投稿者設定</h3>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.author" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :author, :class => 'form-control', placeholder: "必須/32文宇以内" %>
+        <% if @author_error.length > 0 %>
+            <div class="text-danger"><%= @author_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.jobName" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :jobName, :class => 'form-control', placeholder: "必須/32文宇以内"  %>
+        <% if @jobName_error.length > 0 %>
+            <div class="text-danger"><%= @jobName_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.age" %></span>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :age, :class => 'form-control', placeholder: "必須/半角数字/2文宇以内" %>
+        <% if @age_error.length > 0 %>
+            <div class="text-danger"><%= @age_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2">
+        <span class="form-title pull-right"><%= t "admin.blog.create.form.authorImage" %></span>
+      </div>
+      <div class="col-md-4">
+        <div class="author_avatar_gallery" >
+          <img src="/assets/image_default" id="previewAvatar" >
+        </div>
+        <br>
+        <label class="btn btn-default btn-sm">
+          <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><%= t"admin.blog.create.form.open_file"%>
+        </label>
+        <% if @authorImage_error.length > 0 %>
+            <div class="text-danger"><%= @authorImage_error.html_safe %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-4 ">
+          <div class="col-md-3">
+            <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
+          </div>
+          <div class="col-md-3">
+           <%#= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
+            <%= f.button "確認", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

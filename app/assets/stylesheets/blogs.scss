@@ -117,7 +117,17 @@ html, body {
 }
 
 .form-label{
-  width: 5%;
+  width: 5px;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  color: white;
+  border-radius: 5px;
+  padding: 7px;
+  text-align: center;
+}
+
+.form-title{
+  width: 85%;
   background-color: #337ab7;
   border-color: #337ab7;
   color: white;
@@ -128,6 +138,21 @@ html, body {
 
 .col-xs-2 {
   width: 7%!important;
+}
+
+.col-alert {
+  width: 75%;
+  padding-left: 171px;
+}
+
+.col-title-list {
+  width: 33.33333333%;
+  padding-left: 135px;
+}
+
+.col-title-create {
+  width: 33.33333333%;
+  padding-left: 60px;
 }
 
 .btn-primary {
@@ -155,13 +180,42 @@ html, body {
 
 .panel-info>.panel-heading {
   //color: #666 !important;
-  background-color: #E0E0E0!important;
+  background-color: #FFFFFF!important;
   border-bottom: .0625rem solid #e2c5c5;
   padding-left: 30px;
 }
 
 .panel-info> .panel-body {
-  background-color: #E0E0E0;
+  background-color: #FFFFFF;
   padding-top: 20px;
   height: 120px;
+  border: none!important;
 }
+
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 26px;
+  margin-right: 26px;
+  border-style: inset;
+  border-width: 2px;
+}
+
+.title_search
+{
+  margin-top: 10px;
+  margin-left: 26px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+div.author_avatar_gallery img{
+  height: 100px;
+}
+
+table tr td{
+  padding: 0px;
+  text-align: center;
+}
+

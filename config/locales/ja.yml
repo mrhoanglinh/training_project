@@ -11,6 +11,7 @@ ja:
       blog: "ブログ"
       list_blog: "ブログ記事一覧"
       create_blog: "ブログ記事新規作成"
+      login: "ログイン"
 
   admin:
     blog:
@@ -24,7 +25,7 @@ ja:
         button_search: "更新"
       index:
         title: "ブログ記事一覧"
-        add_new: "新記事作成"
+        add_new: "新規記事作成"
       table:
         id: "ID"
         create_at: "作成時間"
@@ -42,7 +43,7 @@ ja:
         delete_blog: "削除"
         list_comment_blog: "リストコメント"
       create:
-        title: "ブログ新記事作成"
+        title: "ブログ記事作成"
         form:
           required: "required"
           title: "タイトル"
@@ -66,6 +67,7 @@ ja:
           authorName_default: "ナルフォード"
           job_default: "塾講師"
           age_default: "26"
+          require: "必須"
       edit:
         title: "ブログ新記事更新"
         form:
@@ -94,81 +96,30 @@ ja:
         blog:
           attributes:
             title:
-              accepted: "それは受け入れなければなりません"
-              blank: "タイトルを入カしてください。"
-              present: "タイトルを入カしてください。"
-              confirmation: "タイトルを入カしてください。"
-              empty: "タイトルを入カしてください。"
-              equal_to: "タイトルを入カしてください。 %{count}"
-              even: "タイトルを入カしてください。"
-              exclusion: "タイトルを入カしてください。"
-              greater_than: "タイトルを入カしてください。 %{count}"
-              greater_than_or_equal_to: "タイトルを入カしてください。 %{count}"
-              inclusion: "タイトルを入カしてください。"
-              invalid: "タイトルを入カしてください。"
-              less_than: "タイトルを入カしてください。 %{count}"
-              less_than_or_equal_to: "タイトルを入カしてください。 %{count}"
-              model_invalid: " %{errors}"
-              not_a_number: "タイトルを入カしてください。"
-              not_an_integer: "タイトルを入カしてください。"
-              odd: "タイトルを入カしてください。"
-              required: "タイトルを入カしてください。"
-              taken: "タイトルを入カしてください。"
-
-              datetime:
-                distance_in_words:
-                  about_x_hours:
-                    one: alrededor de 1 hora
-                    other: alrededor de %{count} horas
-                  about_x_months:
-                    one: alrededor de 1 mes
-                    other: alrededor de %{count} meses
-                  about_x_years:
-                    one: alrededor de 1 año
-                    other: alrededor de %{count} años
-                  almost_x_years:
-                    one: casi 1 año
-                    other: casi %{count} años
-                  half_a_minute: medio minuto
-                  less_than_x_minutes:
-                    one: menos de 1 minuto
-                    other: menos de %{count} minutos
-                  less_than_x_seconds:
-                    one: menos de 1 segundo
-                    other: menos de %{count} segundos
-                  over_x_years:
-                    one: más de 1 año
-                    other: más de %{count} años
-                  x_days:
-                    one: 1 día
-                    other: "%{count} días"
-                  x_minutes:
-                    one: 1 minuto
-                    other: "%{count} minutos"
-                  x_months:
-                    one: 1 mes
-                    other: "%{count} meses"
-                  x_years:
-                    one: 1 año
-                    other: "%{count} años"
-                  x_seconds:
-                    one: 1 segundo
-                    other: "%{count} segundos"
-                prompts:
-                  day: Día
-                  hour: Hora
-                  minute: Minutos
-                  month: Mes
-                  second: Segundos
-                  year: Año
-
-#          title_empty: "タイトルを入カしてください。"
-#          title_length: "255文字以内で入カしてください。"
-#          author_empty: "名前を入カしてください。"
-#          author_length: "32文字以内で入カしてください。"
-#          jobName_empty: "職業を入カしてください。"
-#          jobName_length: "32文字以内で入カしてください。"
-#          public_time: "公開日時を設定して下さい。"
+              title_empty: "タイトルを入カしてください。"
+              title_length: "255文字以内で入カしてください。"
+            datePublic:
+              datePublic_empty: "公開日時を設定して下さい。"
+            content:
+              content_empty: "本文は2MB以内で作成して下さい。"
+            author:
+              author_empty: "名前を入カしてください。"
+              author_length: "32文字以内で入カしてください。"
+            jobName:
+              jobName_empty: "職業を入カしてください。"
+              jobName_length: "32文字以内で入カしてください。"
+            age:
+              age_empty: "年齢を入カしてください。"
+              age_length: "2文字以内で入カしてください。"
+              age_number: "数字を入カしてください。"
+            image:
+              image_empty: "見出し画像を設定して下さい"
+              image_size: "ファイルサイズは2MB以内です。"
+              image_format: "不正なファイル形式です。"
+            authorImage:
+              iauthorImage_empty: "見出し画像を設定して下さい"
+              authorImage_size: "ファイルサイズは2MB以内です。"
+              authorImage_format: "不正なファイル形式です。"
 
 
 

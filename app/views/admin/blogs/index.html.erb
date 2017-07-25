@@ -1,32 +1,41 @@
-<html>
-  <body>
-    <!--show message flag-->
-    <div id="blog-table-alerts">
+<div class="row">
+  <div class="col-title-list">
+    <h2><%= t "admin.blog.index.title"%></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-alert">
+    <div id="blog-table-alerts" >
       <%= render 'alerts' %>
     </div>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="form-group" style="padding-left: 20px">
-        <h2><%= t "admin.blog.index.title"%></h2>
-      </div>
-      <div>
-        <%= render 'search_form' %>
-      </div>
-
-      <div class="form-group" style="padding-left: 50px">
-        <%= link_to t("admin.blog.index.add_new"), new_admin_blog_path, class: "btn btn-default btn-primary" %>
-      </div>
-
-      <div class="form-group" style="padding-left: 50px">
-        <%= paginate @blogs %>
-      </div>
-      <%= render 'table_blog_list' %>
-      <div class="form-group" style="padding-left: 50px">
-        <%= paginate @blogs %>
-      </div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div>
+      <%= render 'search_form' %>
     </div>
 
-  </body>
-</html>
+    <div>
+      <%= link_to t("admin.blog.index.add_new"), new_admin_blog_path, class: "btn btn-default btn-primary" %>
+    </div>
+
+    <div>
+      <%= paginate @blogs %>
+    </div>
+
+    <div>
+      <%= render 'table_blog_list' %>
+    </div>
+
+    <div>
+      <%= paginate @blogs %>
+    </div>
+  </div>
+</div>
+
+
 
 

@@ -8,9 +8,9 @@ class CreateBlogs < ActiveRecord::Migration[5.0]
       t.string :image
       t.datetime :dataPublic
       t.text :content
-      t.string :author
-      t.string :jobName
-      t.integer :age
+      t.string :author, default: "ナルフォード"
+      t.string :jobName, default: "塾講師"
+      t.integer :age, default: 26
       t.string :authorImage
       t.references :category, foreign_key: true
 

@@ -13,8 +13,8 @@ class Admin::BlogsController < ApplicationController
     end
   end
 
-  # def show
-  # end
+  #def show
+  #end
 
   def new
   	@blog = Blog.new
@@ -67,7 +67,8 @@ class Admin::BlogsController < ApplicationController
   end
 
   def confirm
-
+    @blog = Blog.new(blog_params)
+    render "new" if @blog.invalid?
   end
 
   private
