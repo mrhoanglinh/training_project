@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     resources :blogs do
       collection do
         get 'blogs/search', to: 'blogs#search'
-        post 'blogs/:id/unPublic', to: 'blogs#unPublic'
         post 'blogs/:id/changeDate', to: 'blogs#changeDate'
         post :confirm
       end

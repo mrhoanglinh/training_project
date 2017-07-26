@@ -62,7 +62,9 @@
       </div>
 
       <div class="col-md-4">
+
         <img id="previewImage"><br />
+        <p>必測/2MB以内/PNG,JPEGのみ</p>
         <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
           <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
         </label>

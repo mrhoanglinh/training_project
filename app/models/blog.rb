@@ -25,8 +25,8 @@ class Blog < ApplicationRecord
   validates :age, numericality: {message: :age_number}, presence: {message: :age_empty},
             length: { maximum: 2, message: :age_length }
 
-  validates :authorImage, presence: {message: :authorImage_empty}
+  #validates :authorImage, presence: {message: :authorImage_empty}
   validates_size_of :authorImage, maximum: 2.megabytes, message: :authorImage_size
-  validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
+  #validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
 
 end

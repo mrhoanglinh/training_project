@@ -4,6 +4,7 @@
   </div>
 
 <%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"} do |f| %>
+  <% custom_errors(@blog) %>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="form-group">
@@ -11,7 +12,10 @@
           <span class="form-title pull-right"><%= t "admin.blog.edit.form.title" %></span>
         </div>
         <div class="col-md-10">
-          <%= f.text_field :title, :class => 'form-control' %>
+          <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内" %>
+          <% if @title_error.length > 0 %>
+              <div class="text-danger"><%= @title_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
@@ -22,6 +26,9 @@
         <div class="col-md-4">
           <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {}, class: "form-control" %>
         </div>
+        <div class="col-md-5">
+          <p style="font-size: 17px"><%= t "admin.blog.create.form.require" %></p>
+        </div>
       </div>
 
       <div class="form-group">
@@ -29,7 +36,10 @@
           <span class="form-title pull-right"><%= t "admin.blog.edit.form.datePublic" %></span>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker" %>
+          <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker", placeholder: "必須"  %>
+          <% if @datePublic_error.length > 0 %>
+              <div class="text-danger"><%= @datePublic_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
@@ -56,15 +66,17 @@
           <span class="form-title pull-right"><%= t "admin.blog.edit.form.image" %></span>
         </div>
         <div class="col-md-4">
-          <% if @blog.authorImage.thumb.url.nil? %>
-              <img id="previewImage" style="width: 150px; height: 150px"><br />
-          <% else %>
-              <%= image_tag @blog.image.thumb.url %><br />
-          <% end %>
-          <br />
+
+          <img id="previewImage"><br />
+          <%= image_tag @blog.image.thumb.url %><br />
+
+          <p>必測/2MB以内/PNG,JPEGのみ</p>
           <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
             <%= f.file_field :image, onchange: 'loadImageFile(event)', style:"display: none" %><br /><%= t"admin.blog.edit.form.open_file"%>
           </label>
+          <% if @image_error.length > 0 %>
+              <div class="text-danger"><%= @image_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
@@ -75,6 +87,15 @@
         <div class="col-md-10">
           <div id ="preview"><%= link_to t("admin.blog.edit.form.preview"), "" %></div>
           <%= f.cktext_area :content, id: 'content_text' %><br />
+          <% if @content_error.length > 0 %>
+              <div class="text-danger"><%= @content_error.html_safe %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
+          <h3>投稿者設定</h3>
         </div>
       </div>
 
@@ -83,25 +104,34 @@
           <span class="form-title pull-right"><%= t "admin.blog.edit.form.author" %></span>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :author, :class => 'form-control' %>
+          <%= f.text_field :author, :class => 'form-control', placeholder: "必須/32文宇以内"  %>
+          <% if @author_error.length > 0 %>
+              <div class="text-danger"><%= @author_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-sm-2">
-          <span class="form-title pull-right"><%= t "admin.blog.edit.form.jobName" %></span>
+          <span class="form-title pull-right"><%= t "admin.blog.edit.form.jobName"%></span>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :jobName, :class => 'form-control' %>
+          <%= f.text_field :jobName, :class => 'form-control', placeholder: "必須/32文宇以内" %>
+          <% if @jobName_error.length > 0 %>
+              <div class="text-danger"><%= @jobName_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
       <div class="form-group">
         <div class="col-sm-2">
-          <span class="form-title pull-right"><%= t "admin.blog.edit.form.age" %></span>
+          <span class="form-title pull-right"><%= t "admin.blog.edit.form.age"%></span>
         </div>
         <div class="col-md-4">
-          <%= f.text_field :age, :class => 'form-control' %>
+          <%= f.text_field :age, :class => 'form-control', placeholder: "必須/半角数字/2文宇以内" %>
+          <% if @age_error.length > 0 %>
+              <div class="text-danger"><%= @age_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
@@ -110,15 +140,16 @@
           <span class="form-title pull-right"><%= t "admin.blog.edit.form.authorImage" %></span>
         </div>
         <div class="col-md-4">
-          <% if @blog.authorImage.thumb.url.nil? %>
-              <img id="previewAvatar" style="width: 150px; height: 150px"><br />
-          <% else %>
-              <%= image_tag @blog.authorImage.thumb.url %><br />
-          <% end %>
-          <br />
+
+          <img id="previewAvatar"><br />
+          <%= image_tag @blog.authorImage.thumb.url %><br />
+
           <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
             <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><br /><%= t"admin.blog.edit.form.open_file"%>
           </label>
+          <% if @authorImage_error.length > 0 %>
+              <div class="text-danger"><%= @authorImage_error.html_safe %></div>
+          <% end %>
         </div>
       </div>
 
@@ -138,38 +169,10 @@
   </div>
 <% end %>
 
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" id="modal_content" style="padding: 15px;">
-    </div>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" id="modal_content" style="padding: 15px;">
   </div>
+</div>
 
-<script type="text/javascript">
-  // show datePicker
-  $(document).ready(function(){
-    $('#datetimepicker').datetimepicker({
-      format: 'YYYY-MM-DD hh:mm:ss'
-    });
-  });
-
-  // preview image before upload
-  var loadImageFile = function(event) {
-    var previewImage = document.getElementById('previewImage');
-    previewImage.src = URL.createObjectURL(event.target.files[0]);
-  };
-  // preview avatar before upload
-  var loadAvatar = function(event) {
-    var previewAvatar = document.getElementById('previewAvatar');
-    previewAvatar.src = URL.createObjectURL(event.target.files[0])
-  };
-
-  $("#preview").on("click", function(ev)
-  {
-    var content = CKEDITOR.instances['content_text'].getData();
-    $("#modal_content").html(content);
-    $("#myModal").modal();
-    ev.preventDefault();
-  });
-
-</script>
 
 

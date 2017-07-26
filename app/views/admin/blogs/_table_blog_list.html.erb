@@ -2,16 +2,16 @@
   <table class=" table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
-        <th><%= t "admin.blog.table.create_at"%></th>
-        <th><%= t "admin.blog.table.title"%></th>
-        <th><%= t "admin.blog.table.category"%></th>
-        <th><%= t "admin.blog.table.isSuggest"%></th>
-        <th><%= t "admin.blog.table.author"%></th>
-        <th><%= t "admin.blog.table.image"%></th>
-        <th><%= t "admin.blog.table.public"%></th>
-        <th><%= t "admin.blog.table.datePublic"%></th>
-        <th><%= t "admin.blog.table.action"%></th>
+        <th width="3%">ID</th>
+        <th width="15%"><%= t "admin.blog.table.create_at"%></th>
+        <th width="8%"><%= t "admin.blog.table.title"%></th>
+        <th width="8%"><%= t "admin.blog.table.category"%></th>
+        <th width="7%"><%= t "admin.blog.table.isSuggest"%></th>
+        <th width="10%"><%= t "admin.blog.table.author"%></th>
+        <th width="8%"><%= t "admin.blog.table.image"%></th>
+        <th width="10%"><%= t "admin.blog.table.public"%></th>
+        <th width="15%"><%= t "admin.blog.table.datePublic"%></th>
+        <th width="9%"><%= t "admin.blog.table.action"%></th>
       </tr>
     </thead>
     <tbody>
@@ -28,59 +28,51 @@
           </td>
           <td><%= blog.author %></td>
           <td><%= image_tag blog.image.thumb.url %></td>
+          <% if blog.isPublic == 1 %>
+              <td id="public_id_<%=blog.id%>"><%= '公開中' %></td>
+          <% else %>
+              <td id="public_id_<%=blog.id%>"><%= '非公開中' %></td>
+          <% end %>
           <td>
-            <% if blog.isPublic == 1 %>
-                <%= '公開中' %>
-            <% else %>
-                <%= '非公開中' %>
-            <% end %>
-          </td>
-          <td>
-            <%= blog.datePublic.try(:strftime, "%Y年%m月%d日 %H:%M" ) %><br />
-            <div class="row">
+            <div class="row" id="public_time_<%=blog.id%>"  >
+              <%= blog.datePublic.try(:strftime, "%Y年%m月%d日 %H:%M" ) %>
+            </div>
 
-                <!--<div class="row" blog_id=<%=blog.id%>>-->
-                  <!--<div class='input-group date datetimepicker_cell'>-->
-                    <!--<input type='hidden' id="hidden_field_<%=blog.id%>" >-->
-                    <!--<span class="input-group-addon" style="padding: 0; background-color: transparent; border: none; display: inline;">-->
-                      <!--<span class="btn btn-default" ><%= t("admin.blog.table.change_time") %></span>-->
-                    <!--</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <%= link_to t("admin.blog.table.change_time") ,'', class: "btn btn-default btn-sm"%>
+            <div class="row" change_sattus_id="<%= blog.id %>">
+              <div class='input-group date datetimepicker_cell' style="display: inline;">
+                <input id="input_date_<%=blog.id%>" style="display: none;" class="form-control input_date">
+                <span class="" style="padding: 0; background-color: transparent; border: none; display: inline;" change_sattus_id="<%= blog.id %>">
+                  <span class="btn btn-default btn-sm change_time_button" id="change_time_button_<%= blog.id %>">
+                    <%= t("admin.blog.table.change_time") %>
+                  </span>
+                </span>
+              </div>
 
-                <% if blog.isPublic == 1 %>
-                    <%= link_to t("admin.blog.table.stop_public"), url_for(controller: 'blogs', action: 'unPublic', id: blog.id), method: :post, remote: :true, class: "btn btn-default btn-sm btn-danger"%>
-                <% end %>
+              <% if blog.isPublic == 1 %>
+                  <div class="btn btn-sm btn-danger public_button " id="unpublic_button_<%= blog.id %>" public_status = 0 >
+                    <%= t("admin.blog.table.stop_public") %>
+                  </div>
+                  <div class="btn btn-sm btn-info public_button " id="public_button_<%= blog.id %>" public_status = 1 style="display: none;">
+                    <%= t("admin.blog.table.start_public") %>
+                  </div>
+              <% else %>
+                  <div class="btn btn-sm btn-info public_button " id="public_button_<%= blog.id %>" public_status = 1 >
+                    <%= t("admin.blog.table.start_public") %>
+                  </div>
+                  <div class="btn btn-sm btn-danger public_button " id="unpublic_button_<%= blog.id %>" public_status = 0 style="display: none;">
+                    <%= t("admin.blog.table.stop_public") %>
+                  </div>
+              <% end %>
             </div>
           </td>
           <td>
-            <%= link_to t("admin.blog.table.edit_blog"), edit_admin_blog_path(blog.id), :class=>"btn btn-default btn-sm" %>
-            <%= link_to t("admin.blog.table.list_comment_blog"), admin_blog_path(blog.id), :class => "btn btn-default btn-sm" %>
-            <%#= link_to t("admin.blog.table.delete_blog"), admin_blog_path(blog.id), data: {confirm: "削除ですか？"}, :method => :delete,:class => 'btn btn-default btn-danger'%>
+            <div style="display: inline">
+              <%= link_to t("admin.blog.table.edit_blog"), edit_admin_blog_path(blog.id), :class=>"btn btn-default btn-sm" %>
+              <%= link_to t("admin.blog.table.list_comment_blog"), admin_blog_path(blog.id), :class => "btn btn-default btn-sm" %>
+              <%#= link_to t("admin.blog.table.delete_blog"), admin_blog_path(blog.id), data: {confirm: "削除ですか？"}, :method => :delete,:class => 'btn btn-default btn-danger'%>
+            </div>
           </td>
         </tr>
     <% end %>
     </tbody>
   </table>
-
-
-<script>
-  $('.datetimepicker_cell').datetimepicker({
-    useCurrent: false
-  });
-
-  $('.datetimepicker_cell').on('dp.change', function(data){
-    var blogID = $(this).parent().attr("blog_id");
-    $(".bootstrap-datetimepicker-widget").hide();
-    $.ajax({
-      url: '/admin/blogs/'+ blogID,
-      dataType: 'script',
-      method: "patch",
-      data: {redirect_check: 1, blog:{datePublic: data.date.format("Y-MM-D hh:mm") }},
-      success: function(){
-        $("#publish_time_"+ blogID).html(data.date.format("Y-MM-D hh:mm"));
-      }
-    });
-  });
-</script>

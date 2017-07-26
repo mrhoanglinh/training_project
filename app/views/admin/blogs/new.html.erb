@@ -13,22 +13,5 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  // show datePicker
-  $(document).ready(function(){
-    $('#datetimepicker').datetimepicker({
-      format: 'YYYY-MM-DD hh:mm:ss'
-    });
-  });
-
-  $("#preview").on("click", function(ev)
-  {
-    var content = CKEDITOR.instances['content_text'].getData();
-    $("#modal_content").html(content);
-    $("#myModal").modal();
-    ev.preventDefault();
-  });
-
-</script>
 
 

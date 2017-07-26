@@ -20,3 +20,13 @@
 //= require jquery-fileupload
 //= require_tree .
 
+$(document).on("turbolinks:load", function () {
+
+    // show datePicker
+    $(document).ready(function(){
+        $('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss'
+        });
+    });
+    
+});

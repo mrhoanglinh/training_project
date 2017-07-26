@@ -5,41 +5,44 @@
   </div>
   <hr>
   <div class="panel-body">
-    <%= search_form_for [:admin, @search], class: "form-inline" do |f|  %>
-        <div class="form-group">
-          <div class="col-md-2">
-            <%= t "admin.blog.search.title_textfiled" %>
-            <%= f.search_field :title_cont, class: "field_size form-control" %>
-          </div>
+    <%= search_form_for [:admin, @search],  html: {method: :get} do |f|  %>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-3">
+              <%= t "admin.blog.search.title_textfiled" %>
+              <%= f.search_field :title_cont, class: "field_size form-control" %>
+            </div>
 
-          <div class="col-md-2" style="width: 15.667% ">
-            <%= t "admin.blog.search.title_cate" %>
-            <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
-          </div>
+            <div class="col-md-2" style="width: 15.667% ">
+              <%= t "admin.blog.search.title_cate" %>
+              <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
+            </div>
 
-          <div class="col-md-2">
-            <%= t "admin.blog.search.title_public" %>
-            <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
-          </div>
+            <div class="col-md-2">
+              <%= t "admin.blog.search.title_public" %>
+              <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
+            </div>
 
-          <div class="col-md-2">
-            <%= t "admin.blog.search.title_suggest" %>
-            <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
-          </div>
+            <div class="col-md-2">
+              <%= t "admin.blog.search.title_suggest" %>
+              <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
+            </div>
 
-          <div class="col-md-2">
-            <%= t "admin.blog.search.sort" %>
-            <%= select_tag :sort_by, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]], params[:sort_by]), {include_blank: true, default: nil, class: "form-control"}%>
-          </div>
+            <div class="col-md-2">
+              <%= t "admin.blog.search.sort" %>
 
-          <div class="col-md-2">
-            <br />
-            <div class="btn-group">
-              <%= submit_tag t("admin.blog.search.button_search"), class: "btn btn-default"  %>
+              <%= f.select :datePublic, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]]),
+                           {include_blank: true, default: nil}, class: "form-control" %>
+            </div>
+
+            <div class="col-md-1">
+              <br />
+              <div class="btn-group">
+                <%= submit_tag t("admin.blog.search.button_search"), class: "btn btn-default"  %>
+              </div>
             </div>
           </div>
         </div>
-
     <% end %>
   </div>
 </div>

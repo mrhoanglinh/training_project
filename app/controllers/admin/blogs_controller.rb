@@ -40,14 +40,16 @@ class Admin::BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update_attributes(blog_params)
-        format.html { redirect_to admin_blogs_path, success: 'ブログ記事を更新しました。' }
-        format.json { render :show, status: :ok, location: @blog }
+        if params[:redirect_check]
+        else
+          format.html { redirect_to admin_blogs_path, success: 'ブログ記事を更新しました。' }
+          format.json { render :show, status: :ok, location: @blog }
+        end
       else
         format.html { render :edit }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def destroy
@@ -55,14 +57,6 @@ class Admin::BlogsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to admin_blogs_url, notice: 'ブログ記事を削除しました。' }
       format.json { head :no_content }
-    end
-  end
-
-  def unPublic
-    @blog = Blog.find(params[:id])
-    if @blog.isPublic = 1
-      @blog.update(isPublic: 0)
-      redirect_to admin_blogs_path
     end
   end
 
