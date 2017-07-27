@@ -3,39 +3,18 @@
       <div class="row">
         <div class="col-md-6">
           <div class="well">
-            <h4><b>生徒一覧</b></h4>
+            <h4 style="padding-left: 3%" ><b><%= t'admin.default_admin_page.list_student.list_title' %></b></h4>
             <ul>
-              <li><a href="">生徒一覧 . 探索</a></li>
+              <li><a href=""><%= t'admin.default_admin_page.list_student.list_name' %></a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-6">
           <div class="well">
-            <h4><b>セルフチェック</b></h4>
+            <h4 style="padding-left: 3%" ><b><%= t'admin.default_admin_page.seft_check.title' %></b></h4>
             <ul>
-              <li><a href="">実施回一覧</a></li>
-              <li><a href="">新規作成 (実施)</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="well">
-            <h4><b>フレンズヒント</b></h4>
-            <ul>
-              <li><a href="">スレッド一覧</a></li>
-              <li><a href="">スレッド作成</a></li>
-              <li><a href="">コメント一覧</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="well">
-            <h4><b>管理ユーザー</b></h4>
-            <ul>
-              <li><a href="">アカウント一覧</a></li>
-              <li><a href="">新規作成</a></li>
+              <li><a href=""><%= t'admin.default_admin_page.seft_check.list_count' %></a></li>
+              <li><a href=""><%= t'admin.default_admin_page.seft_check.plan' %></a></li>
             </ul>
           </div>
         </div>
@@ -43,10 +22,31 @@
       <div class="row">
         <div class="col-md-6">
           <div class="well">
-            <h4><b>ブログ</b></h4>
+            <h4 style="padding-left: 3%" ><b><%= t'admin.default_admin_page.firend_hint.title' %></b></h4>
             <ul>
-              <li><%= link_to '記事一覧', admin_blogs_path %></li>
-              <li><%= link_to '記事作成', new_admin_blog_path %></li>
+              <li><a href=""><%= t'admin.default_admin_page.firend_hint.list_thread' %></a></li>
+              <li><a href=""><%= t'admin.default_admin_page.firend_hint.create_thread' %></a></li>
+              <li><a href=""><%= t'admin.default_admin_page.firend_hint.list_comment' %></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="well">
+            <h4 style="padding-left: 3%" ><b><%= t'admin.default_admin_page.user_manager.title' %></b></h4>
+            <ul>
+              <li><a href=""><%= t'admin.default_admin_page.user_manager.list_account' %></a></li>
+              <li><a href=""><%= t'admin.default_admin_page.user_manager.create_account' %></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="well">
+            <h4 style="padding-left: 3%" ><b><%= t'admin.default_admin_page.blog.title' %></b></h4>
+            <ul>
+              <li><%= link_to t('admin.default_admin_page.blog.list'), admin_blogs_path %></li>
+              <li><%= link_to t('admin.default_admin_page.blog.create'), new_admin_blog_path %></li>
             </ul>
           </div>
         </div>

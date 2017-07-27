@@ -5,7 +5,7 @@
   </div>
   <hr>
   <div class="panel-body">
-    <%= search_form_for [:admin, @search],  html: {method: :get} do |f|  %>
+    <%= search_form_for [:admin, @search], html: {method: :get} do |f|  %>
         <div class="row">
           <div class="form-group">
             <div class="col-md-3">
@@ -30,9 +30,9 @@
 
             <div class="col-md-2">
               <%= t "admin.blog.search.sort" %>
+              <%= select_tag :sort_by, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]], params[:sort_by]),
+                             {include_blank: true, default: nil, class: "form-control"}%>
 
-              <%= f.select :datePublic, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]]),
-                           {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-1">

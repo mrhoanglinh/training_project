@@ -18,6 +18,8 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery-fileupload
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require_tree .
 
 $(document).on("turbolinks:load", function () {
@@ -28,5 +30,5 @@ $(document).on("turbolinks:load", function () {
             format: 'YYYY-MM-DD hh:mm:ss'
         });
     });
-    
+
 });

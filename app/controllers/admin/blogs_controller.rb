@@ -1,12 +1,14 @@
 class Admin::BlogsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   before_action :set_blog, only: [:edit, :update, :destroy, :search]
   layout 'admin'
 
   def index
     @search = Blog.search(params[:q])
+    unless params[:sort_by].blank?
+      @search.sorts = ['created_at desc'] if @search.sorts.empty?
+    end
     @blogs = @search.result.page(params[:page]).per(20)
-
     respond_to do |format|
       format.html
       format.json { render json: { lists: @blogs } }
@@ -40,8 +42,7 @@ class Admin::BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update_attributes(blog_params)
-        if params[:redirect_check]
-        else
+        unless params[:redirect_check]
           format.html { redirect_to admin_blogs_path, success: 'ブログ記事を更新しました。' }
           format.json { render :show, status: :ok, location: @blog }
         end

@@ -1,10 +1,4 @@
 
-<div class="row">
-  <%= link_to "Confirm",admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, isPublic: @blog.isPublic,
-                                                image: @blog.image, author: @blog.author, jobName: @blog.jobName, age: @blog.age,
-                                                authorImage: @blog.authorImage, datePublic: @blog.datePublic, category_id: @blog.category_id}),
-                                                method: :post, class: "btn btn-primary pull-right" %>
-</div>
 
 <div class="panel-body">
   <div class="row">
@@ -75,9 +69,10 @@
       </div>
       <div class="col-sm-3">
         <% if @blog.image.length > 0 %>
-            <%= image_tag @blog.image.thumb.url %> alt="image" width=100, height=100>
-        <% else %>
-            <img src="/assets/author_avatar" alt="image" width=100, height=100>
+            <%#= image_tag @blog.image.thumb.url %> alt="image" width=100, height=100>
+            <img src=<%= @blog.image.thumb.url %> alt="image" width=100, height=100>
+      <% else %>
+            <img src="/assets/image_default" alt="image" width=100, height=100>
         <% end %>
       </div>
     </div>
@@ -140,5 +135,12 @@
         <% end %>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <%= link_to "Confirm",admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, isPublic: @blog.isPublic,
+                                                  image: @blog.image, author: @blog.author, jobName: @blog.jobName, age: @blog.age,
+                                                  authorImage: @blog.authorImage, datePublic: @blog.datePublic, category_id: @blog.category_id}),
+                method: :post, class: "btn btn-primary pull-right" %>
   </div>
 </div>

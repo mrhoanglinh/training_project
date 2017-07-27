@@ -1,5 +1,5 @@
 
-<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"}, url: {action: :confirm} do |f| %>
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center", :id => "formElem"}, url: {action: :confirm} do |f| %>
   <% custom_errors(@blog) %>
   <div class="row">
     <div class="form-group">
@@ -7,7 +7,8 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.title" %></span>
       </div>
       <div class="col-sm-10">
-        <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内" %>
+        <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内", id: "title-input" %>
+        <div class="text-danger" id="title_error_message"></div>
         <% if @title_error.length > 0 %>
             <div class="text-danger"><%= @title_error.html_safe %></div>
         <% end %>
@@ -32,6 +33,7 @@
       </div>
       <div class="col-md-4">
         <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker", placeholder: "必須" %>
+        <div class="text-danger" id="date_error_message"></div>
         <% if @datePublic_error.length > 0 %>
           <div class="text-danger"><%= @datePublic_error.html_safe %></div>
         <% end %>
@@ -66,8 +68,9 @@
         <img id="previewImage"><br />
         <p>必測/2MB以内/PNG,JPEGのみ</p>
         <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
-          <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" %><br /><%= t"admin.blog.create.form.open_file"%>
+          <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" , id: "dimage"%><br /><%= t"admin.blog.create.form.open_file"%>
         </label>
+        <div class="text-danger" id="image_error_message"></div>
         <% if @image_error.length > 0 %>
             <div class="text-danger"><%= @image_error.html_safe %></div>
         <% end %>
@@ -79,9 +82,10 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.content" %></span>
       </div>
       <div class="col-md-10">
-        <div id ="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
+        <div id="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
         <div>
           <%= f.cktext_area :content , id: "content_text" %><br />
+          <div class="text-danger" id="content_error_message"></div>
           <% if @content_error.length > 0 %>
               <div class="text-danger"><%= @content_error.html_safe %></div>
           <% end %>
@@ -100,7 +104,8 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.author" %></span>
       </div>
       <div class="col-md-4">
-        <%= f.text_field :author, :class => 'form-control', placeholder: "必須/32文宇以内" %>
+        <%= f.text_field :author, :class => 'form-control', placeholder: "必須/32文宇以内", id: "author-text" %>
+        <div class="text-danger" id="author_error_message"></div>
         <% if @author_error.length > 0 %>
             <div class="text-danger"><%= @author_error.html_safe %></div>
         <% end %>
@@ -112,7 +117,8 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.jobName" %></span>
       </div>
       <div class="col-md-4">
-        <%= f.text_field :jobName, :class => 'form-control', placeholder: "必須/32文宇以内"  %>
+        <%= f.text_field :jobName, :class => 'form-control', placeholder: "必須/32文宇以内", id: "jobName-text"  %>
+        <div class="text-danger" id="jobName_error_message"></div>
         <% if @jobName_error.length > 0 %>
             <div class="text-danger"><%= @jobName_error.html_safe %></div>
         <% end %>
@@ -124,7 +130,8 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.age" %></span>
       </div>
       <div class="col-md-4">
-        <%= f.text_field :age, :class => 'form-control', placeholder: "必須/半角数字/2文宇以内" %>
+        <%= f.text_field :age, :class => 'form-control', placeholder: "必須/半角数字/2文宇以内", id: "age-input" %>
+        <div class="text-danger" id="age_error_message"></div>
         <% if @age_error.length > 0 %>
             <div class="text-danger"><%= @age_error.html_safe %></div>
         <% end %>
@@ -164,3 +171,7 @@
     </div>
   </div>
 <% end %>
+
+<script>
+
+</script>

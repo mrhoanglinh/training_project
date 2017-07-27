@@ -14,6 +14,28 @@ ja:
       login: "ログイン"
 
   admin:
+    default_admin_page:
+      list_student:
+        list_title: "生徒一覧"
+        list_name: "生徒一覧 . 検索"
+      seft_check:
+        title: "セルフチェック"
+        list_count: "実施回一覧"
+        plan: "新規作成 (実施予約)"
+      firend_hint:
+        title: "フレンズヒント"
+        list_thread: "スレッド一覧"
+        create_thread: "スレッド作成"
+        list_comment: "コメント一覧"
+      user_manager:
+        title: "管理ユーザー"
+        list_account: "アカウント一覧"
+        create_account: "新規作成"
+      blog:
+        title: "ブログ"
+        list: "記事一覧"
+        create: "記事作成"
+
     blog:
       search:
         title_form: "絞り込み検索"
@@ -122,5 +144,9 @@ ja:
               authorImage_size: "ファイルサイズは2MB以内です。"
               authorImage_format: "不正なファイル形式です。"
 
-
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
 

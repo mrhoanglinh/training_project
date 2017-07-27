@@ -11,7 +11,7 @@ class Blog < ApplicationRecord
 
   validates :image, presence: {message: :image_empty}
   validates_size_of :image, maximum: 2.megabytes, message: :image_size
-  validates_format_of :image, with: %r{\.(png|jpeg)\z}i, message: :image_format
+  #validates_format_of :image, with: %r{\.(png|jpeg)\z}i, message: :image_format
 
   validates :content, presence: {message: :content_empty}
   validates_size_of :content, maximum: 2.megabytes, message: :content_empty
