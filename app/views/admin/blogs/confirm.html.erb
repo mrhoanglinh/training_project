@@ -128,7 +128,7 @@
       </div>
       <div class="col-sm-3">
         <% if @blog.authorImage.length > 0 %>
-            <%= image_tag @blog.authorImage.url %> alt="image" width=100, height=100>
+            <%= image_tag @blog.authorImage.url %>
         <% else %>
             <img src="/assets/avatar_default" alt="image" width=100, height=100>
         <% end %>
@@ -139,7 +139,7 @@
   <div class="row">
     <div class="form-group col-sm-2 col-sm-offset-5">
       <div class="col-sm-6">
-        <button class="btn btn-default" id="back_button">Back</button>
+        <%= link_to 'バック', new_admin_blog_path(@blog), class: "btn btn-default" %>
       </div>
       <div class="col-sm-6">
         <%= link_to t("admin.blog.create.form.save"),admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, isPublic: @blog.isPublic,

@@ -7,9 +7,12 @@ class Admin::BlogsController < ApplicationController
   # GET /json
   def index
     @search = Blog.search(params[:q])
-    unless params[:sort_by].blank?
-      @search.sorts = ['created_at DESC']
+    if params[:sort_by] == "ASC"
+      @search.sorts = ['created_at ASC'] if @search.sorts.empty?
+    elsif params[:sort_by] == "DESC"
+      @search.sorts = ['created_at DESC'] if @search.sorts.empty?
     end
+
     @blogs = @search.result.page(params[:page]).per(20)
     respond_to do |format|
       format.html

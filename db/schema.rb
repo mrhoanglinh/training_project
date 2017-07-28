@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712075828) do
+ActiveRecord::Schema.define(version: 20170728033654) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -19,12 +19,12 @@ ActiveRecord::Schema.define(version: 20170712075828) do
     t.integer  "isPublic"
     t.string   "image"
     t.text     "content",     limit: 65535
-    t.string   "author", default: "ナルフォード"
-    t.string   "jobName", default: "塾講師"
-    t.integer  "age", default: 26
+    t.string   "author",                    default: "ナルフォード"
+    t.string   "jobName",                   default: "塾講師"
+    t.integer  "age",                       default: 26
     t.string   "authorImage"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.datetime "datePublic"
     t.index ["category_id"], name: "index_blogs_on_category_id", using: :btree
   end
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20170712075828) do
     t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "blog_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "content",    limit: 65535
+    t.index ["blog_id"], name: "index_comments_on_blog_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -70,4 +80,6 @@ ActiveRecord::Schema.define(version: 20170712075828) do
   end
 
   add_foreign_key "blogs", "categories"
+  add_foreign_key "comments", "blogs"
+  add_foreign_key "comments", "users"
 end

@@ -15,17 +15,20 @@
 
             <div class="col-md-2" style="width: 15.667% ">
               <h4><%= t "admin.blog.search.title_cate" %></h4>
-              <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
+              <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}, params[:q].nil? ? "" : params[:q][:category_id_eq]),
+                           {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
               <h4><%= t "admin.blog.search.title_public" %></h4>
-              <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
+              <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]], params[:q].nil? ? "" : params[:q][:isPublic_eq]),
+                           {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
               <h4><%= t "admin.blog.search.title_suggest" %></h4>
-              <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
+              <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]], params[:q].nil? ? "" : params[:q][:isSuggest_eq]),
+                           {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
