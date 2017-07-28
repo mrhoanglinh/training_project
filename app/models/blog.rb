@@ -9,7 +9,7 @@ class Blog < ApplicationRecord
 
   validates :datePublic, presence: {message: :datePublic_empty}
 
-  validates :image, presence: {message: :image_empty}
+  #validates :image, presence: {message: :image_empty}
   validates_size_of :image, maximum: 2.megabytes, message: :image_size
   #validates_format_of :image, with: %r{\.(png|jpeg)\z}i, message: :image_format
 
@@ -27,6 +27,6 @@ class Blog < ApplicationRecord
 
   #validates :authorImage, presence: {message: :authorImage_empty}
   validates_size_of :authorImage, maximum: 2.megabytes, message: :authorImage_size
-  #validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
+  validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
 
 end

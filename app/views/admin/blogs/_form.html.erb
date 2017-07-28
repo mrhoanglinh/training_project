@@ -1,5 +1,5 @@
 
-<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center", :id => "formElem"}, url: {action: :confirm} do |f| %>
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center", :id => "formElem"}, url: {action: :confirm } do |f| %>
   <% custom_errors(@blog) %>
   <div class="row">
     <div class="form-group">
@@ -10,7 +10,7 @@
         <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内", id: "title-input" %>
         <div class="text-danger" id="title_error_message"></div>
         <% if @title_error.length > 0 %>
-            <div class="text-danger"><%= @title_error.html_safe %></div>
+            <div class="text-danger" id="title_error"><%= @title_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker", placeholder: "必須" %>
         <div class="text-danger" id="date_error_message"></div>
         <% if @datePublic_error.length > 0 %>
-          <div class="text-danger"><%= @datePublic_error.html_safe %></div>
+          <div class="text-danger" id="date_error"><%= @datePublic_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -64,15 +64,19 @@
       </div>
 
       <div class="col-md-4">
-
-        <img id="previewImage"><br />
+        <!--<img id="previewImage"><br />-->
+        <div class="image_preview">
+          <% if @blog.image? %>
+              <%= image_tag(@blog.image_url) %>
+          <% end %>
+        </div>
         <p>必測/2MB以内/PNG,JPEGのみ</p>
-        <label class="btn btn-default btn-sm", style="width: 42px;height: 31px;line-height: 7px;">
-          <%= f.file_field :image, onchange: 'loadImageFile(event)' , style:"display: none" , id: "dimage"%><br /><%= t"admin.blog.create.form.open_file"%>
+        <label class="btn btn-default btn-sm", for="dimage", style="width: 42px;height: 31px;line-height: 7px;">
+          <%= f.file_field :image, style:"display: none" , id: "dimage"%><br /><%= t"admin.blog.create.form.open_file"%>
         </label>
         <div class="text-danger" id="image_error_message"></div>
         <% if @image_error.length > 0 %>
-            <div class="text-danger"><%= @image_error.html_safe %></div>
+            <div class="text-danger" id="image_error"><%= @image_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -143,15 +147,20 @@
         <span class="form-title pull-right"><%= t "admin.blog.create.form.authorImage" %></span>
       </div>
       <div class="col-md-4">
-        <div class="author_avatar_gallery" >
-          <img src="/assets/image_default" id="previewAvatar" >
+        <div class="author_image_preview">
+          <% if @blog.authorImage? %>
+              <%= image_tag(@blog.authorImage_url) %>
+          <% else %>
+              <img src="/assets/avatar_default" alt="image">
+          <% end %>
         </div>
-        <br>
-        <label class="btn btn-default btn-sm">
-          <%= f.file_field :authorImage, onchange: 'loadAvatar(event)', style:"display: none" %><%= t"admin.blog.create.form.open_file"%>
+        <br />
+        <label class="btn btn-default btn-sm" for="author_image">
+          <%= f.file_field :authorImage, style:"display: none", id: "author_image" %><%= t"admin.blog.create.form.open_file"%>
         </label>
+        <div class="text-danger" id="authorImage_error_message"></div>
         <% if @authorImage_error.length > 0 %>
-            <div class="text-danger"><%= @authorImage_error.html_safe %></div>
+            <div class="text-danger" id="authorImage_error"><%= @authorImage_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -164,7 +173,7 @@
           </div>
           <div class="col-md-3">
            <%#= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
-            <%= f.button "確認", class: "btn btn-primary" %>
+            <%= f.button t("admin.blog.create.form.save"), class: "btn btn-primary" %>
           </div>
         </div>
       </div>

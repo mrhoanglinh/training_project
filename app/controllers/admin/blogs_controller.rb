@@ -1,12 +1,14 @@
 class Admin::BlogsController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!
   before_action :set_blog, only: [:edit, :update, :destroy, :search]
   layout 'admin'
 
+  # GET /blogs
+  # GET /json
   def index
     @search = Blog.search(params[:q])
     unless params[:sort_by].blank?
-      @search.sorts = ['created_at desc'] if @search.sorts.empty?
+      @search.sorts = ['created_at DESC']
     end
     @blogs = @search.result.page(params[:page]).per(20)
     respond_to do |format|
@@ -18,10 +20,13 @@ class Admin::BlogsController < ApplicationController
   #def show
   #end
 
+  # GET /blogs/new
   def new
   	@blog = Blog.new
   end
 
+  # POST /blogs
+  # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
     respond_to do |format|
@@ -39,6 +44,8 @@ class Admin::BlogsController < ApplicationController
   def edit
   end
 
+  # PATCH/PUT /blogs/1
+  # PATCH/PUT /blogs/1.json
   def update
     respond_to do |format|
       if @blog.update_attributes(blog_params)
@@ -63,7 +70,11 @@ class Admin::BlogsController < ApplicationController
 
   def confirm
     @blog = Blog.new(blog_params)
-    render "new" if @blog.invalid?
+    if params[:id]
+      render "edit" if @blog.invalid?
+    else
+      render "new" if @blog.invalid?
+    end
   end
 
   private
@@ -73,6 +84,5 @@ class Admin::BlogsController < ApplicationController
 
     def blog_params
       params.require(:blog).permit(:title, :category_id, :isSuggest, :image, :isPublic, :datePublic, :content, :author, :jobName, :age, :authorImage)
-
     end
 end

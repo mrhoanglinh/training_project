@@ -10,7 +10,6 @@ module BlogHelper
     @age_error = ''
     @authorImage_error = ''
     if blog.errors.any?
-      # byebug
       blog.errors.messages.each_with_index do |msg,idx|
         if msg[0].eql?(:title)
           @title_error = msg[1].last

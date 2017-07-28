@@ -9,34 +9,32 @@
         <div class="row">
           <div class="form-group">
             <div class="col-md-3">
-              <%= t "admin.blog.search.title_textfiled" %>
+              <h4><%= t "admin.blog.search.title_textfiled"%></h4>
               <%= f.search_field :title_cont, class: "field_size form-control" %>
             </div>
 
             <div class="col-md-2" style="width: 15.667% ">
-              <%= t "admin.blog.search.title_cate" %>
+              <h4><%= t "admin.blog.search.title_cate" %></h4>
               <%= f.select :category_id_eq, options_for_select(Category.all.map{|s|[s.name, s.id]}), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
-              <%= t "admin.blog.search.title_public" %>
+              <h4><%= t "admin.blog.search.title_public" %></h4>
               <%= f.select :isPublic_eq, options_for_select([['公開', 1], ['非公開', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
-              <%= t "admin.blog.search.title_suggest" %>
+              <h4><%= t "admin.blog.search.title_suggest" %></h4>
               <%= f.select :isSuggest_eq, options_for_select([['オススメ', 1], ['非オススメ', 0]]), {include_blank: true, default: nil}, class: "form-control" %>
             </div>
 
             <div class="col-md-2">
-              <%= t "admin.blog.search.sort" %>
+              <h4><%= t "admin.blog.search.sort" %></h4>
               <%= select_tag :sort_by, options_for_select([["作成日時昇順", "ASC"],["作成日時降順", "DESC"]], params[:sort_by]),
                              {include_blank: true, default: nil, class: "form-control"}%>
-
             </div>
-
             <div class="col-md-1">
-              <br />
+              <br><br>
               <div class="btn-group">
                 <%= submit_tag t("admin.blog.search.button_search"), class: "btn btn-default"  %>
               </div>

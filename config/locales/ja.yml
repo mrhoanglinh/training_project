@@ -140,7 +140,7 @@ ja:
               image_size: "ファイルサイズは2MB以内です。"
               image_format: "不正なファイル形式です。"
             authorImage:
-              authorImage_empty: "見出し画像を設定して下さい"
+              authorImage_empty: "見出し画像を設定して下さい。"
               authorImage_size: "ファイルサイズは2MB以内です。"
               authorImage_format: "不正なファイル形式です。"
 

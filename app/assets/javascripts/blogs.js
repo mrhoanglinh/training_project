@@ -1,6 +1,39 @@
 
 $(document).on("turbolinks:load", function () {
 
+    // preview image
+    $(function() {
+        var imagesPreview = function(input, placeToInsertImagePreview) {
+
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    }
+
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+
+        };
+
+        // preview image blog
+        $('#dimage').on('change', function() {
+            $('.image_preview').empty();
+            imagesPreview(this, 'div.image_preview');
+        });
+
+        // preview image author
+        $('#author_image').on('change', function() {
+            $('.author_image_preview').empty();
+            imagesPreview(this, 'div.author_image_preview');
+        });
+    });
+
     // show preview content from ckeditor
     $("#preview").on("click", function(event)
     {
@@ -76,8 +109,7 @@ $(document).on("turbolinks:load", function () {
         });
     });
 
-
-
+    // form create validation
     $(document).ready(function() {
 
         $("#title_error_message").hide();
@@ -95,10 +127,12 @@ $(document).on("turbolinks:load", function () {
             {
                 $("#title_error_message").html("タイトルを入カしてください。");
                 $("#title_error_message").show();
+                $("#title_error").hide();
             }
-            else if (val.length > 2){
+            else if (val.length > 255){
                 $("#title_error_message").html("255文字以内で入カしてください。");
                 $("#title_error_message").show();
+                $("#title_error").hide();
             }else
             {
                 $("#title_error_message").hide();
@@ -112,22 +146,28 @@ $(document).on("turbolinks:load", function () {
             {
                 $("#date_error_message").html("公開日時を設定して下さい。");
                 $("#date_error_message").show();
+                $("#date_error").hide();
             }
             else{
                 $("#date_error_message").hide();
+                $("#date_error").hide();
             }
         });
 
         // validate for image input
         $("#dimage").change(function() {
             var val = $(this).val();
-            if (!val.match(/(?:png|jpeg)$/)) {
-                $("#image_error_message").html("不正なファイル形式です")
+            if (val == "" ){
+                $("#image_error_message").html("見出し画像を設定して下さい。")
+            }
+            else if (!val.match(/(?:png|jpeg)$/)) {
+                $("#image_error_message").html("不正なファイル形式です。");
                 $("#image_error_message").show();
+                $("#image_error").hide();
             }else {
                 $("#image_error_message").hide();
+                $("#image_error").hide();
             }
-
         });
         
         // validate content input
@@ -187,22 +227,40 @@ $(document).on("turbolinks:load", function () {
                 $("#age_error_message").hide();
             }
         });
-        
+
+        // validate for image input
+        $("#author_image").change(function() {
+            var val = $(this).val();
+            if (val == "" ){
+                $("#authorImage_error_message").html("見出し画像を設定して下さい。")
+                $("#authorImage_error").hide();
+            }
+            else if (!val.match(/(?:png|jpeg)$/)) {
+                $("#authorImage_error_message").html("不正なファイル形式です。");
+                $("#authorImage_error_message").show();
+                $("#authorImage_error").hide();
+            }else {
+                $("#authorImage_error_message").hide();
+                $("#authorImage_error").hide();
+            }
+        });
+
     });
+
 
 });
 
-// preview image before upload
-var loadImageFile = function(event) {
-    var previewImage = document.getElementById('previewImage');
-    previewImage.src = URL.createObjectURL(event.target.files[0]);
-};
-
-// preview avatar before upload
-var loadAvatar = function(event) {
-    var previewAvatar = document.getElementById('previewAvatar');
-    previewAvatar.src = URL.createObjectURL(event.target.files[0])
-}
+// // preview image before upload
+// var loadImageFile = function(event) {
+//     var previewImage = document.getElementById('previewImage');
+//     previewImage.src = URL.createObjectURL(event.target.files[0]);
+// };
+//
+// // preview avatar before upload
+// var loadAvatar = function(event) {
+//     var previewAvatar = document.getElementById('previewAvatar');
+//     previewAvatar.src = URL.createObjectURL(event.target.files[0])
+// }
 
 
 
