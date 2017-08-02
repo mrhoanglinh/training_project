@@ -1,0 +1,32 @@
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class=" table table-striped">
+      <thead>
+        <tr>
+          <th>ブログのタイトル</th>
+          <th>ユーザーのメール</th>
+          <th>コメントの内容</th>
+          <th>時間</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @comments.each do |comment| %>
+          <tr>
+            <td><%= @blog.title %></td>
+            <td><%= comment.user.email %></td>
+            <td><%= comment.content %></td>
+            <td><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+            <td>
+              <%= link_to "一覧", admin_blogs_path, :class=>"btn btn-default btn-sm" %>
+              <%= link_to t("admin.blog.create.form.destroy"), admin_blog_comment_path(@blog, comment), method: :delete,
+                          remote: :true,
+                          class: "col-sm-offset-7 btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

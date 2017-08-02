@@ -1,7 +1,9 @@
 class Admin::BlogsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_blog, only: [:edit, :update, :destroy, :search]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
   layout 'admin'
+  DEFAULT_IMAGE_URL = "/assets/avatar_default.png"
+
 
   # GET /blogs
   # GET /json
@@ -20,8 +22,8 @@ class Admin::BlogsController < ApplicationController
     end
   end
 
-  #def show
-  #end
+  def show
+  end
 
   # GET /blogs/new
   def new
@@ -32,6 +34,14 @@ class Admin::BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
+
+    @blog.image = File.open(Rails.root.to_s + "/public/" + params[:blog][:image])
+    if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
+      @blog.authorImage = File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png")
+    else
+      @blog.authorImage = File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage])
+    end
+
     respond_to do |format|
       if @blog.save
         format.html { redirect_to admin_blogs_path, success: '新しいブログ記事を作成しました。'}
@@ -41,7 +51,6 @@ class Admin::BlogsController < ApplicationController
         format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   def edit
@@ -50,11 +59,18 @@ class Admin::BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    @blog.update(image: File.open(Rails.root.to_s + "/public/" + params[:blog][:image]))
+    if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
+      @blog.update(authorImage: File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png"))
+    else
+      @blog.update(authorImage: File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage]))
+    end
+
     respond_to do |format|
-      if @blog.update_attributes(blog_params)
+      if @blog.update(blog_params)
         unless params[:redirect_check]
           format.html { redirect_to admin_blogs_path, success: 'ブログ記事を更新しました。' }
-          format.json { render :show, status: :ok, location: @blog }
+          format.json { render :index, status: :ok, location: @blog }
         end
       else
         format.html { render :edit }
@@ -72,11 +88,13 @@ class Admin::BlogsController < ApplicationController
   end
 
   def confirm
-    @blog = Blog.new(blog_params)
     if params[:id]
-      render "edit" if @blog.invalid?
+      @blog = Blog.find(params[:id])
+      @blog.assign_attributes blog_params
+      render :edit if @blog.invalid?
     else
-      render "new" if @blog.invalid?
+      @blog = Blog.new(blog_params)
+      render :new if @blog.invalid?
     end
   end
 
@@ -86,6 +104,11 @@ class Admin::BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :category_id, :isSuggest, :image, :isPublic, :datePublic, :content, :author, :jobName, :age, :authorImage)
+      params.require(:blog).permit(:title, :category_id, :isSuggest, :image, :image_cache, :isPublic, :datePublic,
+                                   :content, :author, :jobName, :age, :authorImage, :authorImage_cache)
     end
+
+    # def update?
+    #   params[:action] == "update"
+    # end
 end

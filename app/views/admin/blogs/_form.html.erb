@@ -1,5 +1,5 @@
 
-<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center", :id => "formElem"}, url: {action: :confirm } do |f| %>
+<%= form_for [:admin, @blog], :html => {:class => "form-horizontal center"}, url: {action: :confirm} do |f| %>
   <% custom_errors(@blog) %>
   <div class="row">
     <div class="form-group">
@@ -8,9 +8,9 @@
       </div>
       <div class="col-sm-10">
         <%= f.text_field :title, :class => 'form-control', placeholder: "必須255文字以内", id: "title-input" %>
-        <div class="text-danger" id="title_error_message"></div>
+
         <% if @title_error.length > 0 %>
-            <div class="text-danger" id="title_error"><%= @title_error.html_safe %></div>
+            <div class="text-danger"><%= @title_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -33,9 +33,9 @@
       </div>
       <div class="col-md-4">
         <%= f.text_field :datePublic, id: "datetimepicker", class: "form-control date-picker", placeholder: "必須" %>
-        <div class="text-danger" id="date_error_message"></div>
+
         <% if @datePublic_error.length > 0 %>
-          <div class="text-danger" id="date_error"><%= @datePublic_error.html_safe %></div>
+          <div class="text-danger"><%= @datePublic_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -64,7 +64,6 @@
       </div>
 
       <div class="col-md-4">
-        <!--<img id="previewImage"><br />-->
         <div class="image_preview">
           <% if @blog.image? %>
               <%= image_tag(@blog.image_url) %>
@@ -73,10 +72,16 @@
         <p>必測/2MB以内/PNG,JPEGのみ</p>
         <label class="btn btn-default btn-sm", for="dimage", style="width: 42px;height: 31px;line-height: 7px;">
           <%= f.file_field :image, style:"display: none" , id: "dimage"%><br /><%= t"admin.blog.create.form.open_file"%>
+          <%= f.hidden_field :image_cache %>
+          <!---->
+          <!--<% if params[:id] %>-->
+            <!--<%= f.hidden_field :image, :value => params[:image] %>-->
+          <!--<% end %>-->
+          <!---->
         </label>
-        <div class="text-danger" id="image_error_message"></div>
+
         <% if @image_error.length > 0 %>
-            <div class="text-danger" id="image_error"><%= @image_error.html_safe %></div>
+            <div class="text-danger"><%= @image_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -89,7 +94,7 @@
         <div id="preview"><%= link_to t("admin.blog.create.form.preview"), "" %></div>
         <div>
           <%= f.cktext_area :content , id: "content_text" %><br />
-          <div class="text-danger" id="content_error_message"></div>
+
           <% if @content_error.length > 0 %>
               <div class="text-danger"><%= @content_error.html_safe %></div>
           <% end %>
@@ -109,7 +114,7 @@
       </div>
       <div class="col-md-4">
         <%= f.text_field :author, :class => 'form-control', placeholder: "必須/32文宇以内", id: "author-text" %>
-        <div class="text-danger" id="author_error_message"></div>
+
         <% if @author_error.length > 0 %>
             <div class="text-danger"><%= @author_error.html_safe %></div>
         <% end %>
@@ -122,7 +127,7 @@
       </div>
       <div class="col-md-4">
         <%= f.text_field :jobName, :class => 'form-control', placeholder: "必須/32文宇以内", id: "jobName-text"  %>
-        <div class="text-danger" id="jobName_error_message"></div>
+
         <% if @jobName_error.length > 0 %>
             <div class="text-danger"><%= @jobName_error.html_safe %></div>
         <% end %>
@@ -135,7 +140,7 @@
       </div>
       <div class="col-md-4">
         <%= f.text_field :age, :class => 'form-control', placeholder: "必須/半角数字/2文宇以内", id: "age-input" %>
-        <div class="text-danger" id="age_error_message"></div>
+
         <% if @age_error.length > 0 %>
             <div class="text-danger"><%= @age_error.html_safe %></div>
         <% end %>
@@ -157,10 +162,16 @@
         <br />
         <label class="btn btn-default btn-sm" for="author_image">
           <%= f.file_field :authorImage, style:"display: none", id: "author_image" %><%= t"admin.blog.create.form.open_file"%>
+          <%= f.hidden_field :authorImage_cache %>
+          <!---->
+          <!--<% if params[:id] %>-->
+            <!--<%= f.hidden_field :authorImage, :value => params[:authorImage] %>-->
+          <!--<% end %>-->
+
         </label>
-        <div class="text-danger" id="authorImage_error_message"></div>
+
         <% if @authorImage_error.length > 0 %>
-            <div class="text-danger" id="authorImage_error"><%= @authorImage_error.html_safe %></div>
+            <div class="text-danger"><%= @authorImage_error.html_safe %></div>
         <% end %>
       </div>
     </div>
@@ -172,7 +183,6 @@
             <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"btn btn-default" %>
           </div>
           <div class="col-md-3">
-           <%#= f.submit t("admin.blog.create.form.save"), :class => "btn btn-default btn-primary" %>
             <%= f.button t("admin.blog.create.form.save"), class: "btn btn-primary" %>
           </div>
         </div>

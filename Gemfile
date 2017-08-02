@@ -59,7 +59,6 @@ gem "font-awesome-rails"
 gem 'paperclip'
 gem 'ckeditor'
 gem 'carrierwave'
-gem 'cloudinary'
 gem 'mini_magick'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'

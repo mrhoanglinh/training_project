@@ -1,5 +1,8 @@
 ja:
 
+  errors:
+      extenstion: "不正なファイル形式てす。"
+
   layout:
     header:
       title_header: "イーアス管理ツール"
@@ -67,6 +70,7 @@ ja:
         list_comment_blog: "リストコメント"
       create:
         title: "ブログ記事作成"
+        confirm: "一度確認をお願いします。"
         form:
           required: "required"
           title: "タイトル"
@@ -87,6 +91,7 @@ ja:
           image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
           save: "確認"
           list: "一覧"
+          destroy: "削除"
           authorName_default: "ナルフォード"
           job_default: "塾講師"
           age_default: "26"
@@ -124,7 +129,8 @@ ja:
             datePublic:
               datePublic_empty: "公開日時を設定して下さい。"
             content:
-              content_empty: "本文は2MB以内で作成して下さい。"
+              content_empty: "本文を入カしてください。"
+              content_length: "本文は2MB以内で作成して下さい。"
             author:
               author_empty: "名前を入カしてください。"
               author_length: "32文字以内で入カしてください。"
@@ -150,3 +156,7 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
 
+  devise:
+      sessions:
+        user:
+          signed_in: "ログインしました。"

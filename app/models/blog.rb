@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   belongs_to :category
+  has_many :comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   mount_uploader :authorImage, AuthorImageUploader
@@ -9,12 +10,13 @@ class Blog < ApplicationRecord
 
   validates :datePublic, presence: {message: :datePublic_empty}
 
-  #validates :image, presence: {message: :image_empty}
+  validates :image, presence: {message: :image_empty}
   validates_size_of :image, maximum: 2.megabytes, message: :image_size
   #validates_format_of :image, with: %r{\.(png|jpeg)\z}i, message: :image_format
+  validate :file_format
 
   validates :content, presence: {message: :content_empty}
-  validates_size_of :content, maximum: 2.megabytes, message: :content_empty
+  validates_size_of :content, maximum: 2.megabytes, message: :content_length
 
   validates :author, presence: {message: :author_empty },
             length: {maximum: 32, message: :author_length}
@@ -27,6 +29,22 @@ class Blog < ApplicationRecord
 
   #validates :authorImage, presence: {message: :authorImage_empty}
   validates_size_of :authorImage, maximum: 2.megabytes, message: :authorImage_size
-  validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
+  #validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
+  validate :file_format
+
+  def file_format
+    unless valid_extension? self.image.filename
+      errors.add(:image, I18n.t("errors.extenstion"))
+    end
+    unless valid_extension? self.authorImage.filename
+      errors.add(:authorImage, I18n.t("errors.extenstion"))
+    end
+  end
+
+  def valid_extension? filename
+    return true if filename.nil?
+    ext = File.extname(filename)
+    %w(.jpg .png).include? ext.downcase
+  end
 
 end
