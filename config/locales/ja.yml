@@ -1,5 +1,11 @@
 ja:
 
+  alert:
+    blog:
+      create: "新しいブログ記事を作成しました。"
+      update: "ブログ記事を更新しました。"
+      delete: "ブログ記事を削除しました。"
+
   errors:
       extenstion: "不正なファイル形式てす。"
 
@@ -91,6 +97,7 @@ ja:
           image_suggest: "required/ <= 2 MB / Only PNG, JPEG"
           save: "確認"
           list: "一覧"
+          back: "バック"
           destroy: "削除"
           authorName_default: "ナルフォード"
           job_default: "塾講師"

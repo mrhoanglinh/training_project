@@ -2,223 +2,191 @@
   <h2><%= t "admin.blog.create.confirm" %></h2>
 </div>
 
-<div class="panel-body">
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right "><%= t "admin.blog.create.form.title" %></span>
-      </div>
-      <div class="col-sm-10">
-        <h4>
-          <% if params[:id] %>
-            <%= params[:blog][:title] %>
-          <% else %>
-              <%= @blog.title %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.category" %></span>
-      </div>
-      <div class="col-sm-10">
-        <h4>
-          <% if params[:id] %>
-              <%= params[:blog][:category_id] %>
-          <% else %>
-              <%= @blog.category.name %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.datePublic" %></span>
-      </div>
-      <div class="col-sm-5">
-        <h4>
-          <% if params[:id] %>
-              <%= params[:blog][:datePublic] %>
-          <% else %>
-              <%= @blog.datePublic %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.isPublic" %></span>
-      </div>
-      <div class="col-sm-10">
-        <% if params[:id] %>
-          <% if params[:blog][:isPublic] == 1 %>
-              <%= '公開中' %>
-          <% else %>
-              <%= '非公開中' %>
-          <% end %>
-        <% else %>
-          <% if @blog.isPublic == 1 %>
-              <%= '公開中' %>
-          <% else %>
-              <%= '非公開中' %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.isSuggest" %></span>
-      </div>
-      <div class="col-sm-10">
-        <% if params[:id] %>
-          <% if params[:blog][:isSuggest] == 1 %>
-              <div class="isSuggestCircle"></div>
-          <% end %>
-        <% else %>
-          <% if @blog.isSuggest == 1 %>
-              <div class="isSuggestCircle"></div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.image" %></span>
-      </div>
-      <div class="col-sm-3">
-        <% if params[:id] %>
-
-            <%#= image_tag params[:blog][:image] %>
-
-        <% else %>
-            <%= image_tag @blog.image.url %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.content" %></span>
-      </div>
-      <div class="col-sm-10">
-        <% if params[:id] %>
-          <%= params[:blog][:content] %>
-        <% else %>
-          <%= @blog.content.html_safe %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.author" %></span>
-      </div>
-      <div class="col-sm-5">
-        <h4>
-          <% if params[:id] %>
-              <%= params[:blog][:author] %>
-          <% else %>
-              <%= @blog.author %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.jobName" %></span>
-      </div>
-      <div class="col-sm-5">
-        <h4>
-          <% if params[:id] %>
-              <%= params[:blog][:jobName] %>
-          <% else %>
-              <%= @blog.jobName %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group" data-no-turbolink>
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.age" %></span>
-      </div>
-      <div class="col-sm-3">
-        <h4>
-          <% if params[:id] %>
-              <%= params[:blog][:age] %>
-          <% else %>
-              <%= @blog.age %>
-          <% end %>
-        </h4>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <div class="col-sm-2">
-        <span class="form-title pull-right"><%= t "admin.blog.create.form.authorImage" %></span>
-      </div>
-      <div class="col-sm-3">
-        <% if params[:id] %>
-          <%#= image_tag params[:blog][:authorImage] %>
-        <% else %>
-          <% if @blog.authorImage.length > 0 %>
-              <%= image_tag @blog.authorImage.url %>
-          <% else %>
-              <img src="/assets/avatar_default" alt="image" width=100, height=100>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-4 ">
-        <div class="col-md-3">
-          <%= link_to 'Back', 'javascript:history.go(-1)', class: "btn btn-default" %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel-body">
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right "><%= t "admin.blog.create.form.title" %></span>
+          </div>
+          <div class="col-sm-10">
+            <h4>         
+              <%= @blog.title %>        
+            </h4>
+          </div>
         </div>
-        <div class="col-md-3">
-          <% if params[:id] %>
-              <%= link_to t("admin.blog.create.form.save"), admin_blog_path(blog: {title: params[:blog][:title], content: params[:blog][:content], isSuggest: params[:blog][:isSuggest],
-                                                                                   isPublic: params[:blog][:isPublic], image: params[:blog][:image], author: params[:blog][:author],
-                                                                                   jobName: params[:blog][:jobName], age: params[:blog][:age],
-                                                                                   authorImage: params[:blog][:authorImage], datePublic: params[:blog][:datePublic], category_id: params[:blog][:category_id]}),
-                          method: :patch, class: "btn btn-primary pull-right" %>
-          <% else %>
-              <%= link_to t("admin.blog.create.form.save"),admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, isPublic: @blog.isPublic,
-                                                                                   image: @blog.image.url, author: @blog.author, jobName: @blog.jobName, age: @blog.age,
-                                                                                   authorImage: @blog.authorImage.url, datePublic: @blog.datePublic, category_id: @blog.category_id}),
-                          method: :post, class: "btn btn-primary pull-right" %>
-          <% end %>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.category" %></span>
+          </div>
+          <div class="col-sm-10">
+            <h4>  
+              <%= @blog.category.name %>         
+            </h4>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.datePublic" %></span>
+          </div>
+          <div class="col-sm-5">
+            <h4>         
+              <%= @blog.datePublic.strftime("%Y年%m月%d日 %H:%M") %>        
+            </h4>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.isPublic" %></span>
+          </div>
+          <div class="col-sm-10">       
+            <% if @blog.isPublic == 1 %>
+                <%= '公開中' %>
+            <% else %>
+                <%= '非公開中' %>
+            <% end %>        
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.isSuggest" %></span>
+          </div>
+          <div class="col-sm-10">       
+            <% if @blog.isSuggest == 1 %>
+                <div class="isSuggestCircle"></div>
+            <% end %>      
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.image" %></span>
+          </div>
+          <div class="col-sm-3">
+            <div class="image_preview">
+              <%= image_tag @blog.image.url %>        
+            </div>            
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.content" %></span>
+          </div>
+          <div class="col-sm-10">        
+            <%= @blog.content.html_safe %>      
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.author" %></span>
+          </div>
+          <div class="col-sm-5">
+            <h4>         
+              <%= @blog.author %>          
+            </h4>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.jobName" %></span>
+          </div>
+          <div class="col-sm-5">
+            <h4>       
+              <%= @blog.jobName %>        
+            </h4>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group" data-no-turbolink>
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.age" %></span>
+          </div>
+          <div class="col-sm-3">
+            <h4>      
+              <%= @blog.age %>          
+            </h4>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-sm-2">
+            <span class="form-title pull-right"><%= t "admin.blog.create.form.authorImage" %></span>
+          </div>
+          <div class="col-sm-3">    
+            <div class="author_image_preview">
+              <% if @blog.authorImage.length > 0 %>
+                <%= image_tag @blog.authorImage.url %>
+              <% else %>
+                  <img src="/assets/avatar_default" alt="image" width=100, height=100>
+              <% end %>
+            </div>                   
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-4 ">
+            <div class="col-md-3">                                        
+              <% if params[:id] %>
+                <%= link_to t("admin.blog.create.form.back"), admin_blog_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest,
+                                                                                    isPublic: @blog.isPublic, image: @blog.image.url, author: @blog.author,
+                                                                                    jobName: @blog.jobName, age: @blog.age, authorImage: @blog.authorImage.url, datePublic: @blog.datePublic, category_id: @blog.category_id },
+                                                                                      re_edit: true),
+                              method: :patch, class: "btn btn-primary pull-right" %>
+              <% else %>
+                <%= link_to t("admin.blog.create.form.back"),admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, 
+                                                                                  isPublic: @blog.isPublic, image: @blog.image.url, author: @blog.author,
+                                                                                  jobName: @blog.jobName, age: @blog.age, authorImage: @blog.authorImage.url, datePublic: @blog.datePublic, category_id: @blog.category_id },
+                                                                                    re_new: true),
+                              method: :post, class: "btn btn-primary pull-right" %>
+              <% end %>
+            </div>
+            <div class="col-md-3">
+              <% if params[:id] %>
+                <%= link_to t("admin.blog.create.form.save"), admin_blog_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest,
+                                                                                    isPublic: @blog.isPublic, image: @blog.image.url, author: @blog.author,
+                                                                                    jobName: @blog.jobName, age: @blog.age, authorImage: @blog.authorImage.url, datePublic: @blog.datePublic, category_id: @blog.category_id }),
+                              method: :patch, class: "btn btn-primary pull-right" %>
+              <% else %>
+                <%= link_to t("admin.blog.create.form.save"),admin_blogs_path(blog: {title: @blog.title, content: @blog.content, isSuggest: @blog.isSuggest, 
+                                                                                  isPublic: @blog.isPublic, image: @blog.image.url, author: @blog.author,
+                                                                                  jobName: @blog.jobName, age: @blog.age, authorImage: @blog.authorImage.url, datePublic: @blog.datePublic, category_id: @blog.category_id }),
+                              method: :post, class: "btn btn-primary pull-right" %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

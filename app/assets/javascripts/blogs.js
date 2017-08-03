@@ -31,7 +31,7 @@ $(document).on("turbolinks:load", function () {
         $('#author_image').on('change', function() {
             $('.author_image_preview').empty();
             imagesPreview(this, 'div.author_image_preview');
-        });
+        });        
     });
 
     // show preview content from ckeditor
@@ -52,25 +52,24 @@ $(document).on("turbolinks:load", function () {
         var blogID = $(this).parent().attr("change_sattus_id");
         var button_val = $(this).attr("public_status");
 
-        if (button_val == 1)
-        {
-            $("#unpublic_button_" + blogID).show();
-            $("#public_button_" + blogID).hide();
-            $("#public_id_" + blogID).html('公開中')
-        }
-        else
-        {
-            $("#unpublic_button_" + blogID).hide();
-            $("#public_button_" + blogID).show();
-            $("#public_id_" + blogID).html('非公開中')
-        }
-
         $.ajax({
             url: '/admin/blogs/'+ blogID,
             dataType: 'script',
             method: 'patch',
             data: {redirect_check: 1, blog:{isPublic: button_val}},
             success: function(){
+                if (button_val == 1)
+                {
+                    $("#unpublic_button_" + blogID).show();
+                    $("#public_button_" + blogID).hide();
+                    $("#public_id_" + blogID).html('公開中')
+                }
+                else
+                {
+                    $("#unpublic_button_" + blogID).hide();
+                    $("#public_button_" + blogID).show();
+                    $("#public_id_" + blogID).html('非公開中')
+                }
             }
         });
     });
@@ -98,15 +97,32 @@ $(document).on("turbolinks:load", function () {
         $("#change_time_button_"+ blogID).show();
         $("#input_date_"+ blogID).hide();
         $("#public_time_"+ blogID).show();
+        dateTime = data.date.format("Y-MM-D hh:mm")
         $.ajax({
             url: '/admin/blogs/'+ blogID,
             dataType: 'script',
             method: "patch",
-            data: {redirect_check: 1, blog:{datePublic: data.date.format("Y-MM-D hh:mm") }},
-            success: function(){
-                //$("#public_time_"+ blogID).html(data.date.format("Y年MM月D日 hh:mm"));
+            data: {redirect_check: 1, blog:{datePublic:  dateTime}},
+            success: function(){ 
+                if (new Date() > new Date(dateTime))
+                {
+                    $("#public_id_" + blogID).html('公開中')
+                }
+                else 
+                {
+                    $("#public_id_" + blogID).html('非公開中')
+                }                               
             }
-        });
+        });        
+    });
+
+    // back button click
+    $('#back_page').on('click', function(){
+        $('.image_preview').empty();
+        imagesPreview(this, 'div.image_preview');
+
+        $('.author_image_preview').empty();
+        imagesPreview(this, 'div.author_image_preview');
     });
 
 });

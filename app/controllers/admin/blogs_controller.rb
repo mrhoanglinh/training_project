@@ -2,8 +2,8 @@ class Admin::BlogsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
   layout 'admin'
-  DEFAULT_IMAGE_URL = "/assets/avatar_default.png"
 
+  DEFAULT_IMAGE_URL = "/assets/avatar_default.png"
 
   # GET /blogs
   # GET /json
@@ -35,16 +35,22 @@ class Admin::BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
 
-    @blog.image = File.open(Rails.root.to_s + "/public/" + params[:blog][:image])
+    if params[:blog][:image].present?
+      @blog.image = File.open(Rails.root.to_s + "/public/" + params[:blog][:image])
+    end
+    
     if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
       @blog.authorImage = File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png")
     else
       @blog.authorImage = File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage])
     end
 
+    render :new and return if params[:re_new].present?
+
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to admin_blogs_path, success: '新しいブログ記事を作成しました。'}
+        format.html { redirect_to admin_blogs_path }
+        flash[:success] =  t "alert.blog.create"
         format.json { render :index, status::created, location: @blog }
       else
         format.html { render :new }
@@ -58,20 +64,30 @@ class Admin::BlogsController < ApplicationController
 
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
-  def update
-    @blog.update(image: File.open(Rails.root.to_s + "/public/" + params[:blog][:image]))
-    if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
-      @blog.update(authorImage: File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png"))
-    else
-      @blog.update(authorImage: File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage]))
-    end
+  def update  
+    @blog.assign_attributes blog_params
+
+    if params[:blog][:image].present?
+      @blog.image = File.open(Rails.root.to_s + "/public/" + params[:blog][:image])   
+
+      if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
+        @blog.authorImage = File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png")
+      else
+        @blog.authorImage = File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage])
+      end    
+    end        
+
+    render :edit and return if params[:re_edit].present?
 
     respond_to do |format|
-      if @blog.update(blog_params)
+      if @blog.save
         unless params[:redirect_check]
-          format.html { redirect_to admin_blogs_path, success: 'ブログ記事を更新しました。' }
+          format.html { redirect_to admin_blogs_path }
+          flash[:success] = t "alert.blog.update"
           format.json { render :index, status: :ok, location: @blog }
-        end
+        else
+          format.json
+        end  
       else
         format.html { render :edit }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
@@ -82,7 +98,8 @@ class Admin::BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to admin_blogs_url, notice: 'ブログ記事を削除しました。' }
+      format.html { redirect_to admin_blogs_url }
+      flash[:success] = t "alert.blog.delete"
       format.json { head :no_content }
     end
   end

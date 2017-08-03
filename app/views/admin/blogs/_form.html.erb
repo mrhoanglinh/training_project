@@ -73,11 +73,8 @@
         <label class="btn btn-default btn-sm", for="dimage", style="width: 42px;height: 31px;line-height: 7px;">
           <%= f.file_field :image, style:"display: none" , id: "dimage"%><br /><%= t"admin.blog.create.form.open_file"%>
           <%= f.hidden_field :image_cache %>
-          <!---->
-          <!--<% if params[:id] %>-->
-            <!--<%= f.hidden_field :image, :value => params[:image] %>-->
-          <!--<% end %>-->
-          <!---->
+
+          <%#= f.hidden_field :image_was %>
         </label>
 
         <% if @image_error.length > 0 %>
@@ -162,14 +159,11 @@
         <br />
         <label class="btn btn-default btn-sm" for="author_image">
           <%= f.file_field :authorImage, style:"display: none", id: "author_image" %><%= t"admin.blog.create.form.open_file"%>
-          <%= f.hidden_field :authorImage_cache %>
-          <!---->
-          <!--<% if params[:id] %>-->
-            <!--<%= f.hidden_field :authorImage, :value => params[:authorImage] %>-->
-          <!--<% end %>-->
+          <%= f.hidden_field :authorImage_cache %>  
 
+          <%#= f.hidden_field :authorImage_was %>    
         </label>
-
+        
         <% if @authorImage_error.length > 0 %>
             <div class="text-danger"><%= @authorImage_error.html_safe %></div>
         <% end %>
