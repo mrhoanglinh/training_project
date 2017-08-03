@@ -1,9 +1,9 @@
 class Admin::Blogs::CommentsController < ApplicationController
   before_action :find_blog, only: [:index, :destroy]
-  layout false
+  layout 'admin'
 
   def index
-    @comments = @blog.comments
+    @comments = @blog.comments.reverse
   end
 
   def destroy

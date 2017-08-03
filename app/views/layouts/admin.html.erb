@@ -17,10 +17,20 @@
           <li><a href="#"><%= t"layout.header.self_check" %></a></li>
           <li><a href="#"><%= t"layout.header.friend_hint" %></a></li>
           <li><a href="#"><%= t"layout.header.manager_user" %></a></li>
-          <li>
-            <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
-          </li>
-          <li class="dropdown">
+   
+          <% if params[:action] == "index" %>          
+            <li style="display: none;">
+              <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
+            </li>
+          <% end %>
+            
+          <% if params[:action] == "default_admin_page" %>  
+            <li>
+              <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
+            </li>
+          <% end %>
+
+          <li class="dropdown <%= params[:action] == "default_admin_page" ? "" : "hidden" %>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">ブログ</a>
             <ul class="dropdown-menu" style="margin-top: 3px; border-radius: 5px;">
               <li><%= link_to t("layout.header.list_blog"), admin_blogs_path %></li>
@@ -28,17 +38,21 @@
             </ul>
           </li>
         </ul>
-        <!-- <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-          <% if user_signed_in? %>
-              <li>
-                <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
-              </li>
-          <% else %>
-              <li>
-                <%= link_to t("layout.header.login"), new_user_session_path %>
-              </li>
-          <% end %>
-        </ul> -->
+        
+        <% if params[:action] == "index" || params[:action] == "new" || params[:action] == "edit" || params[:action] == "update" || params[:action] == "confirm" %>
+          <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+            <% if user_signed_in? %>
+                <li>
+                  <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
+                </li>
+            <% else %>
+                <li>
+                  <%= link_to t("layout.header.login"), new_user_session_path %>
+                </li>
+            <% end %>
+          </ul>
+        <% end %>
+        
       </nav>
     </div>
   </head>

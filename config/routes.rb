@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'blogs#index'
 
+  resources :blogs
+
   namespace :admin do
     resources :blogs, only: [:index, :new ,:create, :edit, :update, :destroy, :search]
     root "blogs#default_admin_page"
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
         patch :confirm
         post :confirm
       end
-      resources :comments, controller: "blogs/comments", only: [:index, :destroy]
+      resources :comments, controller: "blogs/comments", only: [:index, :destroy]      
     end
 
   end
