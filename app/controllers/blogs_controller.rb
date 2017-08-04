@@ -2,9 +2,8 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show]	
 
   def index    
-    @blogs = Blog.select(:id, :title, :category_id, :isSuggest, :datePublic, :interest, :like,
-                         :dislike, :disappoint).order('created_at DESC').
-    					 page(params[:page]).per(20)  
+    @blogs = Blog.includes(:category).select(:id, :title, :category_id, :isSuggest, :datePublic, :interest, :like,
+                         :dislike, :disappoint).order('created_at DESC').page(params[:page]).per(20)
   end
 
   private

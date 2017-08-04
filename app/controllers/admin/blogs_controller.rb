@@ -8,7 +8,7 @@ class Admin::BlogsController < ApplicationController
   # GET /blogs
   # GET /json
   def index
-    @search = Blog.search(params[:q])
+    @search = Blog.includes(:category).search(params[:q])
     if params[:sort_by] == "ASC"
       @search.sorts = ['created_at ASC'] if @search.sorts.empty?
     elsif params[:sort_by] == "DESC"

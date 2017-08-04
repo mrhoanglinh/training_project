@@ -3,26 +3,22 @@
   <li>
     <a href=<%= blog_path(blog.id) %>>
       <div class="row">
-
-       
         <% if blog.isSuggest == 1 %>
-          <div class="promoted">
+          <div class="suggest">
             <img src="/assets/suggest.png" alt="">
           </div>
         <% end %>
-          
-
         <div class="blog">
           <div class="short-content">
             <p><%= blog.title %></p>
           </div>
           <div class="row">
             <div class="col-xs-6">
-              <!-- <div class="category">
+              <div class="category">
                 <p><%= blog.category.name %></p>
-              </div> -->
+              </div>
               <div class="publish-time">
-                <p><%= blog.datePublic.to_date %></p>
+                <p><%= blog.datePublic.to_date.strftime("%Y.%m.%d") %></p>
               </div>
             </div>
             <div class="col-xs-6">

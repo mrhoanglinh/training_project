@@ -40,7 +40,7 @@
 
             <div class="row" change_sattus_id="<%= blog.id %>">
               <div class='input-group date datetimepicker_cell' style="display: inline;">
-                <input id="input_date_<%=blog.id%>" style="display: none;" class="form-control input_date">
+                <input id="input_date_<%=blog.id%>" style="display: none;" class="form-control input_date" value="<%= blog.datePublic.try(:strftime, "%Y年%m月%d日 %H:%M" ) %>">
                 <span class="" style="padding: 0; background-color: transparent; border: none; display: inline;" change_sattus_id="<%= blog.id %>">
                   <span class="btn btn-default btn-sm change_time_button" id="change_time_button_<%= blog.id %>">
                     <%= t("admin.blog.table.change_time") %>

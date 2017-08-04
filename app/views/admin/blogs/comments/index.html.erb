@@ -6,24 +6,19 @@
     <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <!-- <td style="width: 100%;">           -->
-            <div class="blog-comment">
-              <blockquote>                              
-                <strong><%= comment.user.email %></strong>
-                <span><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>                            
-                <br />
-                <p><%= comment.content %></p>                        
-              </blockquote>              
-            </div>                           
-        <!-- </td> -->
-        <!-- <td><%= link_to t("admin.blog.create.form.destroy"), admin_blog_comments_path(comment), method: :delete,
-                  remote: :true, class: "button button-delete" %> -->
-        </td>
+        <div class="blog-comment">
+          <blockquote>
+            <strong><%= comment.user.email %></strong>
+            <span><%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></span>
+            <br />
+            <p><%= comment.content %></p>
+          </blockquote>
+        </div>
       </tr>
     <% end %> 
     </tbody>
   </table>
-  <%= link_to t("admin.blog.create.form.list"), admin_blogs_path, :class=>"button button-list" %>  
+  <%= link_to t("admin.blog.create.form.back"), admin_blogs_path, :class=>"button button-list" %>  
 </div> 
 
 <style type="text/css">
@@ -93,11 +88,6 @@ h3{
     font-size: 11px;
     margin: 4px 2px;
     cursor: pointer;
-}
-
-.button-delete {
-  border-radius: 4px;
-  background-color: red; 
 }
 
 .button-list {

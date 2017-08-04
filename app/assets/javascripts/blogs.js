@@ -1,4 +1,5 @@
 
+
 $(document).on("turbolinks:load", function () {
 
     // preview image
@@ -81,8 +82,9 @@ $(document).on("turbolinks:load", function () {
         $("#input_date_" + blogID).show();
     });
 
+    // show textbox for input dateTime in list blog
     $('.input_date').datetimepicker({
-        format: 'YYYY-MM-DD hh:mm:ss',
+        format: 'YYYY-MM-DD hh:mm',
         useCurrent: false
     });
 

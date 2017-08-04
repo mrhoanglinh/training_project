@@ -27,7 +27,7 @@ $(document).on("turbolinks:load", function () {
     // show datePicker
     $(document).ready(function(){
         $('#datetimepicker').datetimepicker({
-            format: 'YYYY-MM-DD hh:mm:ss'
+            format: 'YYYY-MM-DD hh:mm'
         });
     });
 
