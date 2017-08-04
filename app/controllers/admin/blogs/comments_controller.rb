@@ -6,13 +6,13 @@ class Admin::Blogs::CommentsController < ApplicationController
     @comments = @blog.comments.reverse
   end
 
-  def destroy
-    @comment = @blog.comments.find_by(id: params[:id]).destroy
-    @comments = @blog.comments
-    respond_to do |format|
-      format.js
-    end
-  end
+  # def destroy
+  #   @comment = @blog.comments.find_by(id: params[:id]).destroy
+  #   @comments = @blog.comments
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 
   private
   def find_blog

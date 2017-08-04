@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
-  def index
-    #@blog_count = Blog.cache_blog_count
-    @blogs = Blog.select(:id, :title, :category_id, :isPublic,
-                         :isSuggest, :interest, :like,
+  before_action :set_blog, only: [:show]	
+
+  def index    
+    @blogs = Blog.select(:id, :title, :category_id, :isSuggest, :datePublic, :interest, :like,
                          :dislike, :disappoint).order('created_at DESC').
-    					 page(params[:page]).per(20)
+    					 page(params[:page]).per(20)  
   end
 
   private

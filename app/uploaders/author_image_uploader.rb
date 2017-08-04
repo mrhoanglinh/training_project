@@ -17,12 +17,12 @@ class AuthorImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url()
+  #def default_url()
   #   # For Rails 3.1+ asset pipeline compatibility:
-    ActionController::Base.helpers.asset_path("assets/" + [version_name, "avatar_default.png"].compact.join('_'))
+  #  ActionController::Base.helpers.asset_path("assets/" + [version_name, "avatar_default.png"].compact.join('_'))
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  end
+  # end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -39,7 +39,7 @@ class AuthorImageUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_whitelist
-     %w(jpeg png gif jpg)
+     %w(jpg png gif)
    end
 
   # Override the filename of the uploaded files:

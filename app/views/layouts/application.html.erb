@@ -4,9 +4,9 @@
     <title>TrainingProject</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track'=> true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track'=> true %>
-    <%= javascript_include_tag 'ckeditor/config' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'ckeditor/config' %>    
   </head>
 
   <script type="text/javascript">$(document).ready(function() {
@@ -20,7 +20,8 @@
 
   <body>
     <%= render 'shared/header' %>
-    <%= yield %>
+      <%= yield %>
     <%= render 'shared/footer' %>
   </body>
+  
 </html>

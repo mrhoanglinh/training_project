@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20170803115340) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.datetime "datePublic"
-    t.integer  "interest"
-    t.integer  "like"
-    t.integer  "dislike"
-    t.integer  "disappoint"
+    t.integer  "interest",                  default: 0
+    t.integer  "like",                      default: 0
+    t.integer  "dislike",                   default: 0
+    t.integer  "disappoint",                default: 0
     t.index ["category_id"], name: "index_blogs_on_category_id", using: :btree
   end
 

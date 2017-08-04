@@ -11,9 +11,7 @@ class Blog < ApplicationRecord
   validates :datePublic, presence: {message: :datePublic_empty}
 
   validates :image, presence: {message: :image_empty}
-  validates_size_of :image, maximum: 2.megabytes, message: :image_size
-  #validates_format_of :image, with: %r{\.(png|jpeg)\z}i, message: :image_format
-  #validate :file_format
+  validates_size_of :image, maximum: 2.megabytes, message: :image_size  
 
   validates :content, presence: {message: :content_empty}
   validates_size_of :content, maximum: 2.megabytes, message: :content_length
@@ -27,8 +25,7 @@ class Blog < ApplicationRecord
   validates :age, numericality: {message: :age_number}, presence: {message: :age_empty},
             length: { maximum: 2, message: :age_length }
   
-  validates_size_of :authorImage, maximum: 2.megabytes, message: :authorImage_size
-  #validates_format_of :authorImage, with: %r{\.(png|jpeg)\z}i, message: :authorImage_format
+  validates_size_of :authorImage, maximum: 2.megabytes, message: :authorImage_size  
   validate :file_format
 
   def file_format
