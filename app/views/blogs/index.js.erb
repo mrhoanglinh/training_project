@@ -1,0 +1,8 @@
+
+$('#my-blogs-user').append('<%= j render 'blog_detail' %>');
+<% if @blogs.next_page %>
+  $('.pagination').replaceWith('<%= j paginate @blogs %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

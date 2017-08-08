@@ -31,4 +31,19 @@ $(document).on("turbolinks:load", function () {
         });
     });
 
+    $(".footer-menu").on("click", function(){
+        $(".footer-menu").removeClass("active");
+        $(this).addClass("active");
+    });
+
+    if ($('#infinite-scrolling-user').size() > 0) {
+        $(window).on("scroll", function(){
+            var more_blogs_user = $('.pagination .next_page a').attr('href');
+            if (more_blogs_user && $(window).scrollTop() > $(document).height() - $(window).height() - 100) {
+                $('.pagination').html('<i class="fa fa-spinner fa-spin" style="font-size:40px; color: black;"></i>');
+                $.getScript(more_blogs_user);
+            }
+        });
+    }
+
 });

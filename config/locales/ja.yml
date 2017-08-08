@@ -166,4 +166,7 @@ ja:
   devise:
       sessions:
         user:
-          signed_in: "ログインしました。"
+          signed_in: ''
+      failure:
+        user:
+          unauthenticated: ''

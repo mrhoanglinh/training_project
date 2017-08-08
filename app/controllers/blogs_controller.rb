@@ -3,7 +3,11 @@ class BlogsController < ApplicationController
 
   def index    
     @blogs = Blog.includes(:category).select(:id, :title, :category_id, :isSuggest, :datePublic, :interest, :like,
-                         :dislike, :disappoint).order('created_at DESC').page(params[:page]).per(20)
+                         :dislike, :disappoint).order('created_at DESC').page(params[:page]).per(5)
+  end
+
+  def show
+    @blog = Blog.find(params[:id])
   end
 
   private
