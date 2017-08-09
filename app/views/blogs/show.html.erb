@@ -1,0 +1,178 @@
+<div id="blog_detail_and_author">
+  <div class="blog-detail" id="view-detail">
+    <div class="row">
+      <% if @blog.isSuggest == 1 %>
+          <div class="suggest">
+            <img src="/assets/suggest.png" alt="">
+          </div>
+      <% end %>
+      <div class="blog">
+        <div class="title">
+          <p><%= @blog.title %></p>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="category">
+              <p><%= @blog.category.name %></p>
+            </div>
+            <div class="public-time">
+              <p><%= @blog.datePublic.to_date.strftime("%Y.%m.%d") %></p>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="col-xs-3 action">
+              <img src="/assets/interesting.png" alt="">
+              <span><p><%#= interest(@count_action) %></p></span>
+            </div>
+            <div class="col-xs-3 action">
+              <span><img src="/assets/like.png" alt=""></span>
+              <span><p><%#= like(@count_action) %></p></span>
+            </div>
+            <div class="col-xs-3 action">
+              <span><img src="/assets/dislike.png" alt=""></span>
+              <span><p><%#= dislike(@count_action) %></p></span>
+            </div>
+            <div class="col-xs-3 action">
+              <span><img src="/assets/disappoint.png" alt=""></span>
+              <span><p><%#= disappoint(@count_action) %></p></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 social">
+            <button class="btn-twitter">
+              <img src="/assets/twitter.png" alt="">
+            </button>
+          </div>
+          <div class="col-xs-4 social">
+            <button class="btn-facebook">
+              <img src="/assets/facebook.png" alt="">
+            </button>
+          </div>
+          <div class="col-xs-4 social">
+            <button class="btn-line">
+              <img src="/assets/line.png" alt="">
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="content">
+            <img src=<%= @blog.image.url %> alt="">
+            <p>
+              <%= @blog.content.html_safe %>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="author">
+            <div class="author-image">
+              <img src=<%= @blog.authorImage.url %> alt="">
+              <div class="author-info">
+                <p>この記事を書いた人</p>
+                <div class="author-name">
+                  <p><%= @blog.author %>先生</p>
+                </div>
+                <p><%= @blog.jobName %> / <%= @blog.age %>歳</p>
+              </div>
+            </div>
+            <div class="btn-show-profile">
+              <button class="btn-author" id="btn_author" onclick="display_author_screen()" >
+                <div class="row">
+                  <p>ナルフォード先生のプロフィールを見る</p>
+                  <img src="/assets/arrow.png" alt="">
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rating" >
+        <p>この記事を読んだ感想は？</p>
+        <div class="row upper" >
+          <div class="col-xs-6 rate-button left" action="biglike" id="biglike">
+            <img src="/assets/rate-frame.png" alt="" class="review-frame">
+            <img src="/assets/interesting_rate.jpg" alt="" class="icon">
+            <img src="/assets/rate-white-frame.png" alt="" class="review-white-frame">
+            <img src="/assets/tick.png" alt="" class="tick">
+            <p>なるほど</p>
+          </div>
+          <div class="col-xs-6 rate-button right" action="like" id="like">
+            <img src="/assets/rate-frame.png" alt="" class="review-frame">
+            <img src="/assets/like_rate.jpg" alt="" class="icon">
+            <img src="/assets/rate-white-frame.png" alt="" class="review-white-frame">
+            <img src="/assets/tick.png" alt="" class="tick">
+            <p>おもしろい</p>
+          </div>
+        </div>
+        <div class="row lower" >
+          <div class="col-xs-6 rate-button left" action="dislike" id="dislike">
+            <img src="/assets/rate-frame.png" alt="" class="review-frame">
+            <img src="/assets/dislike_rate.jpg" alt="" class="icon">
+            <img src="/assets/rate-white-frame.png" alt="" class="review-white-frame">
+            <img src="/assets/tick.png" alt="" class="tick">
+            <p>難しい</p>
+          </div>
+          <div class="col-xs-6 rate-button right" action="bigdislike" id="bigdislike">
+            <img src="/assets/rate-frame.png" alt="" class="review-frame">
+            <img src="/assets/disappoint_rate.jpg" alt="" class="icon">
+            <img src="/assets/rate-white-frame.png" alt="" class="review-white-frame">
+            <img src="/assets/tick.png" alt="" class="tick">
+            <p>がっかり</p>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="social-bottom">
+        <div class="title-social">
+          <img src="/assets/social-icon.png" alt="">
+          <p>SNSでシェアする</p>
+        </div>
+        <div class="col-xs-4 social">
+          <button class="btn-twitter">
+            <img src="/assets/twitter.png" alt="">
+          </button>
+        </div>
+        <div class="col-xs-4 social">
+          <button class="btn-facebook">
+            <img src="/assets/facebook.png" alt="">
+          </button>
+        </div>
+        <div class="col-xs-4 social">
+          <button class="btn-line">
+            <img src="/assets/line.png" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var check_user_action = "<%= @check_action %>"
+  <% if current_user %>
+  $(".rate-button").removeClass("review-active");
+  $("#"+ check_user_action).addClass("review-active");
+  <% end %>
+  $(".rate-button").on("click", function(){
+    var get_action = $(this).attr("action");
+    <% if current_user %>
+    $(".rate-button").removeClass("review-active");
+    $(this).addClass("review-active");
+    $.ajax({
+      url: "/blogusers/create",
+      dataType: "script",
+      method: "post",
+      data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
+
+    });
+    <% else %>
+    alert("ログインをしてください。");
+    window.location.replace("/users/sign_in");
+    <% end %>
+  });
+</script>

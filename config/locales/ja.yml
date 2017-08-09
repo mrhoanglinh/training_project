@@ -170,3 +170,20 @@ ja:
       failure:
         user:
           unauthenticated: ''
+
+  profile:
+    author_title: "イーアス塾 特別講師"
+    author_name: "ナルフォード"
+    author_job: "先生"
+    author_birth_place: "出身地"
+    author_birth_place_text: "大阪府 大阪市"
+    author_age: "年 齢"
+    author_age_text: "26歳"
+    author_subject: "得意科目"
+    author_subject_text: "理数が得意だが運動は苦手"
+    author_intro_text: "ダミーテキスト、ナルフォード先生の自己紹介文が入ります。ダミーテキスト、ナルフォード先生の自己紹介文が入ります。ダミーテキスト"
+    second_layout_title: "ナルフォード先生のスキル"
+    second_layout_body: "この文章はダミーテキストです、文字などを調整するために入れています。この文章はダミーテキストです、文字などを調整するために入れ"
+    third_layout_title: "ダミータイトル"
+    third_layout_body: "この文章はダミーテキストです、文字などを調整するために入れています。この文章はダミーテキストです、文字などを調整するために入れ"
+
