@@ -41,4 +41,37 @@ module BlogHelper
       end
     end
   end
+
+  def interest_count(count_action)
+    if count_action['interest']
+      count_action['interest']
+    else
+      0
+    end
+  end
+
+  def like_count(count_action)
+    if count_action['like']
+      count_action['like']
+    else
+      0
+    end
+  end
+
+  def dislike_count(count_action)
+    if count_action['dislike']
+      count_action['dislike']
+    else
+      0
+    end
+  end
+
+  def disappoint_count(count_action)
+    if count_action['disappoint']
+      count_action['disappoint']
+    else
+      0
+    end
+  end
+
 end

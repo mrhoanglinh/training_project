@@ -29,13 +29,13 @@ header
   position: fixed;
   top: 0;
   left: 0;
-  #header-top
+  .header-top
   {
     height: 6.521vh;
     width: 100vw;
     background-color: #ff7300;
     position: relative;
-    #notice
+    .notice
     {
       position: absolute;
       top: 1.649vh;
@@ -45,11 +45,16 @@ header
         height: 3.22vh;
       }
     }
-    #title-text
+    .title-text
     {
       position: absolute;
       top: 2.09vh;
       right: 35.6vw;
+    }
+    .title-text-profile{
+      position: absolute;
+      top: 2.09vh;
+      right: 20.6vw;
     }
   }
 }

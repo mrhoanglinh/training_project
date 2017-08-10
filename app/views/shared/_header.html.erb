@@ -1,10 +1,21 @@
 <header>
-  <div id="header-top">
-    <div id="notice">
-      <img src="/assets/noti.png" alt="">
-    </div>
-    <div id="title-text">
-      <p>なるほどブログ</p>
-    </div>
+  <div class="header-top">
+    <% if params[:action] == "show" %>
+      <div class="notice">
+        <a href="<%= blogs_path %>">
+          <img src="/assets/profile-icon-back.png" alt="">
+        </a>
+      </div>
+      <div class="title-text-profile">
+        <p><%= t"header.profile-text" %></p>
+      </div>
+    <% else %>
+      <div class="notice">
+        <img src="/assets/noti.png" alt="">
+      </div>
+      <div class="title-text">
+        <p><%= t"header.text" %></p>
+      </div>
+    <% end %>
   </div>
 </header>

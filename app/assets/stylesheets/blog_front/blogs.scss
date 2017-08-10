@@ -10,20 +10,44 @@
   width: 100%;
   margin: 0;
   z-index: 100;
-  ul{
+  .text{
+    padding: 0px;
+    padding-left: 2vh;
+    float: left;
+    padding-top: 2vh;
+    color: white;
+  }
+  .scroll{
     padding-left: 12vh;
-    li{
-      list-style-type: none;
-      display: inline-block;
-      margin-right: 2vh;
-      padding-top: 2vh;
-      height: 7vh;
+    //background-color: white;
+    ul{
+      //padding-left: 12vh;
+      padding: 0px;
+      margin-left: 1vh;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
       width:100%;
-      text-align: center;
-      background-color: white;
+      li{
+        //list-style-type: none;
+        //display: inline-block;
+        //margin-right: 2vh;
+        //padding-top: 2vh;
+        height: 7vh;
+        width:100%;
+        //text-align: center;
+        vertical-align: top;
+        display: inline-block;
+        box-sizing: border-box;
+        text-align: center;
+        background-color: white;
+        padding-top: 15px;
+      }
     }
   }
 }
+
 
 // top screen
 .blog-list{
@@ -122,7 +146,7 @@
   }
   #first_layout{
     .avatar_layout{
-      margin-left: 6.33vw;
+      margin-left: 1.33vw;
       margin-top: 2.248vh;
       float: left;
       img{
@@ -186,6 +210,7 @@
   }
   #second_layout,
   #third_layout{
+    padding-top: 0%;
     .title{
       height: 3.7vh;
       width: 100%;
@@ -378,7 +403,7 @@
       }
     }
   }
-  .rating{
+  .rate{
     background-color: #ff7300;
     text-align: center;
     font-size: 2.7vh;
@@ -389,11 +414,11 @@
     .tick{
       display: none;
     }
-    .review-white-frame{
+    .rate-white-frame{
       display: none;
     }
-    .review-active{
-      .review-frame, .icon{
+    .rate-active{
+      .rate-frame, .icon{
         display: none;
       }
       p{
@@ -406,21 +431,19 @@
         position: absolute;
         top: 1.93vh;
         left: 6.933vw;
-
       }
-      .review-white-frame{
+      .rate-white-frame{
         display: block;
         width: 43.33vw;
         height: auto;
       }
     }
-
     .row{
       margin: 0 5.33vw;
       .col-xs-6{
-        padding: 0;
+        //padding: 0;
         position: relative;
-        .review-frame{
+        .rate-frame{
           width: 43.33vw;
           height: auto;
         }

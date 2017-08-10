@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :blogs, only: [:index, :show]
   get "author", to: "authors#show"
+  post "blogusers/create"
+  resources :comments, only: [:create]
 
   namespace :admin do
     resources :blogs, only: [:index, :new ,:create, :edit, :update, :destroy, :search]

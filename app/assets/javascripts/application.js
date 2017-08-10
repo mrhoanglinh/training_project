@@ -39,7 +39,7 @@ $(document).on("turbolinks:load", function () {
     if ($('#infinite-scrolling-user').size() > 0) {
         $(window).on("scroll", function(){
             var more_blogs_user = $('.pagination .next_page a').attr('href');
-            if (more_blogs_user && $(window).scrollTop() > $(document).height() - $(window).height() - 100) {
+            if (more_blogs_user && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
                 $('.pagination').html('<i class="fa fa-spinner fa-spin" style="font-size:40px; color: black;"></i>');
                 $.getScript(more_blogs_user);
             }
