@@ -20,6 +20,7 @@
 //= require jquery-fileupload
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery.inview.min.js
 //= require_tree .
 
 $(document).on("turbolinks:load", function () {
@@ -36,14 +37,14 @@ $(document).on("turbolinks:load", function () {
         $(this).addClass("active");
     });
 
-    if ($('#infinite-scrolling-user').size() > 0) {
-        $(window).on("scroll", function(){
-            var more_blogs_user = $('.pagination .next_page a').attr('href');
-            if (more_blogs_user && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-                $('.pagination').html('<i class="fa fa-spinner fa-spin" style="font-size:40px; color: black;"></i>');
-                $.getScript(more_blogs_user);
-            }
-        });
-    }
+    var loading_posts = false;
+    $('a.infinite-scrolling-user').on('inview', function(e, visible) {
+        if(loading_posts == true || visible == true){
+            loading_posts = true;
+            $.getScript($(this).attr('href'), function () {
+                loading_posts = false;
+            });
+        };
+    });
 
 });

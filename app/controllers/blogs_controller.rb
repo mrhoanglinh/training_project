@@ -6,7 +6,12 @@ class BlogsController < ApplicationController
                                              :isSuggest, :datePublic, :interest,
                                              :like, :dislike, :disappoint)
                  .order('created_at DESC')
-                 .page(params[:page]).per(5)
+                 .paginate(page: params[:page],
+                           per_page: 5)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

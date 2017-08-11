@@ -15,7 +15,8 @@ class Admin::BlogsController < ApplicationController
       @search.sorts = ['created_at DESC'] if @search.sorts.empty?
     end
 
-    @blogs = @search.result.page(params[:page]).per(20)
+    @blogs = @search.result.paginate(page: params[:page],
+                                     per_page: 20)
     respond_to do |format|
       format.html
       format.json { render json: { lists: @blogs } }

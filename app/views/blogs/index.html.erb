@@ -20,8 +20,9 @@
     <%= render 'blog_list' %>
   </ul>
 
-  <div id="infinite-scrolling-user" class="text-center">
-    <%= paginate @blogs %>
+  <div class="text-center">
+    <%#= will_paginate @blogs, remote: true, :previous_label => '<b> << </b>'.html_safe, :next_label => '<b> >> </b>'.html_safe, inner_window: 1 %>
+    <%= link_to '次ページ', blogs_path(:page => @blogs.next_page), :class => 'infinite-scrolling-user', :remote => true if @blogs.next_page %>
   </div>
 </div>
 

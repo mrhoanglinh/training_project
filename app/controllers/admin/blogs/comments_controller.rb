@@ -3,7 +3,7 @@ class Admin::Blogs::CommentsController < ApplicationController
   layout 'admin'
 
   def index
-    @comments = @blog.comments.reverse
+    @comments = @blog.comments.includes(:user).reverse
   end
 
   # def destroy

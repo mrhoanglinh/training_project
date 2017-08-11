@@ -76,14 +76,16 @@
                 <p><%= @blog.jobName %> / <%= @blog.age %>歳</p>
               </div>
             </div>
-            <div class="btn-show-profile">
-              <button class="btn-author" id="btn_author" onclick="display_author_screen()" >
-                <div class="row">
-                  <p>ナルフォード先生のプロフィールを見る</p>
-                  <img src="/assets/arrow.png" alt="">
-                </div>
-              </button>
-            </div>
+            <a href="<%= author_path %>">
+              <div class="btn-show-profile">
+                <button class="btn-author" id="btn_author" >
+                  <div class="row">
+                    <p>ナルフォード先生のプロフィールを見る</p>
+                    <img src="/assets/arrow.png" alt="">
+                  </div>
+                </button>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -198,4 +200,5 @@
     window.location.replace("/users/sign_in");
     <% end %>
   });
+
 </script>

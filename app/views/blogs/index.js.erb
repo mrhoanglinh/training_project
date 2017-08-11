@@ -1,8 +1,7 @@
 
-  $('#my-blogs-user').append('<%= j render 'blog_list' %>');
-  <% if @blogs.next_page %>
-    $('.pagination').replaceWith('<%= j paginate @blogs %>');
-  <% else %>
-    $(window).off('scroll');
-    $('.pagination').remove();
-  <% end %>
+$('#my-blogs-user').append('<%= j render 'blog_list' %>');
+$('a.infinite-scrolling-user').attr('href', "<%= blogs_path page: @blogs.next_page %>");
+
+<% unless @blogs.next_page %>
+  $('a.infinite-scrolling-user').remove();
+<% end %>
