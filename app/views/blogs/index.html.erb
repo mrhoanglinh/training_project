@@ -5,12 +5,10 @@
     </div>
     <div class="scroll">
       <ul>
-        <li>カテゴリー 1</li>
-        <li>カテゴリー 2</li>
-        <li>カテゴリー 3</li>
-        <li>カテゴリー 4</li>
-        <li>カテゴリー 5</li>
-        <li>カテゴリー 6</li>
+        <li>オススメ</li>
+        <% @categories.each do |category| %>
+            <li><%= category.name %></li>
+        <% end %>
       </ul>
     </div>
   </div>

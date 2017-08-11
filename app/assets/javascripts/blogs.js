@@ -100,6 +100,7 @@ $(document).on("turbolinks:load", function () {
         $("#input_date_"+ blogID).hide();
         $("#public_time_"+ blogID).show();
         dateTime = data.date.format("Y-MM-D hh:mm")
+
         $.ajax({
             url: '/admin/blogs/'+ blogID,
             dataType: 'script',
@@ -108,10 +109,32 @@ $(document).on("turbolinks:load", function () {
             success: function(){ 
                 if (new Date() > new Date(dateTime))
                 {
+                    $.ajax({
+                        url: '/admin/blogs/'+ blogID,
+                        dataType: 'script',
+                        method: 'patch',
+                        data: {redirect_check: 1, blog:{isPublic: 1}},
+                        success: function(){
+                            $("#unpublic_button_" + blogID).show();
+                            $("#public_button_" + blogID).hide();
+                        }
+                    });
+
                     $("#public_id_" + blogID).html('公開中')
                 }
                 else 
                 {
+                    $.ajax({
+                        url: '/admin/blogs/'+ blogID,
+                        dataType: 'script',
+                        method: 'patch',
+                        data: {redirect_check: 1, blog:{isPublic: 0}},
+                        success: function(){
+                            $("#unpublic_button_" + blogID).hide();
+                            $("#public_button_" + blogID).show();
+                        }
+                    });
+
                     $("#public_id_" + blogID).html('非公開中')
                 }                               
             }

@@ -28,7 +28,7 @@
           </td>
           <td><%= blog.author %></td>
           <td><%= image_tag blog.image.thumb.url %></td>
-          <% if blog.isPublic == 1 %>
+          <% if blog.isPublic == 1 && Time.now >= blog.datePublic %>
               <td id="public_id_<%=blog.id%>"><%= '公開中' %></td>
           <% else %>
               <td id="public_id_<%=blog.id%>"><%= '非公開中' %></td>

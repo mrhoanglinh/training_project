@@ -6,8 +6,9 @@ class BlogsController < ApplicationController
                                              :isSuggest, :datePublic, :interest,
                                              :like, :dislike, :disappoint)
                  .order('created_at DESC')
-                 .paginate(page: params[:page],
-                           per_page: 5)
+                 .paginate(page: params[:page], per_page: 5)
+
+    @categories = Category.all
     respond_to do |format|
       format.html
       format.js
@@ -27,7 +28,7 @@ class BlogsController < ApplicationController
                         .select(:action)
                         .group(:action).count
 
-    @blog_comments = @blog.comments.includes(:user).order('created_at ASC')
+    @blog_comments = @blog.comments.order('created_at ASC')
 
   end
 
