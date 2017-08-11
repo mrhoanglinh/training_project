@@ -17,6 +17,6 @@
 .byebug_history
 
 .idea/
-/public/uploads
+/public/upload
 config/database.yml
 config/secrets.yml

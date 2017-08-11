@@ -6,14 +6,25 @@ class BlogsController < ApplicationController
       @blogs = Blog.includes(:category).select(:id, :title, :category_id,
                                                :isSuggest, :datePublic, :interest,
                                                :like, :dislike, :disappoint)
-                   .order('created_at DESC')
+                   .where(isPublic: 1)
+                   .order('datePublic DESC')
                    .paginate(page: params[:page], per_page: 5)
     else
       @blogs = Blog.includes(:category).select(:id, :title, :category_id,
                                                :isSuggest, :datePublic, :interest,
                                                :like, :dislike, :disappoint)
-                   .where(category_id: params[:category].to_i)
-                   .order('created_at DESC')
+                   .where(category_id: params[:category].to_i , isPublic: 1)
+                   .order('datePublic DESC')
+                   .paginate(page: params[:page], per_page: 5)
+    end
+
+    if params[:isSuggest] == 1
+      byebug
+      @blogs = Blog.includes(:category).select(:id, :title, :category_id,
+                                               :isSuggest, :datePublic, :interest,
+                                               :like, :dislike, :disappoint)
+                   .where(isSuggest: 1)
+                   .order('datePublic DESC')
                    .paginate(page: params[:page], per_page: 5)
     end
 

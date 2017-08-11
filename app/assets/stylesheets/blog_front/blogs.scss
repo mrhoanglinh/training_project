@@ -10,18 +10,12 @@
   width: 100%;
   margin: 0;
   z-index: 100;
-  .text{
-    padding: 0px;
-    padding-left: 2vh;
-    float: left;
-    padding-top: 2vh;
-    color: white;
-  }
   .scroll{
-    padding-left: 12vh;
-    //background-color: white;
+    margin-left: -10px;
+    ::-webkit-scrollbar {
+      display: none;
+    }
     ul{
-      //padding-left: 12vh;
       padding: 0px;
       margin-left: 1vh;
       white-space: nowrap;
@@ -29,25 +23,26 @@
       -webkit-overflow-scrolling: touch;
       -ms-overflow-style: -ms-autohiding-scrollbar;
       width:100%;
+      margin-left: 1%;
       li{
-        //list-style-type: none;
-        //display: inline-block;
-        //margin-right: 2vh;
-        //padding-top: 2vh;
         height: 7vh;
-        width:100%;
-        //text-align: center;
+        width:25%;
         vertical-align: top;
         display: inline-block;
         box-sizing: border-box;
         text-align: center;
         background-color: white;
         padding-top: 2vh;
+        margin-left: -3px;
+      }
+      .active {
+        background-color: #ffbc01 !important;
+        color: white !important;
+        height: 7.646vh;
       }
     }
   }
 }
-
 
 // top screen
 .blog-list{

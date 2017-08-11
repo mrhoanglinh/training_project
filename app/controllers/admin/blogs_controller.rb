@@ -37,13 +37,13 @@ class Admin::BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
 
     if params[:blog][:image].present?
-      @blog.image = File.open(Rails.root.to_s + "/public/" + params[:blog][:image])
+      @blog.image = File.open(Rails.root.to_s + "/public" + params[:blog][:image])
     end
     
-    if params[:blog][:authorImage] == DEFAULT_IMAGE_URL
+    if params[:blog][:authorImage].blank?
       @blog.authorImage = File.open(Rails.root.to_s + "/app/assets/images/avatar_default.png")
     else
-      @blog.authorImage = File.open(Rails.root.to_s + "/public/" + params[:blog][:authorImage])
+      @blog.authorImage = File.open(Rails.root.to_s + "/public" + params[:blog][:authorImage])
     end
 
     render :new and return if params[:re_new].present?

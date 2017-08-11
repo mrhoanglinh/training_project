@@ -1,13 +1,10 @@
 
   <div class="menu-bar" >
-    <div class="text">
-      <p>すべて</p>
-    </div>
     <div class="scroll">
       <ul>
-        <li>オススメ</li>
+        <a href=<%= blogs_path %>><li class="<%= params[:category].nil? ? "active" : "" %>">すべて</li></a>
+        <a href="<%= blogs_path %>"><li class="<%= params[:isSuggest] == 1 ? "active" : "" %>">オススメ</li></a>
         <% @categories.each do |category| %>
-            <!--<li><%#= category.name %></li>-->
             <a href="<%= blogs_path(category: category.id) %>"><li class="<%= params[:category].to_i.eql?(category.id) ? "active" : "" %>"><%=  category.name %></li></a>
         <% end %>
       </ul>
@@ -20,7 +17,6 @@
   </ul>
 
   <div class="text-center">
-    <%#= will_paginate @blogs, remote: true, :previous_label => '<b> << </b>'.html_safe, :next_label => '<b> >> </b>'.html_safe, inner_window: 1 %>
     <%= link_to '次ページ', blogs_path(:page => @blogs.next_page), :class => 'infinite-scrolling-user', :remote => true if @blogs.next_page %>
   </div>
 </div>
