@@ -21,6 +21,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.inview.min.js
+//= require social-share-button
 //= require_tree .
 
 $(document).on("turbolinks:load", function () {

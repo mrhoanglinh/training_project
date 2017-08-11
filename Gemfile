@@ -79,4 +79,6 @@ gem 'will_paginate'
 gem 'bullet'
 gem 'rubocop', '~> 0.46.0', require: false
 
+gem 'social-share-button'
+
 
