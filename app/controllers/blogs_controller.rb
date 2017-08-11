@@ -2,11 +2,20 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show]
 
   def index
-    @blogs = Blog.includes(:category).select(:id, :title, :category_id,
-                                             :isSuggest, :datePublic, :interest,
-                                             :like, :dislike, :disappoint)
-                 .order('created_at DESC')
-                 .paginate(page: params[:page], per_page: 5)
+    if params[:category].nil?
+      @blogs = Blog.includes(:category).select(:id, :title, :category_id,
+                                               :isSuggest, :datePublic, :interest,
+                                               :like, :dislike, :disappoint)
+                   .order('created_at DESC')
+                   .paginate(page: params[:page], per_page: 5)
+    else
+      @blogs = Blog.includes(:category).select(:id, :title, :category_id,
+                                               :isSuggest, :datePublic, :interest,
+                                               :like, :dislike, :disappoint)
+                   .where(category_id: params[:category].to_i)
+                   .order('created_at DESC')
+                   .paginate(page: params[:page], per_page: 5)
+    end
 
     @categories = Category.all
     respond_to do |format|

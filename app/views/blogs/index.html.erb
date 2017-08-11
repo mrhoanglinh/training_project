@@ -7,7 +7,8 @@
       <ul>
         <li>オススメ</li>
         <% @categories.each do |category| %>
-            <li><%= category.name %></li>
+            <!--<li><%#= category.name %></li>-->
+            <a href="<%= blogs_path(category: category.id) %>"><li class="<%= params[:category].to_i.eql?(category.id) ? "active" : "" %>"><%=  category.name %></li></a>
         <% end %>
       </ul>
     </div>
