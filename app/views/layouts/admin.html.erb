@@ -18,17 +18,11 @@
           <li><a href="#"><%= t"layout.header.friend_hint" %></a></li>
           <li><a href="#"><%= t"layout.header.manager_user" %></a></li>
    
-          <% if params[:action] == "index" %>          
+
             <li style="display: none;">
               <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
             </li>
-          <% end %>
-            
-          <% if params[:action] == "default_admin_page" %>  
-            <li>
-              <%= link_to t("layout.header.logout"), destroy_user_session_path, method: :delete, data: { no_turbolink: true } %>
-            </li>
-          <% end %>
+
 
           <%#= params[:action] == "default_admin_page" ? "" : "hidden" %>
 
@@ -40,8 +34,7 @@
             </ul>
           </li>
         </ul>
-        
-        <% if params[:action] == "index" || params[:action] == "new" || params[:action] == "edit" || params[:action] == "update" || params[:action] == "confirm" %>
+
           <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
             <% if user_signed_in? %>
                 <li>
@@ -53,7 +46,6 @@
                 </li>
             <% end %>
           </ul>
-        <% end %>
         
       </nav>
     </div>

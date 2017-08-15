@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   get "author", to: "authors#show"
   post "blogusers/create"
   resources :comments, only: [:create]
+  get "talk", to: "talks#show"
 
   namespace :admin do
     resources :blogs, only: [:index, :new ,:create, :edit, :update, :destroy, :search]

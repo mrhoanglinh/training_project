@@ -1,6 +1,7 @@
 class Blog < ApplicationRecord
   belongs_to :category
   has_many :comments, dependent: :destroy
+  has_many :blog_users
 
   mount_uploader :image, ImageUploader
   mount_uploader :authorImage, AuthorImageUploader

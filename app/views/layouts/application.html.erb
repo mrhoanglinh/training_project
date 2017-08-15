@@ -9,14 +9,16 @@
     <%= javascript_include_tag 'ckeditor/config' %>    
   </head>
 
-  <script type="text/javascript">$(document).ready(function() {
+ <!-- <script type="text/javascript">$(document).ready(function() {
     if ($('textarea').length > 0) {
       var data = $('textarea');
       $.each(data, function(i) {
         CKEDITOR.replace(data[i].id);
       });
     }
-  });</script>
+  });
+  </script>
+-->
 
   <body>
     <%= render 'shared/header' %>

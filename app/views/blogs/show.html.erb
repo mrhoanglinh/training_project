@@ -93,7 +93,7 @@
       <div class="rate" >
         <p>この記事を読んだ感想は？</p>
         <div class="row upper" >
-          <div class="col-xs-6 rate-button left " action="biglike" id="biglike">
+          <div class="col-xs-6 rate-button left " action="interest" id="interest">
             <img src="/assets/rate-frame.png" alt="" class="rate-frame">
             <img src="/assets/interesting_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
@@ -116,7 +116,7 @@
             <img src="/assets/tick.png" alt="" class="tick">
             <p>難しい</p>
           </div>
-          <div class="col-xs-6 rate-button right" action="bigdislike" id="bigdislike">
+          <div class="col-xs-6 rate-button right" action="disappoint" id="disappoint">
             <img src="/assets/rate-frame.png" alt="" class="rate-frame">
             <img src="/assets/disappoint_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
@@ -126,7 +126,6 @@
         </div>
       </div>
 
-
       <div class="row comment">
         <p>ご意見・ご感想をお聞かせください</p>
         <div class="text-area" >
@@ -134,7 +133,7 @@
               <div id="comment_sentences">
                 <% @blog_comments.order(:created_at).each do |comment| %>
                     <div>
-
+                      <b><%= h(comment.user.email) %></b>: <p style="display: inline-block;"><i><%= h(comment.content) %></i></p>
                     </div>
                 <% end %>
               </div>
@@ -193,7 +192,6 @@
       dataType: "script",
       method: "post",
       data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
-
     });
     <% else %>
     alert("ログインをしてください。");

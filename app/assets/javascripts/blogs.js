@@ -150,6 +150,17 @@ $(document).on("turbolinks:load", function () {
         imagesPreview(this, 'div.author_image_preview');
     });
 
+    $("#btn_comment").on("click", function(){
+        if ($("textarea").val().length == 0) {
+            $("#new_comment").submit(function(e){
+                e.preventDefault();
+                return false;
+            });
+        }else{
+            $("#new_comment").unbind().submit();
+        };
+    });
+
 });
 
 // // preview image before upload

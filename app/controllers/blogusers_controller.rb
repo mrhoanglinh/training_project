@@ -8,6 +8,6 @@ class BlogusersController < ApplicationController
       BlogUser.create(user_id: params[:user_id], blog_id: params[:blog_id],
                       action: params[:user_action])
     end
-    #UpdateactionJob.set(wait: 3.seconds).perform_later(params[:blog_id])
+    UpdateactionJob.set(wait: 3.seconds).perform_later(params[:blog_id])
   end
 end

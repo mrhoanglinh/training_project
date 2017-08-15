@@ -1,5 +1,5 @@
 class Admin::BlogsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_admin!
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :search]
   layout 'admin'
 
