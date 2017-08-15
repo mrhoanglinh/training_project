@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    @blog = Blog.includes(:user).find(params[:comment][:blog_id])
+    @blog = Blog.find(params[:comment][:blog_id])
     if params[:comment][:content].present?
       @comment = @blog.comments.create(comment_params)
       @comment.user = current_user
+      flash[:success] = t"blog.show.comment_success"
     end
   end
 

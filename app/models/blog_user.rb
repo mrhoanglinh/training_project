@@ -10,6 +10,7 @@ class BlogUser < ApplicationRecord
     count_update['like'] = 0 unless count_update['like']
     count_update['dislike'] = 0 unless count_update['dislike']
     count_update['disappoint'] = 0 unless count_update['disappoint']
+
     Blog.find(blog_id).update(interest: count_update['interest'],
                               like: count_update['like'],
                               dislike: count_update['dislike'],

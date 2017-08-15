@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   before_action :set_blog, only: [:show]
 
   def index
@@ -23,9 +23,9 @@ class BlogsController < ApplicationController
       @blogs = Blog.includes(:category).select(:id, :title, :category_id,
                                                :isSuggest, :datePublic, :interest,
                                                :like, :dislike, :disappoint)
-                   .where(isSuggest: 1)
+                   .where(isSuggest: 1, isPublic: 1)
                    .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 5)
+                   .paginate(page: params[:page], per_page: 10)
     end
 
     @categories = Category.all
@@ -47,9 +47,6 @@ class BlogsController < ApplicationController
     @count_action = BlogUser.where(blog_id: @blog.id)
                         .select(:action)
                         .group(:action).count
-
-    #@blog_comments = @blog.comments.order('created_at ASC')
-
   end
 
   private

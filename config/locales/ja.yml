@@ -191,3 +191,16 @@ ja:
     text: "なるほどブログ"
     profile-text: "ナルフォード先生のプロフィール"
 
+  blog:
+    show:
+      rate_title: "この記事を読んだ感想は？"
+      rate:
+        interest: "なるほど"
+        like: "おもしろい"
+        dislike: "難しい"
+        disappoint: "がっかり"
+      comment_title: "ご意見・ご感想をお聞かせください"
+      conment_button_text: "送信する"
+      comment_text_holder: "投稿内容を入力してください"
+      comment_success: "コメントを送信しました。"
+

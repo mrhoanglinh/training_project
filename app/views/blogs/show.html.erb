@@ -45,16 +45,20 @@
               <img src="/assets/twitter.png" alt="">
             </button>
           </div>
-          <div class="col-xs-4 social social-share-button" data-title="<%= @blog.title %>">
-            <button class="btn-facebook" rel="nofollow " data-site="facebook" onclick="return SocialShareButton.share(this);">
-              <img src="/assets/facebook.png" alt="">
-            </button>
-          </div>
-          <div class="col-xs-4 social social-share-button" data-title="<%= @blog.title %>">
-            <button class="btn-line" rel="nofollow " data-site="line" onclick="return SocialShareButton.share(this);">
-              <img src="/assets/line.png" alt="">
-            </button>
-          </div>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/blogs/"<%= @blog.id %>>
+            <div class="col-xs-4 social">
+              <button class="btn-facebook">
+                <img src="/assets/facebook.png" alt="">
+              </button>
+            </div>
+          </a>
+          <a href="line://msg/text/<%= @blog.title %>">
+            <div class="col-xs-4 social">
+              <button class="btn-line">
+                <img src="/assets/line.png" alt="">
+              </button>
+            </div>
+          </a>
         </div>
         <div class="row">
           <div class="content">
@@ -76,36 +80,40 @@
                 <p><%= @blog.jobName %> / <%= @blog.age %>歳</p>
               </div>
             </div>
-            <a href="<%= author_path %>">
-              <div class="btn-show-profile">
-                <button class="btn-author" id="btn_author" >
-                  <div class="row">
-                    <p>ナルフォード先生のプロフィールを見る</p>
-                    <img src="/assets/arrow.png" alt="">
-                  </div>
-                </button>
-              </div>
-            </a>
+
+            <% if current_user %>
+              <a href="<%= author_path %>">
+                <div class="btn-show-profile">
+                  <button class="btn-author" id="btn_author" >
+                    <div class="row">
+                      <p>ナルフォード先生のプロフィールを見る</p>
+                      <img src="/assets/arrow.png" alt="">
+                    </div>
+                  </button>
+                </div>
+              </a>
+            <% end %>
+
           </div>
         </div>
       </div>
 
       <div class="rate" >
-        <p>この記事を読んだ感想は？</p>
+        <p><%= t"blog.show.rate_title" %></p>
         <div class="row upper" >
           <div class="col-xs-6 rate-button left " action="interest" id="interest">
             <img src="/assets/rate-frame.png" alt="" class="rate-frame">
             <img src="/assets/interesting_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
             <img src="/assets/tick.png" alt="" class="tick">
-            <p>なるほど</p>
+            <p><%= t"blog.show.rate.interest" %></p>
           </div>
           <div class="col-xs-6 rate-button right" action="like" id="like">
             <img src="/assets/rate-frame.png" alt="" class="rate-frame">
             <img src="/assets/like_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
             <img src="/assets/tick.png" alt="" class="tick">
-            <p>おもしろい</p>
+            <p><%= t"blog.show.rate.like" %></p>
           </div>
         </div>
         <div class="row lower" >
@@ -114,42 +122,35 @@
             <img src="/assets/dislike_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
             <img src="/assets/tick.png" alt="" class="tick">
-            <p>難しい</p>
+            <p><%= t"blog.show.rate.dislike" %></p>
           </div>
           <div class="col-xs-6 rate-button right" action="disappoint" id="disappoint">
             <img src="/assets/rate-frame.png" alt="" class="rate-frame">
             <img src="/assets/disappoint_rate.jpg" alt="" class="icon">
             <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
             <img src="/assets/tick.png" alt="" class="tick">
-            <p>がっかり</p>
+            <p><%= t"blog.show.rate.disappoint" %></p>
           </div>
         </div>
       </div>
 
       <div class="row comment">
-        <p>ご意見・ご感想をお聞かせください</p>
+        <p><%= t"blog.show.comment_title" %></p>
         <div class="text-area" >
-          <% if @blog_comments %>
-              <div id="comment_sentences">
-                <% @blog_comments.order(:created_at).each do |comment| %>
-                    <div>
-                      <b><%= h(comment.user.email) %></b>: <p style="display: inline-block;"><i><%= h(comment.content) %></i></p>
-                    </div>
-                <% end %>
-              </div>
-          <% end %>
+          <div id="comment_sentences">
+
+          </div>
           <br>
           <%= form_for Comment.new, method: :post, remote: true do |f| %>
-              <%= f.text_area :content, placeholder: "投稿内容を入力してください" %>
+              <%= f.text_area :content, placeholder: t("blog.show.comment_text_holder") %>
               <%= f.hidden_field :blog_id, value: @blog.id %>
               <% if current_user %>
                   <%= f.hidden_field :user_id, value: current_user.id %>
               <% end %>
           <% end %>
-          <%= button_tag "送信する", id: "btn_comment" %>
+          <%= button_tag t("blog.show.conment_button_text"), id: "btn_comment" %>
         </div>
       </div>
-
 
       <div class="social-bottom">
         <div class="title-social">
@@ -166,17 +167,29 @@
             <img src="/assets/facebook.png" alt="">
           </button>
         </div>
-        <div class="col-xs-4 social social-share-button" data-title="<%= @blog.title %>">
-          <button class="btn-line" rel="nofollow " data-site="line" onclick="return SocialShareButton.share(this);">
-            <img src="/assets/line.png" alt="">
-          </button>
-        </div>
+
+        <a href="line://msg/text/<%= @blog.title %>">
+          <div class="col-xs-4 social">
+            <button class="btn-line">
+              <img src="/assets/line.png" alt="">
+            </button>
+          </div>
+        </a>
+
       </div>
     </div>
   </div>
 </div>
 
 <script>
+
+  function sendtoline(){
+    var link = "http://line.naver.jp/R/msg/text/?";
+    link += encodeURIComponent(document.getElementById("msg").value) + "%0D%0A" + encodeURIComponent(document.getElementById("url").value);
+    location.href = link;
+    return false;
+  }
+
   var check_user_action = "<%= @check_action %>"
   <% if current_user %>
   $(".rate-button").removeClass("rate-active");

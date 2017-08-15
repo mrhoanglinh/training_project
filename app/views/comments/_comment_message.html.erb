@@ -1,3 +1,10 @@
 <div>
-  <b><%= @comment.user.email %></b>: <p style="display: inline-block;"><i><%= @comment.contents %></i></p>
+  <% flash.each do |key, value| %>
+      <% unless value.blank? %>
+          <div class="alert alert-success" id="alert-message">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p><%= value %></p>
+          </div>
+      <% end %>
+  <% end %>
 </div>

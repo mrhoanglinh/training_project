@@ -1,7 +1,7 @@
 
 <% @blogs.each do |blog| %>
   <li>
-    <a href=<%= blog_path(blog.id) %>>
+    <a href="<%= blog_path(blog.id) %>" style="text-decoration : none" >
       <div class="row">
         <% if blog.isSuggest == 1 %>
           <div class="suggest">

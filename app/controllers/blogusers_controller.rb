@@ -9,5 +9,9 @@ class BlogusersController < ApplicationController
                       action: params[:user_action])
     end
     UpdateactionJob.set(wait: 3.seconds).perform_later(params[:blog_id])
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 end
