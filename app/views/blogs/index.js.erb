@@ -1,7 +1,17 @@
 
+
+  //$('#modal-main-welcome').modal();
+
+
+//if(localStorage.popup_is_checked != "yes") {
+//  $('#modal-main-welcome').modal();
+//  localStorage.popup_is_checked = "yes"
+//}
+
 $('#my-blogs-user').append('<%= j render 'blog_list' %>');
 $('a.infinite-scrolling-user').attr('href', "<%= blogs_path page: @blogs.next_page %>");
 
 <% unless @blogs.next_page %>
   $('a.infinite-scrolling-user').remove();
 <% end %>
+

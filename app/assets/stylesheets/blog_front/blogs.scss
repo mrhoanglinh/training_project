@@ -542,3 +542,101 @@
     }
   }
 }
+
+.author_screen{
+  font-family: "HiraKakuProW3";
+  .row{
+    padding-left: 0!important;
+    padding-right: 0!important;
+    padding-top: 6.521vh;
+    margin: 0 !important;
+  }
+  p{
+    margin: 0!important;
+  }
+  #first_info{
+    .author_avatar{
+      margin-left: 1.33vw;
+      margin-top: 2.248vh;
+      float: left;
+      img{
+        max-height: 28.11vh;
+        max-width: 17.3vh;
+      }
+    }
+    .user-avatar_ems {
+      padding-left: 5.33vw;
+      margin-top: 5.997vh;
+      img {
+        max-width: 26.3vh !important;
+      }
+    }
+    .author_info{
+      padding-right: 5.33vw;
+      float: right;
+      margin-top: 5.997vh;
+      margin-left: 3.066vw;
+      .author_info_1{
+        font-weight: bold;
+        font-size: 2vh;
+        color: black;
+        margin-bottom: 1.874vh;
+      }
+      .author_info_2{
+        .big{
+          font-weight: bold;
+          font-size: 4.572vh;
+          color: #ff7300;
+        }
+        .small{
+          font-weight: bold;
+          font-size: 2.698vh;
+          color: #ff7300;
+        }
+      }
+      .author_info_3, .author_info_4, .author_info_5{
+        margin-bottom: 1vh;
+        .label{
+          display: inline-block;
+          background-color: #f7b700;
+          border-radius: 1.499vh;
+          text-align: center;
+          color: white;
+          padding-top: 0.647vh;
+          width: 14.266vw;
+          height: auto;
+          p{
+            font-size: 1.424vh;
+          }
+        }
+        .explain{
+          display: inline-block;
+          color: #333333;
+          font-size: 1.649vh;
+        }
+      }
+    }
+    .intro{
+      float: left;
+      margin-top: 2.248vh;
+      padding-left: 5.33vw;
+      padding-right: 5.33vw;
+    }
+  }
+  #second_info, #third_info{
+    .title{
+      height: 7.346vh;
+      width: 100%;
+      background-color: #f7b700;
+      color: white;
+      text-align: center;
+      padding-top: 2vh;
+      font-weight: bold;
+    }
+    .intro{
+      margin-top: 2.248vh;
+      padding-left: 5.33vw;
+      padding-right: 5.33vw;
+    }
+  }
+}

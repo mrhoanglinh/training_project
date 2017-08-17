@@ -26,19 +26,27 @@ Category.create(name: "カテゴリ3")
                       age: 26,
                       remote_authorImage_url: "http://www.pngall.com/wp-content/uploads/2016/07/Plants-PNG-Clipart.png",
                       datePublic: "01/08/2017".to_date,
-                      interest: rand(0..1),
-                      like: rand(0..1),
-                      dislike: rand(0..1),
-                      disappoint: rand(0..1)
+                      interest: 0,
+                      like: 0,
+                      dislike: 0,
+                      disappoint: 0
                     )
 end
 
-(1..10).each do |i|
-  user = User.create(email: "admin#{i}@gmail.com", password: "123456")
+(1..3).each do |v|
+  user = User.create(email: "user#{v}@gmail.com", password: "123456")
 end
+
+Admin.create(email: "admin@gmail.com", password: "123456")
 
 (1..100).each do |j|
   comment = Comment.create(blog_id: rand(1..10),
                            user_id: rand(1..12),
                            content: "user #{rand(1..10)} - comment #{j}")
 end
+
+(1..100).each do |x|
+  bloguser = BlogUser.create(action: rand(1..4), blog_id: rand(42..44), user_id: rand(1..2))
+end
+
+

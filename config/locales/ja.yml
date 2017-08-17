@@ -167,7 +167,12 @@ ja:
       sessions:
         user:
           signed_in: ''
+          signed_out: ''
+        admin:
+          signed_in: ''
+          signed_out: ''
       failure:
+        already_authenticated: ''
         user:
           unauthenticated: ''
 

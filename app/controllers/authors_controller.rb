@@ -1,4 +1,4 @@
 class AuthorsController < ApplicationController
-  def show
+  def index
   end
 end

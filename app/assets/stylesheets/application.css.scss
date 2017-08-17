@@ -20,6 +20,54 @@
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
 
+body {
+  width: 100%;
+  max-width: 100%;
+  background: #f0f0f0;
+  img{
+    margin: auto;
+  }
+  #modal-main-welcome {
+    #welcome-text {
+      position: absolute;
+      top: 3.68vh;
+      left: 5.29vw;
+      right: 5.29vw;
+      height: 15.35vh;
+      img{
+        width: 100%;
+        height: 70.55vh;
+      }
+    }
+    #button-welcome {
+      position: absolute;
+      top: 77.77vh;
+      left: 5.29vw;
+      right: 5.29vw;
+      .button {
+        width: 100% !important;
+        border-radius: 0px;
+        height: 8.88vh;
+        font-size: 12px;
+        .center-text {
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      .button-blog-list {
+        background: #ff7300 !important;
+        color: white;
+      }
+      .button-author {
+        background: white !important;
+        color: black;
+        margin-top: 1vh;
+      }
+    }
+  }
+}
+
 header
 {
   z-index: 101;

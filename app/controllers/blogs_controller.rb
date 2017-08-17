@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
   before_action :set_blog, only: [:show]
 
   def index
@@ -9,14 +9,14 @@ class BlogsController < ApplicationController
                                                :like, :dislike, :disappoint)
                    .where(isPublic: 1)
                    .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 10)
+                   .paginate(page: params[:page], per_page: 15)
     else
       @blogs = Blog.includes(:category).select(:id, :title, :category_id,
                                                :isSuggest, :datePublic, :interest,
                                                :like, :dislike, :disappoint)
                    .where(category_id: params[:category].to_i , isPublic: 1)
                    .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 10)
+                   .paginate(page: params[:page], per_page: 15)
     end
 
     if params[:isSuggest].to_i == 1
@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
                                                :like, :dislike, :disappoint)
                    .where(isSuggest: 1, isPublic: 1)
                    .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 10)
+                   .paginate(page: params[:page], per_page: 15)
     end
 
     @categories = Category.all

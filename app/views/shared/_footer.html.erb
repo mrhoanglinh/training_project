@@ -1,7 +1,7 @@
 <footer>
   <div class="row" >
-    <a href="<%= talk_path %>" >
-      <div class="col-xs-4 footer-menu">
+    <a href="/">
+      <div class="col-xs-4 footer-menu <%= params[:controller] == "talks" ? "active" : "" %>">
         <div class="comment">
           <img class="default" src="/assets/talk.png" alt="">
           <img class="selected" src="/assets/talk-click.png" alt="">
@@ -9,17 +9,21 @@
         </div>
       </div>
     </a>
+
     <a href="<%= blogs_path %>">
-      <div class="col-xs-4 footer-menu <%= params[:controller] == "blogs" ? "active" : "" %>">
-        <div class="detail">
-          <img class="default" src="/assets/top.png" alt="">
-          <img class="selected" src="/assets/top-click.png" alt="">
-          <span><p>ブログ</p></span>
+      <%#= link_to blogs_path, remote: true, class: "avalue" do %>
+        <div class="col-xs-4 footer-menu <%= params[:controller] == "blogs" ? "active" : "" %>">
+          <div class="detail">
+            <img class="default" src="/assets/top.png" alt="">
+            <img class="selected" src="/assets/top-click.png" alt="">
+            <span><p>ブログ</p></span>
+          </div>
         </div>
-      </div>
+      <%# end %>
     </a>
+
     <a href="<%= author_path %>">
-      <div class="col-xs-4 footer-menu <%= params[:controller] == "authors" ? "active" : "" %>">
+      <div class="col-xs-4 footer-menu <%= params[:controller] == "devises" ? "active" : "" %>">
         <div class="author">
           <img class="default" src="/assets/profile.png" alt="">
           <img class="selected" src="/assets/profile-click.png" alt="">
@@ -29,3 +33,16 @@
     </a>
   </div>
 </footer>
+
+<script>
+//  var clicks = 0; // counter
+//  var a = document.getElementById('avalue'); // element
+//  a.onclick = function() { // onclick not onClick
+//    ++clicks;
+//    if (clicks == 1)
+//    {
+//      $('#modal-main-welcome').modal();
+//    }
+//  }
+
+</script>

@@ -3,21 +3,23 @@
 
   <div class="form-group">
     <div class="col-lg-offset-4 col-lg-4">
-      <h2>Sign up</h2>
+      <h2>サインアップ</h2>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :email, :class => 'control-label col-lg-3' %><br />
+    <%#= f.label :email, :class => 'control-label col-lg-3' %>
+    <span class="control-label col-lg-3">メールアドレス</span>
     <div class="col-lg-4">
       <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :password, :class => 'control-label col-lg-3' %>
+    <%#= f.label :password, :class => 'control-label col-lg-3' %>
+    <span class = 'control-label col-lg-3'>パスワード</span>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(最低 <%= @minimum_password_length %> 文字必要です)</em>
     <% end %><br />
     <div class="col-lg-4">
       <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
@@ -25,7 +27,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation, :class => 'control-label col-lg-3' %><br />
+    <%#= f.label :password_confirmation, :class => 'control-label col-lg-3' %><br />
+    <span class = 'control-label col-lg-3'>もう一度パスワード</span>
     <div class="col-lg-4">
       <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
     </div>
@@ -33,7 +36,7 @@
 
   <div class="form-group">
     <div class="col-lg-offset-3 col-lg-4">
-      <%= f.submit "Sign up", :class => 'btn btn-default btn-primary' %><br /> OR <br />
+      <%= f.submit "サインアップ", :class => 'btn btn-default btn-primary' %><br />
       <%= render "devise/shared/links" %><br />
     </div>
   </div>

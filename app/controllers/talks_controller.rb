@@ -1,4 +1,5 @@
 class TalksController < ApplicationController
-  def show
+  before_action :authenticate_user!, except: [:show]
+  def index
   end
 end
