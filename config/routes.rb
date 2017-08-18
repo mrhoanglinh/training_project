@@ -32,8 +32,8 @@ Rails.application.routes.draw do
   end
 
   devise_scope :admin do
-    get "admin/sign_in", to: "admin/sessions#new", as: :admin_session
-    post "admin/sign_in", to:  "admin/sessions#create", as: :admin_create
+    get "admin", to: "admin/sessions#new", as: :admin_session
+    post "admin", to:  "admin/sessions#create", as: :admin_create
     delete "admin/sign_out", to: "admin/sessions#destroy", as: :admin_destroy
   end
 

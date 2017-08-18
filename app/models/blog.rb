@@ -41,7 +41,7 @@ class Blog < ApplicationRecord
   def valid_extension? filename
     return true if filename.nil?
     ext = File.extname(filename)
-    %w(.jpeg .png).include? ext.downcase
+    %w(.jpeg .png .jpg).include? ext.downcase
   end
 
 end

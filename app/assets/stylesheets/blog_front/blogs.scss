@@ -70,12 +70,23 @@
       }
       .blog{
         margin: 4.69vh 2.99vh 0 2.99vh;
+        .image_thum{
+          position: relative;
+          img{
+            position: absolute;
+            top: -12px;
+            left: 2%;
+            width: 5.39vh;
+            height: 5.39vh;
+          }
+        }
         .title-blog{
           p{
             margin-top: 3.81vh;
             font-size: 2.17vh;
             font-weight: bold;
             color: #333333;
+            padding-left: 15%;
           }
         }
         .row{

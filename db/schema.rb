@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814041427) do
+ActiveRecord::Schema.define(version: 20170818123741) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -53,10 +53,6 @@ ActiveRecord::Schema.define(version: 20170814041427) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.datetime "datePublic"
-    t.integer  "interest",                  default: 0
-    t.integer  "like",                      default: 0
-    t.integer  "dislike",                   default: 0
-    t.integer  "disappoint",                default: 0
     t.index ["category_id"], name: "index_blogs_on_category_id", using: :btree
   end
 

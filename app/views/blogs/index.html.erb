@@ -18,7 +18,7 @@
         <% if params[:category].to_i.eql?(category.id) %>
           <a href="<%= blogs_path(category: category.id) %>"><li class="active"><%= category.name %></li></a>
         <% else %>
-            <a href="<%= blogs_path(category: category.id) %>"><li class=""><%= category.name %></li></a>
+          <a href="<%= blogs_path(category: category.id) %>"><li class=""><%= category.name %></li></a>
         <% end %>
       <% end %>
     </ul>
