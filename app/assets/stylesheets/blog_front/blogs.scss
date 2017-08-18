@@ -206,15 +206,17 @@
   }
   #second_layout,
   #third_layout{
-    padding-top: 0%;
+    //padding-top: 0%;
     .title{
       height: 3.7vh;
-      width: 100%;
+      width: 34%;
       background-color: #f8b600;
       color: white;
       text-align: center;
       padding-top: 0.5vh;
       font-weight: bold;
+      padding-left: 4%;
+      float: right;
     }
     .body{
       margin-top: 2.248vh;
@@ -638,5 +640,17 @@
       padding-left: 5.33vw;
       padding-right: 5.33vw;
     }
+  }
+}
+
+.container-homepage {
+  background-color: #f0f0f0 !important;
+  position: relative;
+  width: 100%;
+  top: 6.521vh;
+  #avatar {
+    position: absolute;
+    height: 12.54vw;
+    width: 12.54vw;
   }
 }

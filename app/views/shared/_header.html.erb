@@ -10,12 +10,28 @@
         <p><%= t"header.profile-text" %></p>
       </div>
     <% else %>
-      <div class="notice">
-        <img src="/assets/noti.png" alt="">
-      </div>
-      <div class="title-text">
-        <p><%= t"header.text" %></p>
-      </div>
+      <% if params[:controller] == "blogs" && params[:action] == "show" %>
+        <div class="notice">
+          <a href="<%= blogs_path %>">
+            <img src="/assets/profile-icon-back.png" alt="">
+          </a>
+        </div>
+      <% else %>
+        <div class="notice">
+          <img src="/assets/noti.png" alt="">
+        </div>
+      <% end %>
+
+      <% if params[:controller] == "talks" %>
+        <div class="title-text">
+          <p><%= "トーク" %></p>
+        </div>
+      <% else %>
+        <div class="title-text">
+          <p><%= t"header.text" %></p>
+        </div>
+      <% end %>
+
     <% end %>
   </div>
 </header>

@@ -37,22 +37,32 @@
     <div class="author_intro_text">
       <p><%= t"profile.author_intro_text" %></p>
     </div>
+
   </div>
-  <div class="row" id="second_layout" >
-    <div class="title">
-      <p><%= t"profile.second_layout_title" %></p>
-    </div>
-    <div class="body">
-      <!--<img src="/assets/thum_image.png" alt="">-->
-      <p><%= t"profile.second_layout_body" %></p>
-    </div>
-  </div>
-  <div class="row" id="third_layout" >
-    <div class="title">
-      <p><%= t"profile.third_layout_title" %></p>
-    </div>
-    <div class="body">
-      <p><%= t"profile.third_layout_body" %></p>
+
+  <div style="padding-right: 20px">
+    <div class="row" id="second_layout">
+      <div class="title">
+        <a href="<%= user_destroy_path %>">ログアウト</a>
+      </div>
     </div>
   </div>
+
+  <!--<div class="row" id="second_layout" >-->
+    <!--<div class="title">-->
+      <!--<p><%= t"profile.second_layout_title" %></p>-->
+    <!--</div>-->
+    <!--<div class="body">-->
+      <!--&lt;!&ndash;<img src="/assets/thum_image.png" alt="">&ndash;&gt;-->
+      <!--<p><%= t"profile.second_layout_body" %></p>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row" id="third_layout" >-->
+    <!--<div class="title">-->
+      <!--<p><%= t"profile.third_layout_title" %></p>-->
+    <!--</div>-->
+    <!--<div class="body">-->
+      <!--<p><%= t"profile.third_layout_body" %></p>-->
+    <!--</div>-->
+  <!--</div>-->
 </div>
