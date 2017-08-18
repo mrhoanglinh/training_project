@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20170814041427) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "devises", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -109,8 +109,8 @@ ActiveRecord::Schema.define(version: 20170814041427) do
   end
 
   add_foreign_key "blog_users", "blogs"
-  add_foreign_key "blog_users", "devises"
+  add_foreign_key "blog_users", "users"
   add_foreign_key "blogs", "categories"
   add_foreign_key "comments", "blogs"
-  add_foreign_key "comments", "devises"
+  add_foreign_key "comments", "users"
 end
