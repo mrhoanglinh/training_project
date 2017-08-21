@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show]
   before_action :set_blog, only: [:show]
 
   def index
@@ -55,12 +55,12 @@ class BlogsController < ApplicationController
                                blog_id: @blog.id).first
 
       @check_action = @action.action if @action
+
     end
 
     @count_action = BlogUser.where(blog_id: @blog.id)
                         .select(:action)
                         .group(:action).count
-
   end
 
   private

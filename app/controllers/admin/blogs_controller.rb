@@ -126,7 +126,4 @@ class Admin::BlogsController < ApplicationController
                                    :content, :author, :jobName, :age, :authorImage, :authorImage_cache)
     end
 
-    # def update?
-    #   params[:action] == "update"
-    # end
 end

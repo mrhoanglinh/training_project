@@ -27,12 +27,14 @@
             <div class="col-xs-6">
                 <div class="col-xs-3 action">
                   <span><img src="/assets/interesting.png" alt=""></span>
-                  <% @count_action_interest.each do |key,value| %>
-                    <% if key == blog.id %>
-                      <span><p><%= value %></p></span>
-                    <% else %>
-                          <span><p>0</p></span>
+                  <% if @count_action_interest.size > 0 %>
+                    <% @count_action_interest.each do |key,value| %>
+                      <% if key == blog.id %>
+                        <span><p><%= value %></p></span>
+                      <% end %>
                     <% end %>
+                  <% else %>
+                    <span><p>0</p></span>
                   <% end %>
                 </div>
               <div class="col-xs-3 action">
@@ -46,17 +48,17 @@
               <div class="col-xs-3 action">
                 <span><img src="/assets/dislike.png" alt=""></span>
                 <% @count_action_dislike.each do |key,value| %>
-                    <% if key == blog.id %>
-                        <span><p><%= value %></p></span>
-                    <% end %>
+                  <% if key == blog.id %>
+                    <span><p><%= value %></p></span>
+                  <% end %>
                 <% end %>
               </div>
               <div class="col-xs-3 action">
                 <span><img src="/assets/disappoint.png" alt=""></span>
                 <% @count_action_disappoint.each do |key,value| %>
-                    <% if key == blog.id %>
-                        <span><p><%= value %></p></span>
-                    <% end %>
+                  <% if key == blog.id %>
+                    <span><p><%= value %></p></span>
+                  <% end %>
                 <% end %>
               </div>
             </div>

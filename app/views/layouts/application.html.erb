@@ -29,15 +29,13 @@
       <%= render 'shared/footer' %>
     <% end %>
 
-    <div id="modal-main-welcome" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-dialog-comment-ems">
-        <div id="welcome-text">
-          <%= image_tag "first_login_image" %>
-        </div>
-        <div id="button-welcome">
-          <a href="<%= blogs_path %>" class="btn button button-blog-list"><p class="center-text"><i class="glyphicon glyphicon-list"></i>  記事一覧を見る <i class="glyphicon glyphicon-chevron-right pull-right"></i></p></a>
-          <a href="<%= author_path %>" class="btn button button-author"><p class="center-text">ナルフォード先生のプロフィールをみる<i class="glyphicon glyphicon-chevron-right pull-right"></i></p></a>
-        </div>
+    <div id="modal-flash-image" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div id="welcome-text">
+        <%= image_tag "first_login_image" %>
+      </div>
+      <div id="button-welcome">
+        <a href="<%= blogs_path %>" class="btn button button-blog-list"><p class="center-text"><i class="glyphicon glyphicon-list"></i>  記事一覧を見る <i class="glyphicon glyphicon-chevron-right pull-right"></i></p></a>
+        <a href="<%= author_path %>" class="btn button button-author"><p class="center-text">ナルフォード先生のプロフィールをみる<i class="glyphicon glyphicon-chevron-right pull-right"></i></p></a>
       </div>
     </div>
 

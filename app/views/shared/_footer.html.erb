@@ -10,8 +10,8 @@
       </div>
     </a>
 
-    <a href="<%= blogs_path %>">
-      <%#= link_to blogs_path, remote: true, class: "avalue" do %>
+    <div id="show-popup">
+      <%= link_to blogs_path, remote: true do %>
         <div class="col-xs-4 footer-menu <%= params[:controller] == "blogs" ? "active" : "" %>">
           <div class="detail">
             <img class="default" src="/assets/top.png" alt="">
@@ -19,8 +19,8 @@
             <span><p>ブログ</p></span>
           </div>
         </div>
-      <%# end %>
-    </a>
+      <% end %>
+    </div>
 
     <a href="<%= author_path %>">
       <div class="col-xs-4 footer-menu <%= params[:controller] == "authors" ? "active" : "" %>">
@@ -35,14 +35,29 @@
 </footer>
 
 <script>
-//  var clicks = 0; // counter
-//  var a = document.getElementById('avalue'); // element
-//  a.onclick = function() { // onclick not onClick
-//    ++clicks;
-//    if (clicks == 1)
-//    {
-//      $('#modal-main-welcome').modal();
-//    }
+//  var show = false;
+//  if (show)
+//  {
+//    $("#show-popup").on("click", function () {
+//      $('#modal-flash-image').modal();
+//      show = true;
+//    });
 //  }
+
+var bl = true;
+  $("#show-popup").on("click", function () {
+    if (bl) {
+      $('#modal-flash-image').modal();
+      bl = false;
+    }
+});
+
+
+//  if(localStorage.popup_is_checked != "yes") {
+//    $('#modal-main-welcome').modal();
+//    localStorage.popup_is_checked = "yes"
+//  }
+
+
 
 </script>

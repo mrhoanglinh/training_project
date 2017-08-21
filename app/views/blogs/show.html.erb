@@ -22,20 +22,36 @@
           </div>
           <div class="col-xs-6">
             <div class="col-xs-3 action">
-              <img src="/assets/interesting.png" alt="">
-              <span><p><%= interest_count(@count_action) %></p></span>
+              <span><img src="/assets/interesting.png" alt=""></span>
+              <% @count_action.each do |key,action| %>
+                <% if key == 'interest' %>
+                  <span><p><%= action %></p></span>
+                <% end %>
+              <% end %>
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/like.png" alt=""></span>
-              <span><p><%= like_count(@count_action) %></p></span>
+              <% @count_action.each do |key,action| %>
+                <% if key == 'like' %>
+                  <span><p><%= action %></p></span>
+                <% end %>
+              <% end %>
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/dislike.png" alt=""></span>
-              <span><p><%= dislike_count(@count_action) %></p></span>
+              <% @count_action.each do |key,action| %>
+                <% if key == 'dislike' %>
+                  <span><p><%= action %></p></span>
+                <% end %>
+              <% end %>
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/disappoint.png" alt=""></span>
-              <span><p><%= disappoint_count(@count_action) %></p></span>
+              <% @count_action.each do |key,action| %>
+                <% if key == 'disappoint' %>
+                  <span><p><%= action %></p></span>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -171,7 +187,6 @@
             </button>
           </div>
         </a>
-
         <a href="line://msg/text/<%= @blog.title %>">
           <div class="col-xs-4 social">
             <button class="btn-line">
@@ -187,41 +202,55 @@
 
 <script>
 
-  function sendtoline(){
-    var link = "http://line.naver.jp/R/msg/text/?";
-    link += encodeURIComponent(document.getElementById("msg").value) + "%0D%0A" + encodeURIComponent(document.getElementById("url").value);
-    location.href = link;
-    return false;
-  }
-
   var check_user_action = "<%= @check_action %>"
   <% if current_user %>
-  $(".rate-button").removeClass("rate-active");
-  $("#"+ check_user_action).addClass("rate-active");
+    $(".rate-button").removeClass("rate-active");
+    $("#"+ check_user_action).addClass("rate-active");
   <% end %>
+
   $(".rate-button").on("click", function(){
     var get_action = $(this).attr("action");
-    <% if current_user %>
-    $(".rate-button").removeClass("rate-active");
-    $(this).addClass("rate-active");
-    $.ajax({
-      url: "/blogusers/create",
-      dataType: "script",
-      method: "post",
-      data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
-    });
-    <% else %>
-    $(".rate-button").removeClass("rate-active");
-    $(this).addClass("rate-active");
-    $.ajax({
-      url: "/blogusers/create",
-      dataType: "script",
-      method: "post",
-      data: {user_id: 0, blog_id: <%= @blog.id %>, user_action: get_action },
-    });
-    //alert("ログインをしてください。");
-    //window.location.replace("/devises/sign_in");
-    <% end %>
-  });
+    var check_action = '<%= @check_action %>';
 
+    if(check_action == get_action)
+    {
+      <% if current_user %>
+        $(this).removeClass("rate-active");
+        $.ajax({
+          url: "/blogusers/create",
+          dataType: "script",
+          method: "post",
+          data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: "not_action" },
+        });
+      <% end %>
+    }
+    else
+    {
+      <% if current_user %>
+        $(".rate-button").removeClass("rate-active");
+        $(this).addClass("rate-active");
+        $.ajax({
+          url: "/blogusers/create",
+          dataType: "script",
+          method: "post",
+          data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
+        });
+      <% end %>
+    }
+
+
+
+//    var get_action = $(this).attr("action");
+    <!--<% if current_user %>-->
+//      $(".rate-button").removeClass("rate-active");
+//      $(this).addClass("rate-active");
+//      $.ajax({
+//        url: "/blogusers/create",
+//        dataType: "script",
+//        method: "post",
+//        data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
+//      });
+    <!--<% else %>-->
+    <!--<% end %>-->
+  });
 </script>
