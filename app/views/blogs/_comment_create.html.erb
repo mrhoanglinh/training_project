@@ -1,0 +1,30 @@
+
+<% if current_user %>
+    <div class="row comment">
+      <div class="text-area" >
+        <% if @blog_comments %>
+            <% if @blog_comments.size > 0 %>
+                <p><%= @blog.title %>のコメント一覧表</p>
+            <% end %>
+            <div id="comment_sentences">
+              <% @blog_comments.order(:created_at).each do |comment| %>
+                  <div>
+                    <b><%= h(comment.user.email) %></b>: <p style="display: inline-block;"><i><%= h(comment.content) %></i></p>
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
+        <br>
+        <p><%= t"blog.show.comment_title" %></p>
+        <br>
+        <%= form_for Comment.new, method: :post, remote: true do |f| %>
+            <%= f.text_area :content, placeholder: t("blog.show.comment_text_holder") %>
+            <%= f.hidden_field :blog_id, value: @blog.id %>
+            <% if current_user %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+            <% end %>
+        <% end %>
+        <%= button_tag t("blog.show.conment_button_text"), id: "btn_comment" %>
+      </div>
+    </div>
+<% end %>

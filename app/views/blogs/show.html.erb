@@ -13,9 +13,20 @@
         <hr>
         <div class="row">
           <div class="col-xs-6">
-            <div class="category">
-              <p><%= @blog.category.name %></p>
-            </div>
+            <% case @blog.category_id %>
+            <% when 1 %>
+              <div class="category" style="border: 1px solid #89c529;">
+                <p style="color: #89c529;"><%= @blog.category.name %></p>
+              </div>
+            <% when 2 %>
+              <div class="category" style="border: 1px solid #f8879f;">
+                <p style="color: #f8879f;"><%= @blog.category.name %></p>
+              </div>
+            <% when 3 %>
+              <div class="category" style="border: 1px solid #41b1e5;">
+                <p style="color: #41b1e5;"><%= @blog.category.name %></p>
+              </div>
+            <% end %>
             <div class="public-time">
               <p><%= @blog.datePublic.to_date.strftime("%Y.%m.%d") %></p>
             </div>
@@ -114,61 +125,9 @@
         </div>
       </div>
 
-      <div class="rate" >
-        <p><%= t"blog.show.rate_title" %></p>
-        <div class="row upper" >
-          <div class="col-xs-6 rate-button left " action="interest" id="interest">
-            <img src="/assets/rate-frame.png" alt="" class="rate-frame">
-            <img src="/assets/interesting_rate.jpg" alt="" class="icon">
-            <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
-            <img src="/assets/tick.png" alt="" class="tick">
-            <p><%= t"blog.show.rate.interest" %></p>
-          </div>
-          <div class="col-xs-6 rate-button right" action="like" id="like">
-            <img src="/assets/rate-frame.png" alt="" class="rate-frame">
-            <img src="/assets/like_rate.jpg" alt="" class="icon">
-            <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
-            <img src="/assets/tick.png" alt="" class="tick">
-            <p><%= t"blog.show.rate.like" %></p>
-          </div>
-        </div>
-        <div class="row lower" >
-          <div class="col-xs-6 rate-button left" action="dislike" id="dislike">
-            <img src="/assets/rate-frame.png" alt="" class="rate-frame">
-            <img src="/assets/dislike_rate.jpg" alt="" class="icon">
-            <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
-            <img src="/assets/tick.png" alt="" class="tick">
-            <p><%= t"blog.show.rate.dislike" %></p>
-          </div>
-          <div class="col-xs-6 rate-button right" action="disappoint" id="disappoint">
-            <img src="/assets/rate-frame.png" alt="" class="rate-frame">
-            <img src="/assets/disappoint_rate.jpg" alt="" class="icon">
-            <img src="/assets/rate-white-frame.png" alt="" class="rate-white-frame">
-            <img src="/assets/tick.png" alt="" class="tick">
-            <p><%= t"blog.show.rate.disappoint" %></p>
-          </div>
-        </div>
-      </div>
+      <%= render 'rate_blog' %>
 
-      <% if current_user %>
-        <div class="row comment">
-          <p><%= t"blog.show.comment_title" %></p>
-          <div class="text-area" >
-            <div id="comment_sentences">
-
-            </div>
-            <br>
-            <%= form_for Comment.new, method: :post, remote: true do |f| %>
-                <%= f.text_area :content, placeholder: t("blog.show.comment_text_holder") %>
-                <%= f.hidden_field :blog_id, value: @blog.id %>
-                <% if current_user %>
-                    <%= f.hidden_field :user_id, value: current_user.id %>
-                <% end %>
-            <% end %>
-            <%= button_tag t("blog.show.conment_button_text"), id: "btn_comment" %>
-          </div>
-        </div>
-       <% end %>
+      <%= render 'comment_create' %>
 
       <div class="social-bottom">
         <div class="title-social">
@@ -237,20 +196,6 @@
         });
       <% end %>
     }
-
-
-
-//    var get_action = $(this).attr("action");
-    <!--<% if current_user %>-->
-//      $(".rate-button").removeClass("rate-active");
-//      $(this).addClass("rate-active");
-//      $.ajax({
-//        url: "/blogusers/create",
-//        dataType: "script",
-//        method: "post",
-//        data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
-//      });
-    <!--<% else %>-->
-    <!--<% end %>-->
   });
+
 </script>

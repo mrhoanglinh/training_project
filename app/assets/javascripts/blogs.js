@@ -162,7 +162,20 @@ $(document).on("turbolinks:load", function () {
     });
 
 
-   
+    $("#show-popup").on("click", function () {
+        if (sessionStorage.length == 0) {
+            sessionStorage.setItem('firstVisit', '1');
+            if (sessionStorage.getItem('firstVisit') === "1")
+            {
+                $('#modal-flash-image').modal();
+                //sessionStorage.setItem('firstVisit', '2');
+            }
+        }
+        else {
+            window.location = "blogs";
+        }
+    });
+    
 });
 
 

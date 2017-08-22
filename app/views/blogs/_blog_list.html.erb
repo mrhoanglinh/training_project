@@ -17,9 +17,20 @@
           </div>
           <div class="row">
             <div class="col-xs-6">
-              <div class="category">
-                <p><%= blog.category.name %></p>
-              </div>
+              <% case blog.category_id %>
+              <% when 1 %>
+                <div class="category" style="border: 1px solid #89c529;">
+                  <p style="color: #89c529;"><%= blog.category.name %></p>
+                </div>
+              <% when 2 %>
+                <div class="category" style="border: 1px solid #f8879f;">
+                  <p style="color: #f8879f;"><%= blog.category.name %></p>
+                </div>
+              <% when 3 %>
+                <div class="category" style="border: 1px solid #41b1e5;">
+                  <p style="color: #41b1e5;"><%= blog.category.name %></p>
+                </div>
+              <% end %>
               <div class="public-time">
                 <p><%= blog.datePublic.to_date.strftime("%Y.%m.%d") %></p>
               </div>

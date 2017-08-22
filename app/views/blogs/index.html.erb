@@ -2,16 +2,24 @@
 <div class="menu-bar" >
   <div class="scroll">
     <ul>
+
       <% if params[:category].nil? && params[:isSuggest].to_i == 0 %>
-        <a href=<%= blogs_path %>><li class="active">すべて</li></a>
+        <!--<a href=<%#= blogs_path %>><li class="active">すべて</li></a>-->
+          <li onclick="getPaging(this.id)" id="1">すべて</li>
+
       <% else %>
-          <a href=<%= blogs_path %>><li class="">すべて</li></a>
+        <!--<a href=<%#= blogs_path %>><li class="">すべて</li></a>-->
+          <!--<a id="all"><li class="">すべて</li></a>-->
       <% end %>
 
       <% if params[:isSuggest].to_i == 1 && params[:category].nil? %>
-        <a href="<%= blogs_path(isSuggest: 1) %>"><li class="active">オススメ</li></a>
+        <!--<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="active">オススメ</li></a>-->
+         <li onclick="getPaging(this.id)" id="2">オススメ</li></a>
+
       <% else %>
-        <a href="<%= blogs_path(isSuggest: 1) %>"><li class="">オススメ</li></a>
+        <!--<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="">オススメ</li></a>-->
+          <!--<a id="suggest"><li class="">オススメ</li></a>-->
+          <li onclick="getPaging(this.id)" id="2">オススメ</li></a>
       <% end %>
 
       <% @categories.each do |category| %>
@@ -35,3 +43,36 @@
   </div>
 </div>
 
+<script>
+
+  function getPaging(str) {
+
+    if (str == '1')
+    {
+      $('#'+str).addClass('active');
+      $.ajax({
+        url: "/blogs/",
+        dataType: "script",
+        method: "get",
+        data: {
+          'id' :''
+        },
+
+      });
+    }
+
+    if(str == '2')
+    {
+      $('#'+str).addClass('active');
+      $('#1').removeClass('active');
+      $.ajax({
+        url: "<%= blogs_path(isSuggest: 1) %>",
+        dataType: "script",
+        method: "get",
+      });
+    }
+
+
+  }
+
+</script>

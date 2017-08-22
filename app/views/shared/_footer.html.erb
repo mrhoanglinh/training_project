@@ -11,15 +11,13 @@
     </a>
 
     <div id="show-popup">
-      <%= link_to blogs_path, remote: true do %>
-        <div class="col-xs-4 footer-menu <%= params[:controller] == "blogs" ? "active" : "" %>">
-          <div class="detail">
-            <img class="default" src="/assets/top.png" alt="">
-            <img class="selected" src="/assets/top-click.png" alt="">
-            <span><p>ブログ</p></span>
-          </div>
+      <div class="col-xs-4 footer-menu <%= params[:controller] == "blogs" ? "active" : "" %>">
+        <div class="detail">
+          <img class="default" src="/assets/top.png" alt="">
+          <img class="selected" src="/assets/top-click.png" alt="">
+          <span><p>ブログ</p></span>
         </div>
-      <% end %>
+      </div>
     </div>
 
     <a href="<%= author_path %>">
@@ -34,30 +32,3 @@
   </div>
 </footer>
 
-<script>
-//  var show = false;
-//  if (show)
-//  {
-//    $("#show-popup").on("click", function () {
-//      $('#modal-flash-image').modal();
-//      show = true;
-//    });
-//  }
-
-var bl = true;
-  $("#show-popup").on("click", function () {
-    if (bl) {
-      $('#modal-flash-image').modal();
-      bl = false;
-    }
-});
-
-
-//  if(localStorage.popup_is_checked != "yes") {
-//    $('#modal-main-welcome').modal();
-//    localStorage.popup_is_checked = "yes"
-//  }
-
-
-
-</script>
