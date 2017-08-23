@@ -34,35 +34,55 @@
           <div class="col-xs-6">
             <div class="col-xs-3 action">
               <span><img src="/assets/interesting.png" alt=""></span>
+
               <% @count_action.each do |key,action| %>
                 <% if key == 'interest' %>
                   <span><p><%= action %></p></span>
                 <% end %>
               <% end %>
+              <% unless @count_action.key? 'interest' %>
+                  <span><p>0</p></span>
+              <% end %>
+
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/like.png" alt=""></span>
+
               <% @count_action.each do |key,action| %>
                 <% if key == 'like' %>
                   <span><p><%= action %></p></span>
                 <% end %>
               <% end %>
+              <% unless @count_action.key? 'like' %>
+                  <span><p>0</p></span>
+              <% end %>
+
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/dislike.png" alt=""></span>
+
               <% @count_action.each do |key,action| %>
                 <% if key == 'dislike' %>
                   <span><p><%= action %></p></span>
                 <% end %>
               <% end %>
+              <% unless @count_action.key? 'dislike' %>
+                  <span><p>0</p></span>
+              <% end %>
+
             </div>
             <div class="col-xs-3 action">
               <span><img src="/assets/disappoint.png" alt=""></span>
+
               <% @count_action.each do |key,action| %>
                 <% if key == 'disappoint' %>
                   <span><p><%= action %></p></span>
                 <% end %>
               <% end %>
+              <% unless @count_action.key? 'disappoint' %>
+                  <span><p>0</p></span>
+              <% end %>
+
             </div>
           </div>
         </div>

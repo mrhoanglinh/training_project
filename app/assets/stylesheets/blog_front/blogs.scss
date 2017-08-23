@@ -234,6 +234,22 @@
       //padding-left: 5.33vw;
       //padding-right: 5.33vw;
     }
+
+    .label{
+      display: inline-block;
+      background-color: #f8b600;
+      border-radius: 1.499vh;
+      text-align: center;
+      color: white;
+      padding-top: 0.647vh;
+      width: 40%;
+      height: auto;
+      font-size: 90%;
+
+      p{
+        font-size: 3vh;
+      }
+    }
   }
 }
 

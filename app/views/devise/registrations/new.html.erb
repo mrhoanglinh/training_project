@@ -1,43 +1,73 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-horizontal center"}) do |f| %>
-  <%= devise_error_messages! %>
+<div class="col-md-10 col-md-offset-1">
+  <div class="row" style="padding: 50px 20px;">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-horizontal center"}) do |f| %>
+      <%= devise_error_messages! %>
 
-  <div class="form-group">
-    <div class="col-lg-offset-4 col-lg-4">
-      <h2>サインアップ</h2>
-    </div>
-  </div>
+      <div class="form-group">
+        <div class="col-md-offset-4 col-md-4">
+          <h3>サインアップ</h3>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%#= f.label :email, :class => 'control-label col-lg-3' %>
-    <span class="control-label col-lg-3">メールアドレス</span>
-    <div class="col-lg-4">
-      <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
-    </div>
-  </div>
+      <div class="form-group">
+        <div class="field">
+          <span class="control-label col-md-3"><strong>名前</strong></span>
+          <div class="col-md-3" style="width: 90%;">
+            <%= f.text_field :name, autofocus: true, :class => 'form-control' %>
+          </div>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <%#= f.label :password, :class => 'control-label col-lg-3' %>
-    <span class = 'control-label col-lg-3'>パスワード</span>
-    <% if @minimum_password_length %>
-    <em>(最低 <%= @minimum_password_length %> 文字必要です)</em>
-    <% end %><br />
-    <div class="col-lg-4">
-      <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
-    </div>
-  </div>
+      <div class="col-md-3">
+        <%= f.radio_button :is_female, true %> <%= f.label :is_female, "女性" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.radio_button :is_female, false %> <%= f.label :is_female, "男性" %>
+      </div>
 
-  <div class="form-group">
-    <%#= f.label :password_confirmation, :class => 'control-label col-lg-3' %><br />
-    <span class = 'control-label col-lg-3'>もう一度パスワード</span>
-    <div class="col-lg-4">
-      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
-    </div>
-  </div>
+      <div class="form-group">
+        <%#= f.label :email, :class => 'control-label col-lg-3' %>
+        <span class="control-label col-md-3">メールアドレス</span>
+        <div class="col-md-4" style="width: 90%;">
+          <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <div class="col-lg-offset-3 col-lg-4">
-      <%= f.submit "サインアップ", :class => 'btn btn-default btn-primary' %><br />
-      <%= render "devise/shared/links" %><br />
-    </div>
+      <div class="form-group">
+        <%#= f.label :password, :class => 'control-label col-lg-3' %>
+        <span class = 'control-label col-md-3'>パスワード</span>
+        <% if @minimum_password_length %>
+        <em>(最低 <%= @minimum_password_length %> 文字必要です)</em>
+        <% end %><br />
+        <div class="col-md-4" style="width: 90%;">
+          <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%#= f.label :password_confirmation, :class => 'control-label col-lg-3' %><br />
+        <span class = 'control-label col-md-3'>もう一度パスワード</span>
+        <div class="col-md-4" style="width: 90%;">
+          <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="field">
+          <span class = 'control-label col-md-3'>画像</span>
+          <div class="col-md-3" style="width: 90%;">
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-3 col-md-4">
+          <%= f.submit "サインアップ", :class => 'btn btn-default btn-primary' %><br />
+          <%= render "devise/shared/links" %><br />
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

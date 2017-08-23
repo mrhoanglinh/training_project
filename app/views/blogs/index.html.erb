@@ -3,32 +3,39 @@
   <div class="scroll">
     <ul>
 
-      <% if params[:category].nil? && params[:isSuggest].to_i == 0 %>
-        <!--<a href=<%#= blogs_path %>><li class="active">すべて</li></a>-->
-          <li onclick="getPaging(this.id)" id="1">すべて</li>
-
-      <% else %>
-        <!--<a href=<%#= blogs_path %>><li class="">すべて</li></a>-->
-          <!--<a id="all"><li class="">すべて</li></a>-->
-      <% end %>
-
-      <% if params[:isSuggest].to_i == 1 && params[:category].nil? %>
-        <!--<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="active">オススメ</li></a>-->
-         <li onclick="getPaging(this.id)" id="2">オススメ</li></a>
-
-      <% else %>
-        <!--<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="">オススメ</li></a>-->
-          <!--<a id="suggest"><li class="">オススメ</li></a>-->
-          <li onclick="getPaging(this.id)" id="2">オススメ</li></a>
-      <% end %>
-
+      <li class="active">すべて</li>
+      <li>オススメ</li>
       <% @categories.each do |category| %>
-        <% if params[:category].to_i.eql?(category.id) %>
-          <a href="<%= blogs_path(category: category.id) %>"><li class="active"><%= category.name %></li></a>
-        <% else %>
-          <a href="<%= blogs_path(category: category.id) %>"><li class=""><%= category.name %></li></a>
-        <% end %>
+          <li><%= category.name %></li>
       <% end %>
+
+      <!---->
+      <!--<% if params[:category].nil? && params[:isSuggest].to_i == 0 %>-->
+        <!--&lt;!&ndash;<a href=<%#= blogs_path %>><li class="active">すべて</li></a>&ndash;&gt;-->
+
+      <!--<% else %>-->
+        <!--&lt;!&ndash;<a href=<%#= blogs_path %>><li class="">すべて</li></a>&ndash;&gt;-->
+          <!--&lt;!&ndash;<a id="all"><li class="">すべて</li></a>&ndash;&gt;-->
+      <!--<% end %>-->
+
+      <!--<% if params[:isSuggest].to_i == 1 && params[:category].nil? %>-->
+        <!--&lt;!&ndash;<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="active">オススメ</li></a>&ndash;&gt;-->
+         <!--<li onclick="getPaging(this.id)" id="2">オススメ</li></a>-->
+
+      <!--<% else %>-->
+        <!--&lt;!&ndash;<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="">オススメ</li></a>&ndash;&gt;-->
+          <!--&lt;!&ndash;<a id="suggest"><li class="">オススメ</li></a>&ndash;&gt;-->
+          <!--<li onclick="getPaging(this.id)" id="2">オススメ</li></a>-->
+      <!--<% end %>-->
+
+      <!--<% @categories.each do |category| %>-->
+        <!--<% if params[:category].to_i.eql?(category.id) %>-->
+          <!--<a href="<%= blogs_path(category: category.id) %>"><li class="active"><%= category.name %></li></a>-->
+        <!--<% else %>-->
+          <!--<a href="<%= blogs_path(category: category.id) %>"><li class=""><%= category.name %></li></a>-->
+        <!--<% end %>-->
+      <!--<% end %>-->
+
     </ul>
   </div>
 </div>
