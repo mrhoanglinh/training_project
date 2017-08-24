@@ -1,5 +1,5 @@
 
-$('#my-blogs-user').append('<%= j render 'blog_list' %>');
+$('.my-blogs-user').append('<%= j render 'blog_list' %>');
 $('a.infinite-scrolling-user').attr('href', "<%= blogs_path page: @blogs.next_page %>");
 
 <% unless @blogs.next_page %>

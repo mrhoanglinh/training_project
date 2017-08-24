@@ -20,8 +20,8 @@
       </div>
     </div>
 
-    <a href="<%= author_path %>">
-      <div class="col-xs-4 footer-menu <%= params[:controller] == "authors" ? "active" : "" %>">
+    <a href="<%= user_path(current_user.id) %>">
+      <div class="col-xs-4 footer-menu <%= params[:controller] == "users" ? "active" : "" %>">
         <div class="author">
           <img class="default" src="/assets/profile.png" alt="">
           <img class="selected" src="/assets/profile-click.png" alt="">

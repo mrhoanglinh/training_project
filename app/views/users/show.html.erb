@@ -1,12 +1,12 @@
 <div class="profile">
   <div class="row" id="first_layout" >
     <div class="avatar_layout">
-      <img src="/assets/avatar.png" alt="">
+      <img src="<%= @user.avatar %>" alt="">
     </div>
     <div class="author_info">
       <p class="author_title"><%= t"profile.author_title" %></p>
       <p class="author_name">
-        <span class="name"><%= t"profile.author_name" %></span>
+        <span class="name"><%= @user.name %></span>
         <span class="job"><%= t"profile.author_job" %></span>
       </p>
       <div class="author_birth_place">
@@ -37,23 +37,41 @@
     <div class="author_intro_text">
       <p><%= t"profile.author_intro_text" %></p>
     </div>
+
   </div>
 
+  <div style="padding-left: 10%;">
+    <div class="row" id="second_layout">
+      <div class="label">
+        <a href="<%= user_edit_path(current_user) %>">プロファイル編集</a>
+      </div>
+      <div class="label">
+        <a href="<%= user_destroy_path %>">ログアウト</a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
   <!--<div class="row" id="second_layout" >-->
-    <!--<div class="title">-->
-      <!--<p><%= t"profile.second_layout_title" %></p>-->
-    <!--</div>-->
-    <!--<div class="body">-->
-      <!--&lt;!&ndash;<img src="/assets/thum_image.png" alt="">&ndash;&gt;-->
-      <!--<p><%= t"profile.second_layout_body" %></p>-->
-    <!--</div>-->
+  <!--<div class="title">-->
+  <!--<p><%= t"profile.second_layout_title" %></p>-->
+  <!--</div>-->
+  <!--<div class="body">-->
+  <!--&lt;!&ndash;<img src="/assets/thum_image.png" alt="">&ndash;&gt;-->
+  <!--<p><%= t"profile.second_layout_body" %></p>-->
+  <!--</div>-->
   <!--</div>-->
   <!--<div class="row" id="third_layout" >-->
-    <!--<div class="title">-->
-      <!--<p><%= t"profile.third_layout_title" %></p>-->
-    <!--</div>-->
-    <!--<div class="body">-->
-      <!--<p><%= t"profile.third_layout_body" %></p>-->
-    <!--</div>-->
+  <!--<div class="title">-->
+  <!--<p><%= t"profile.third_layout_title" %></p>-->
+  <!--</div>-->
+  <!--<div class="body">-->
+  <!--<p><%= t"profile.third_layout_body" %></p>-->
+  <!--</div>-->
   <!--</div>-->
 </div>

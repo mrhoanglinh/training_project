@@ -1,48 +1,35 @@
 
 <div class="menu-bar" >
   <div class="scroll">
-    <ul>
-
-      <li class="active">すべて</li>
-      <li>オススメ</li>
-      <% @categories.each do |category| %>
-          <li><%= category.name %></li>
-      <% end %>
-
-      <!---->
-      <!--<% if params[:category].nil? && params[:isSuggest].to_i == 0 %>-->
-        <!--&lt;!&ndash;<a href=<%#= blogs_path %>><li class="active">すべて</li></a>&ndash;&gt;-->
-
-      <!--<% else %>-->
-        <!--&lt;!&ndash;<a href=<%#= blogs_path %>><li class="">すべて</li></a>&ndash;&gt;-->
-          <!--&lt;!&ndash;<a id="all"><li class="">すべて</li></a>&ndash;&gt;-->
-      <!--<% end %>-->
-
-      <!--<% if params[:isSuggest].to_i == 1 && params[:category].nil? %>-->
-        <!--&lt;!&ndash;<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="active">オススメ</li></a>&ndash;&gt;-->
-         <!--<li onclick="getPaging(this.id)" id="2">オススメ</li></a>-->
-
-      <!--<% else %>-->
-        <!--&lt;!&ndash;<a href="<%#= blogs_path(isSuggest: 1) %>"><li class="">オススメ</li></a>&ndash;&gt;-->
-          <!--&lt;!&ndash;<a id="suggest"><li class="">オススメ</li></a>&ndash;&gt;-->
-          <!--<li onclick="getPaging(this.id)" id="2">オススメ</li></a>-->
-      <!--<% end %>-->
-
-      <!--<% @categories.each do |category| %>-->
-        <!--<% if params[:category].to_i.eql?(category.id) %>-->
-          <!--<a href="<%= blogs_path(category: category.id) %>"><li class="active"><%= category.name %></li></a>-->
-        <!--<% else %>-->
-          <!--<a href="<%= blogs_path(category: category.id) %>"><li class=""><%= category.name %></li></a>-->
-        <!--<% end %>-->
-      <!--<% end %>-->
-
+    <ul id="menu">
+      <li class="active" id="all">すべて</li>
+      <li value="#public_list" id="public">オススメ</li>
+      <li value="#cate1_list" id="cate1">カテゴリ1</li>
+      <li value="#cate2_list" id="cate2">カテゴリ2</li>
+      <li value="#cate3_list" id="cate3">カテゴリ3</li>
     </ul>
   </div>
 </div>
 
-<div class="blog-list" data-turbolinks="false">
-  <ul id="my-blogs-user" >
+<div class="blog-list" data-turbolinks="false" id="main">
+  <ul class="my-blogs-user">
     <%= render 'blog_list' %>
+  </ul>
+
+  <ul id="public_list" style="display: none;" >
+    <%= render 'blog_public_list' %>
+  </ul>
+
+  <ul id="cate1_list" style="display: none;">
+    <%= render 'blog_cate1_list' %>
+  </ul>
+
+  <ul id="cate2_list" style="display: none;">
+    <%= render 'blog_cate2_list' %>
+  </ul>
+
+  <ul id="cate3_list" name="sekcija2" class="sekcija" style="display: none;">
+    <%= render 'blog_cate3_list' %>
   </ul>
 
   <div class="text-center">
@@ -52,34 +39,42 @@
 
 <script>
 
-  function getPaging(str) {
+  $("#menu li").click(function(e) {
+    e.preventDefault()
+    var selected = $(this).attr("value");
+    $('#main ' + selected).stop().show().siblings().hide();
 
-    if (str == '1')
-    {
-      $('#'+str).addClass('active');
-      $.ajax({
-        url: "/blogs/",
-        dataType: "script",
-        method: "get",
-        data: {
-          'id' :''
-        },
-
-      });
+    if(selected === "#public_list"){
+      $("#public").addClass("active");
+      $("#all").removeClass("active");
+      $("#cate1").removeClass("active");
+      $("#cate2").removeClass("active");
+      $("#cate3").removeClass("active");
     }
 
-    if(str == '2')
-    {
-      $('#'+str).addClass('active');
-      $('#1').removeClass('active');
-      $.ajax({
-        url: "<%= blogs_path(isSuggest: 1) %>",
-        dataType: "script",
-        method: "get",
-      });
+    if(selected === "#cate1_list"){
+      $("#public").removeClass("active");
+      $("#all").removeClass("active");
+      $("#cate1").addClass("active");
+      $("#cate2").removeClass("active");
+      $("#cate3").removeClass("active");
     }
 
+    if(selected === "#cate2_list"){
+      $("#public").removeClass("active");
+      $("#all").removeClass("active");
+      $("#cate1").removeClass("active");
+      $("#cate2").addClass("active");
+      $("#cate3").removeClass("active");
+    }
 
-  }
+    if(selected === "#cate3_list"){
+      $("#public").removeClass("active");
+      $("#all").removeClass("active");
+      $("#cate1").removeClass("active");
+      $("#cate2").removeClass("active");
+      $("#cate3").addClass("active");
+    }
+  });
 
 </script>

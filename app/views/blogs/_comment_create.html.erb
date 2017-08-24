@@ -9,7 +9,7 @@
             <div id="comment_sentences">
               <% @blog_comments.order(:created_at).each do |comment| %>
                   <div>
-                    <b><%= h(comment.user.email) %></b>: <p style="display: inline-block;"><i><%= h(comment.content) %></i></p>
+                    <%  if !comment.user.avatar %><%= image_tag comment.user.avatar.url %><% end %><b><%= h(comment.user.name) %></b>: <p style="display: inline-block;"><i><%= h(comment.content) %></i></p>
                   </div>
               <% end %>
             </div>

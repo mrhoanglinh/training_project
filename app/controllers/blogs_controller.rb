@@ -31,7 +31,7 @@ class BlogsController < ApplicationController
                                                          :isSuggest, :datePublic)
                              .where(isSuggest: 1, isPublic: 1)
                              .order('datePublic DESC')
-                             .paginate(page: params[:page], per_page: 7)
+                             .paginate(page: params[:page], per_page: 10)
 
     @blogs_cate1_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
                                                :isSuggest, :datePublic)
@@ -51,7 +51,6 @@ class BlogsController < ApplicationController
                             .order('datePublic DESC')
                             .paginate(page: params[:page], per_page: 15)
 
-    @categories = Category.all
     respond_to do |format|
       format.html
       format.js
@@ -66,7 +65,6 @@ class BlogsController < ApplicationController
                                blog_id: @blog.id).first
 
       @check_action = @action.action if @action
-
     end
 
     @count_action = BlogUser.where(blog_id: @blog.id)
@@ -75,6 +73,7 @@ class BlogsController < ApplicationController
 
     @blog_comments = @blog.comments.includes(:user).order('created_at ASC')
 
+
   end
 
   private
@@ -82,4 +81,5 @@ class BlogsController < ApplicationController
   def get_blog
     @blog = Blog.find(params[:id])
   end
+
 end

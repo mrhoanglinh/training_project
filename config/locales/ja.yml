@@ -175,6 +175,9 @@ ja:
         already_authenticated: ''
         user:
           unauthenticated: ''
+      registrations:
+        user:
+          updated: ''
 
   profile:
     author_title: "イーアス塾 特別講師"

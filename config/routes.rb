@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     get "users/:id/edit", to: "devise/registrations#edit", as: :user_edit
 
     root "talks#index"
+    resources :users, only: [:show]
   end
 
 end
