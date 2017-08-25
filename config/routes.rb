@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "blogusers/create"
   resources :comments, only: [:create]
   #get "talk", to: "talks#show"
+  root "talks#index"
 
   authenticated do
     devise_scope :admin do
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
     get "users/sign_out", to: "devise/sessions#destroy", as: :user_destroy
     get "users/:id/edit", to: "devise/registrations#edit", as: :user_edit
 
-    root "talks#index"
+
     resources :users, only: [:show]
   end
 

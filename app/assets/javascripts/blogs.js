@@ -172,7 +172,7 @@ $(document).on("turbolinks:load", function () {
             }
         }
         else {
-            window.location.href = "http://localhost:3000/blogs";
+            window.location.href = "/blogs";
         }
     });
 

@@ -7,5 +7,11 @@
           </div>
       <% end %>
   <% end %>
+  <% if @comment.user.avatar? %>
+      <img src="<%= @comment.user.avatar %>" style="max-height: 4vh; max-width: 4vh;">
+  <% else %>
+      <img src="/assets/avatar_default" alt="" style="max-height: 4vh; max-width: 4vh;">
+  <% end %>
+  <%= @comment.created_at.to_date.strftime("%Y年%m月%d日") %>
   <b><%= @comment.user.name %></b>: <p style="display: inline-block;"><i><%= @comment.content %></i></p>
 </div>
