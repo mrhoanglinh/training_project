@@ -178,6 +178,7 @@ ja:
       registrations:
         user:
           updated: ''
+          signed_up: ''
 
   profile:
     author_title: "イーアス塾 特別講師"

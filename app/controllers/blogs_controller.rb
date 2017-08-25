@@ -37,19 +37,19 @@ class BlogsController < ApplicationController
                                                :isSuggest, :datePublic)
                    .where(category_id: 1 , isPublic: 1)
                    .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 15)
+                   .paginate(page: params[:page], per_page: 10)
 
     @blogs_cate2_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
                                                         :isSuggest, :datePublic)
                             .where(category_id: 2 , isPublic: 1)
                             .order('datePublic DESC')
-                            .paginate(page: params[:page], per_page: 15)
+                            .paginate(page: params[:page], per_page: 10)
 
     @blogs_cate3_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
                                                         :isSuggest, :datePublic)
                             .where(category_id: 3 , isPublic: 1)
                             .order('datePublic DESC')
-                            .paginate(page: params[:page], per_page: 15)
+                            .paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html

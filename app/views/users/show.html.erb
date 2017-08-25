@@ -1,7 +1,11 @@
 <div class="profile">
   <div class="row" id="first_layout" >
-    <div class="avatar_layout">
-      <img src="<%= @user.avatar %>" alt="">
+    <div class="avatar_layout_user">
+      <% if @user.avatar? %>
+        <img src="<%= @user.avatar %>" alt="">
+      <% else %>
+        <img src="/assets/avatar_default">
+      <% end %>
     </div>
     <div class="author_info">
       <p class="author_title"><%= t"profile.author_title" %></p>
