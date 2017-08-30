@@ -3,52 +3,21 @@ class BlogsController < ApplicationController
   before_action :get_blog, only: [:show]
 
   def index
-    @count_action_interest = BlogUser.where(action: 1)
-                        .select(:action)
-                        .group(:blog_id).count
+    @count_action_interest = BlogUser.action_interest
+    @count_action_like = BlogUser.action_like
+    @count_action_dislike = BlogUser.action_dislike
+    @count_action_disappoint = BlogUser.action_disappoint
 
 
-    @count_action_like = BlogUser.where(action: 2)
-                        .select(:action)
-                        .group(:blog_id).count
-
-    @count_action_dislike = BlogUser.where(action: 3)
-                             .select(:action)
-                             .group(:blog_id).count
-
-    @count_action_disappoint = BlogUser.where(action: 4)
-                             .select(:action)
-                             .group(:blog_id).count
-
-
-    @blogs = Blog.includes(:category).select(:id, :title, :image, :category_id,
-                                             :isSuggest, :datePublic)
-                 .where(isPublic: 1)
-                 .order('datePublic DESC')
+    @blogs = Blog.includes(:category).blog_all
                  .paginate(page: params[:page], per_page: 15)
-
-    @blogs_public_list = Blog.includes(:category).select(:id, :title, :image, :category_id,
-                                                         :isSuggest, :datePublic)
-                             .where(isSuggest: 1, isPublic: 1)
-                             .order('datePublic DESC')
+    @blogs_public_list = Blog.includes(:category).blog_public
                              .paginate(page: params[:page], per_page: 10)
-
-    @blogs_cate1_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
-                                               :isSuggest, :datePublic)
-                   .where(category_id: 1 , isPublic: 1)
-                   .order('datePublic DESC')
-                   .paginate(page: params[:page], per_page: 10)
-
-    @blogs_cate2_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
-                                                        :isSuggest, :datePublic)
-                            .where(category_id: 2 , isPublic: 1)
-                            .order('datePublic DESC')
+    @blogs_list1 = Blog.includes(:category).blog_list1
                             .paginate(page: params[:page], per_page: 10)
-
-    @blogs_cate3_list = Blog.includes(:category).select(:id, :title,:image, :category_id,
-                                                        :isSuggest, :datePublic)
-                            .where(category_id: 3 , isPublic: 1)
-                            .order('datePublic DESC')
+    @blogs_list2 = Blog.includes(:category).blog_list2
+                            .paginate(page: params[:page], per_page: 10)
+    @blogs_list3 = Blog.includes(:category).blog_list3
                             .paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
@@ -72,7 +41,6 @@ class BlogsController < ApplicationController
                         .group(:action).count
 
     @blog_comments = @blog.comments.includes(:user).order('created_at ASC')
-
 
   end
 

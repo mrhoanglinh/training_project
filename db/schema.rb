@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823081330) do
+ActiveRecord::Schema.define(version: 20170829104357) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -45,14 +45,18 @@ ActiveRecord::Schema.define(version: 20170823081330) do
     t.integer  "isSuggest"
     t.integer  "isPublic"
     t.string   "image"
-    t.text     "content",     limit: 65535
-    t.string   "author",                    default: "ナルフォード"
-    t.string   "jobName",                   default: "塾講師"
-    t.integer  "age",                       default: 26
+    t.text     "content",       limit: 65535
+    t.string   "author",                      default: "ナルフォード"
+    t.string   "jobName",                     default: "塾講師"
+    t.integer  "age",                         default: 26
     t.string   "authorImage"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.datetime "datePublic"
+    t.integer  "rating_type_1",               default: 0
+    t.integer  "rating_type_2",               default: 0
+    t.integer  "rating_type_3",               default: 0
+    t.integer  "rating_type_4",               default: 0
     t.index ["category_id"], name: "index_blogs_on_category_id", using: :btree
   end
 
@@ -104,6 +108,10 @@ ActiveRecord::Schema.define(version: 20170823081330) do
     t.datetime "date_of_birth"
     t.boolean  "is_female",              default: false
     t.string   "avatar"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

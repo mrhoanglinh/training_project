@@ -11,7 +11,10 @@ class BlogusersController < ApplicationController
     end
 
     respond_to do |format|
-      format.js {render inline: "location.reload();" }
+      @count_action = BlogUser.where(blog_id: params[:blog_id])
+                          .select(:action)
+                          .group(:action).count
+      format.js
     end
   end
 end

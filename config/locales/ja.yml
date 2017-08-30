@@ -156,6 +156,21 @@ ja:
               authorImage_empty: "見出し画像を設定して下さい。"
               authorImage_size: "ファイルサイズは2MB以内です。"
               authorImage_format: "不正なファイル形式です。"
+        user:
+          attributes:
+            name:
+              blank: "を入カしてください。"
+            current_password:
+              blank: "を入カしてください。"
+            email:
+              blank: "を入カしてください。"
+              already_confirmed: ''
+            password:
+              blank: "を入カしてください。"
+              too_short: "最低 6 文字必要です"
+            password_confirmation:
+              confirmation: "を入カしてください。"
+
 
   time:
     formats:

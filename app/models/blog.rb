@@ -44,4 +44,44 @@ class Blog < ApplicationRecord
     %w(.jpeg .png .jpg).include? ext.downcase
   end
 
+  scope :blog_all, -> {
+    where(isPublic: 1)
+    .get_data
+    .recent
+  }
+
+  scope :blog_public, -> {
+    where(isSuggest: 1, isPublic: 1)
+      .get_data
+      .recent
+  }
+
+  scope :blog_list1, -> {
+    where(category_id: 1 , isPublic: 1)
+      .get_data
+      .recent
+  }
+
+  scope :blog_list2, -> {
+    where(category_id: 2 , isPublic: 1)
+      .get_data
+      .recent
+  }
+
+  scope :blog_list3, -> {
+    where(category_id: 3 , isPublic: 1)
+      .get_data
+      .recent
+  }
+
+  scope :get_data, ->{select(:id, :title, :image, :category_id, :isSuggest, :datePublic)}
+  scope :recent, ->{order('datePublic DESC')}
+
+  def get_rating
+    [
+        self.rating_type_1, self.rating_type_2,
+        self.rating_type_3, self.rating_type_4
+    ]
+  end
+
 end

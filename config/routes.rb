@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, skip: [:sessions, :passwords]
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users, path: "users", skip: [:sessions]
+  devise_for :users, path: "users", skip: [:sessions], controllers: { registrations: "registrations", confirmations: 'confirmations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #root 'blogs#index'
 
@@ -43,7 +43,6 @@ Rails.application.routes.draw do
     post "users/sign_in", to: "devise/sessions#create", as: :user_create
     get "users/sign_out", to: "devise/sessions#destroy", as: :user_destroy
     get "users/:id/edit", to: "devise/registrations#edit", as: :user_edit
-
 
     resources :users, only: [:show]
   end

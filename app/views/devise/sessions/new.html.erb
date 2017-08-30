@@ -1,6 +1,7 @@
 <div class="col-md-10 col-md-offset-1">
   <div class="row" style="padding: 120px 20px;">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-horizontal center"}) do |f| %>
+        <%= devise_error_messages! %>
 
         <div class="form-group">
           <div class="col-md-offset-4 col-md-4">
