@@ -20,13 +20,12 @@
       margin-left: 1vh;
       white-space: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      -ms-overflow-style: -ms-autohiding-scrollbar;
+      overflow:auto;
       width:100%;
       margin-left: 1%;
       li{
         height: 7vh;
-        width:25%;
+        width:30%;
         vertical-align: top;
         display: inline-block;
         box-sizing: border-box;
@@ -42,10 +41,6 @@
       }
     }
   }
-}
-
-.tabs {
-  border-bottom: 3px solid #ef6c00;
 }
 
 // top screen

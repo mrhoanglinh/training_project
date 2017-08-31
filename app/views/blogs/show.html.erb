@@ -140,7 +140,7 @@
 
   $(".rate-button").on("click", function(){
     var get_action = $(this).attr("action");
-    var check_action = '<%= @check_action %>';
+    var check_action = $(".check-action").attr("action");
 
     if(check_action == get_action)
     {

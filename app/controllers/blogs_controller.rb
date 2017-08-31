@@ -8,17 +8,16 @@ class BlogsController < ApplicationController
     @count_action_dislike = BlogUser.action_dislike
     @count_action_disappoint = BlogUser.action_disappoint
 
-
     @blogs = Blog.includes(:category).blog_all
-                 .paginate(page: params[:page], per_page: 15)
-    @blogs_public_list = Blog.includes(:category).blog_public
-                             .paginate(page: params[:page], per_page: 10)
-    @blogs_list1 = Blog.includes(:category).blog_list1
-                            .paginate(page: params[:page], per_page: 10)
-    @blogs_list2 = Blog.includes(:category).blog_list2
-                            .paginate(page: params[:page], per_page: 10)
-    @blogs_list3 = Blog.includes(:category).blog_list3
-                            .paginate(page: params[:page], per_page: 10)
+                 .paginate(page: params[:page], per_page: 20)
+    @blogs_public = Blog.includes(:category).blog_public
+                 .paginate(page: params[:page], per_page: 10)
+    @blogs1 = Blog.includes(:category).blog_list1
+                 .paginate(page: params[:page], per_page: 10)
+    @blogs2= Blog.includes(:category).blog_list2
+                .paginate(page: params[:page], per_page: 10)
+    @blogs3 = Blog.includes(:category).blog_list3
+                 .paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html

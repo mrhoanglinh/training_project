@@ -1,8 +1,8 @@
-
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <div class="menu-bar" >
   <div class="scroll">
     <ul id="menu">
-      <a href=<%#= blogs_path %>><li class="active" id="all">すべて</li></a>
+      <li class="active" value="#all_list" id="all">すべて</li>
       <li value="#public_list" id="public">オススメ</li>
       <li value="#cate1_list" id="cate1">カテゴリ1</li>
       <li value="#cate2_list" id="cate2">カテゴリ2</li>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="blog-list" data-turbolinks="false" id="main">
-  <ul class="my-blogs-user">
+  <ul class="my-blogs-user" id="all_list">
     <%= render 'blog_list' %>
   </ul>
 
@@ -38,11 +38,27 @@
 </div>
 
 <script>
-
   $("#menu li").click(function(e) {
+
     e.preventDefault()
     var selected = $(this).attr("value");
     $('#main ' + selected).stop().show().siblings().hide();
+
+    if(selected === "#all_list" || selected === "#public_list")
+    {
+      $( ".menu-bar" ).animate({ "left": "-=30px" }, 1000);
+    }else if(selected === "#cate2_list" || selected === "#cate3_list")
+    {
+      $( ".menu-bar" ).animate({ "left": "+=30px" }, 1000 );
+    }
+
+    if(selected === "#all_list"){
+      $("#public").removeClass("active");
+      $("#all").addClass("active");
+      $("#cate1").removeClass("active");
+      $("#cate2").removeClass("active");
+      $("#cate3").removeClass("active");
+    }
 
     if(selected === "#public_list"){
       $("#public").addClass("active");

@@ -49,17 +49,11 @@
       <div class="label">
         <a href="<%= user_edit_path(current_user) %>">プロファイル編集</a>
       </div>
-      <div class="label">
-        <a href="<%= user_destroy_path %>">ログアウト</a>
+      <div class="label" id="logout">
+        <%= link_to "ログアウト", user_destroy_path, :method => :delete %>
       </div>
     </div>
   </div>
-
-
-
-
-
-
 
   <!--<div class="row" id="second_layout" >-->
   <!--<div class="title">-->
@@ -79,3 +73,9 @@
   <!--</div>-->
   <!--</div>-->
 </div>
+
+<script>
+  $("#logout").on("click", function () {
+    sessionStorage.clear();
+  });
+</script>

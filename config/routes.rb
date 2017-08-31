@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "users/sign_in", to: "devise/sessions#new", as: :user_session
     post "users/sign_in", to: "devise/sessions#create", as: :user_create
-    get "users/sign_out", to: "devise/sessions#destroy", as: :user_destroy
+    delete "users/sign_out", to: "devise/sessions#destroy", as: :user_destroy
     get "users/:id/edit", to: "devise/registrations#edit", as: :user_edit
 
     resources :users, only: [:show]
