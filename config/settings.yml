@@ -1,0 +1,4 @@
+blog:
+  pagination:
+    per_page_all: 20
+    per_page_not_all: 10

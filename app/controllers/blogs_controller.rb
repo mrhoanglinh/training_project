@@ -34,7 +34,7 @@ class BlogsController < ApplicationController
 
       @check_action = @action.action if @action
     else
-      @check_action = cookies[:check_action]
+      @check_action = cookies[:action_status_check]
     end
 
     @count_action = BlogUser.where(blog_id: @blog.id)
@@ -49,6 +49,9 @@ class BlogsController < ApplicationController
 
   def get_blog
     @blog = Blog.find(params[:id])
+    unless @blog
+      redirect_to root_url
+    end
   end
 
 end

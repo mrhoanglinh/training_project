@@ -1,9 +1,9 @@
 class BlogusersController < ApplicationController
   def create
 
-    if params[:user_id].blank?
-      cookies[:check_action] = params[:user_action]
-      @check_action = cookies[:check_action]
+    if params[:user_id].nil?
+      cookies[:action_status_check] = params[:user_action]
+      @check_action = cookies[:action_status_check]
       @count_action = BlogUser.where(blog_id: params[:blog_id])
                           .select(:action)
                           .group(:action).count

@@ -1,0 +1,21 @@
+
+<% unless @actions.nil? %>
+    <% @actions.each do |userId,action| %>
+      <span>
+        <p>
+          <% @users.each do |user| %>
+            <% if user.id == userId %>
+              <% if user.avatar? %>
+              <img src="<%= user.avatar %>" style="max-height: 3vh; max-width: 3vh;">
+              <% else %>
+                <img src="/assets/avatar_default" alt="" style="max-height: 3vh; max-width: 3vh;">
+              <% end %>
+              <%= user.email %>
+            <% end %>
+          <% end %>
+
+          : <%= action %> <small>回数</small>
+        </p>
+      </span>
+    <% end %>
+<% end %>

@@ -171,6 +171,8 @@ ja:
               too_short: "最低 6 文字必要です"
             password_confirmation:
               confirmation: "を入カしてください。"
+            confirmation_token:
+              blank: ''
 
 
   time:

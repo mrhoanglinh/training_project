@@ -78,6 +78,10 @@ GEM
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
+    config (1.4.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.1.1)
+    deep_merge (1.1.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -269,6 +273,7 @@ DEPENDENCIES
   carrierwave
   ckeditor
   coffee-rails (~> 4.2)
+  config
   devise
   font-awesome-rails
   jbuilder (~> 2.5)

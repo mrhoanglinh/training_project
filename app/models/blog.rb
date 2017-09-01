@@ -77,11 +77,4 @@ class Blog < ApplicationRecord
   scope :get_data, ->{select(:id, :title, :image, :category_id, :isSuggest, :datePublic)}
   scope :recent, ->{order('datePublic DESC')}
 
-  def get_rating
-    [
-        self.rating_type_1, self.rating_type_2,
-        self.rating_type_3, self.rating_type_4
-    ]
-  end
-
 end

@@ -39,7 +39,7 @@
   <span><img src="/assets/disappoint.png" alt=""></span>
   <% @count_action.each do |key,action| %>
       <% if key == 'disappoint' %>
-          <span><p><%= action %></p></span>
+         <span><p><%= action %></p></span>
       <% end %>
   <% end %>
   <% unless @count_action.key? 'disappoint' %>
