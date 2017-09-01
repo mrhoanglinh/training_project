@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         end
         #root to: "sessions#new", as: :unauthenticated
         root 'admin#blogs#index'
+        resources :users, only: [:index, :list]
+        get "users/list", to: "users#list"
+
       end
     end
   end

@@ -1,0 +1,91 @@
+
+<div class="row">
+  <div class="col-title-list">
+    <h2><%= t "admin.blog.index.title"%></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="container">
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1" action="1">なるほど</li>
+        <li class="tab-link" data-tab="tab-1" action="2">おもしろい</li>
+        <li class="tab-link" data-tab="tab-1" action="3">難しい</li>
+        <li class="tab-link" data-tab="tab-1" action="4">がっかり</li>
+      </ul>
+      <div id="tab-1" class="tab-content current">
+        <% unless @actions.nil? %>
+            <% @actions.each do |userId,action| %>
+                <span><p><%= userId %>:<%= action %></p></span>
+            <% end %>
+        <% end %>
+        <%= @users %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style type="text/css">
+
+  .container{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+  ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+  }
+  ul.tabs li{
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  ul.tabs li.current{
+    background: #ededed;
+    color: #222;
+  }
+
+  .tab-content{
+    display: none;
+    background: #ededed;
+    padding: 15px;
+  }
+
+  .tab-content.current{
+    display: inherit;
+  }
+</style>
+
+<script>
+  $(document).ready(function(){
+
+
+    $('ul.tabs li').click(function(){
+      var tab_id = $(this).attr('data-tab');
+
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
+
+      $(this).addClass('current');
+      $("#"+tab_id).addClass('current');
+
+      var action = parseInt($(this).attr('action'));
+      $.ajax({
+        url: "/admin/users/list",
+        dataType: "script",
+        method: "get",
+        data: {rate_action: action },
+      });
+
+    });
+
+  })
+</script>

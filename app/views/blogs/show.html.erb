@@ -152,6 +152,14 @@
           method: "post",
           data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: "not_action" },
         });
+      <% else %>
+        $(this).removeClass("rate-active");
+        $.ajax({
+          url: "/blogusers/create",
+          dataType: "script",
+          method: "post",
+          data: {user_id: "", blog_id: <%= @blog.id %>, user_action: "not_action" },
+        });
       <% end %>
     }
     else
@@ -164,6 +172,15 @@
           dataType: "script",
           method: "post",
           data: {user_id: <%= current_user.id %>, blog_id: <%= @blog.id %>, user_action: get_action },
+        });
+      <% else %>
+        $(".rate-button").removeClass("rate-active");
+        $(this).addClass("rate-active");
+        $.ajax({
+          url: "/blogusers/create",
+          dataType: "script",
+          method: "post",
+          data: {user_id: "", blog_id: <%= @blog.id %>, user_action: "not_action" },
         });
       <% end %>
     }

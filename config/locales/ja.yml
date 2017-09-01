@@ -165,6 +165,7 @@ ja:
             email:
               blank: "を入カしてください。"
               already_confirmed: ''
+              taken: "が存在しました。 別のメールアドレスを入力してください。"
             password:
               blank: "を入カしてください。"
               too_short: "最低 6 文字必要です"
@@ -190,6 +191,11 @@ ja:
         already_authenticated: ''
         user:
           unauthenticated: ''
+          invalid: "パスワードとかメールアドレスが無効な。"
+          not_found_in_database: "パスワードを入力してください。"
+        admin:
+          invalid: "パスワードとかメールアドレスが無効な。"
+          not_found_in_database: "パスワードを入力してください。"
       registrations:
         user:
           updated: ''

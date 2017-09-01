@@ -33,6 +33,8 @@ class BlogsController < ApplicationController
                                blog_id: @blog.id).first
 
       @check_action = @action.action if @action
+    else
+      @check_action = cookies[:check_action]
     end
 
     @count_action = BlogUser.where(blog_id: @blog.id)
